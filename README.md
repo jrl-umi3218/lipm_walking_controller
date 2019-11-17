@@ -36,10 +36,23 @@ The following dependencies are not publicly released but available upon request 
 
 ## Usage
 
+To install this controller
+
+```
+git clone --recursive git@github.com:jrl-umi3218/lipm_walking_controller.git
+cd lipm_walking_controller
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+make
+sudo make install
+```
+
 Launch RViz for the JVRC-1 model by:
 ```sh
-roslaunch lipm_walking_controller display.launch robot:=jvrc1
+cd <lipm_walking_controller>/launch
+roslaunch display.launch robot:=jvrc1
 ```
+
 Enable the controller in your mc\_rtc configuration:
 ```sh
 {

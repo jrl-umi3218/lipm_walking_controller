@@ -5,7 +5,7 @@ namespace lipm_walking {
 <img src="https://scaron.info/images/stair-climbing-doxygen.jpg" align="left">
 <div style="clear: both"></div>
  
-This is the API documentation for the [lipm_walking_controller](https://github.com/stephane-caron/lipm_walking_controller) version \controllerversion.
+This is the API documentation for the [lipm_walking_controller](https://github.com/jrl-umi3218/lipm_walking_controller) version \controllerversion.
  
 \section installation Installation
  

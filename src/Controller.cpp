@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (c) 2018-2019, CNRS-UM LIRMM
  * All rights reserved.
  *
@@ -675,5 +675,3 @@ namespace lipm_walking
     }
   }
 }
-
-CONTROLLER_CONSTRUCTOR("LIPMWalking", lipm_walking::Controller)

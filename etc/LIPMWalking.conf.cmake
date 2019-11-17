@@ -1086,8 +1086,6 @@
   // 
 
   "Managed": false,
-  "StatesFiles": [],
-  "StatesLibraries": ["@MC_RTC_LIBDIR@/mc_controller/lipm_walking_controller/states"],
   "StepByStep": false,
   "configs": {},
   "init": "Initial",

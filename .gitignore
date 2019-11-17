@@ -1,2 +1,4 @@
 fort.9
 wiki/
+build/
+compile_commands.json
