@@ -58,34 +58,16 @@ set(CONTROLLER_HDR
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/slerp.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/world.h)
 
-set(CONTROLLER_NAME "${PROJET_NAME}_controller")
-
 add_library(${PROJECT_NAME} SHARED ${CONTROLLER_SRC} ${CONTROLLER_HDR})
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-DMC_CONTROL_EXPORTS")
-add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} copra::copra mc_rtc::mc_control_fsm)
-install(TARGETS ${PROJECT_NAME} DESTINATION ${MC_RTC_LIBDIR}/mc_controller)
+target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)
+target_link_libraries(${PROJECT_NAME} PUBLIC copra::copra eigen-quadprog::eigen-quadprog mc_rtc::mc_control_fsm)
+install(TARGETS ${PROJECT_NAME} DESTINATION "${MC_RTC_LIBDIR}")
 
-add_library(${CONTROLLER_NAME} SHARED lib.cpp)
-set_target_properties(${CONTROLLER_NAME}
-  PROPERTIES
-    PREFIX ""
-    OUTPUT_NAME "${PROJECT_NAME}"
-    LIBRARY_OUTPUT_DIRECTORY "${CATKIN_DEVEL_PREFIX}/lib/${PROJECT_NAME}")
-target_link_libraries(${CONTROLLER_NAME} ${PROJECT_NAME})
-install(TARGETS ${CONTROLLER_NAME} DESTINATION ${MC_RTC_LIBDIR}/mc_controller)
+add_controller(${PROJECT_NAME}_controller lib.cpp "")
+set_target_properties(${PROJECT_NAME}_controller PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
+target_link_libraries(${PROJECT_NAME}_controller PUBLIC ${PROJECT_NAME})
 
-set(CONF_OUT "$ENV{HOME}/.config/mc_rtc/controllers/LIPMWalking.conf")
-set(AROBASE "@")
-set(LIPM_WALKING_STATES_DIR "${CATKIN_DEVEL_PREFIX}/lib/${PROJECT_NAME}/states/")
-set(LIPM_WALKING_STATES_DATA_DIR "${LIPM_WALKING_STATES_DIR}/data")
-configure_file("${CMAKE_CURRENT_SOURCE_DIR}/../etc/LIPMWalking.conf.cmake" "${CONF_OUT}")
-unset(AROBASE)
-
-set(LIPM_WALKING_STATES_DIR "${MC_RTC_LIBDIR}/mc_controller/${PROJECT_NAME}/states")
-set(LIPM_WALKING_STATES_DATA_DIR "${LIPM_WALKING_STATES_DIR}/data")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/../etc/LIPMWalking.conf.cmake" "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.conf")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.conf"
-    DESTINATION "${MC_RTC_LIBDIR}/mc_controller/etc/")
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.conf" DESTINATION "${MC_RTC_LIBDIR}/mc_controller/etc/")
 
 add_subdirectory(states)

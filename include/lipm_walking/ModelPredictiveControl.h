@@ -27,8 +27,6 @@
 
 #pragma once
 
-#include <mc_rtc/GUIState.h>
-
 #include <copra/LMPC.h>
 #include <copra/PreviewSystem.h>
 #include <copra/constraints.h>
@@ -38,6 +36,7 @@
 #include <lipm_walking/Preview.h>
 #include <lipm_walking/Sole.h>
 #include <lipm_walking/utils/world.h>
+#include <mc_rtc/gui.h>
 
 namespace lipm_walking
 {

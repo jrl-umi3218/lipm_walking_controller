@@ -28,11 +28,18 @@
 #pragma once
 
 #include <mc_rbdyn/rpy_utils.h>
-#include <mc_rtc/GUIState.h>
 
 #include <lipm_walking/FootstepPlan.h>
 #include <lipm_walking/utils/SE2d.h>
 #include <lipm_walking/utils/polynomials.h>
+
+namespace mc_rtc
+{
+ namespace gui
+ {
+   struct StateBuilder;
+ } /* gui */
+} /* mc_rtc */
 
 namespace lipm_walking
 {

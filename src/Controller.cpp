@@ -580,7 +580,5 @@ bool Controller::updatePreview()
     return false;
   }
 }
-
 } // namespace lipm_walking
 
-CONTROLLER_CONSTRUCTOR("LIPMWalking", lipm_walking::Controller)

@@ -33,10 +33,6 @@
 #include <mc_rtc/logging.h>
 #include <mc_rtc/ros.h>
 
-#include <ros/ros.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <visualization_msgs/MarkerArray.h>
-
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/FloatingBaseObserver.h>
 #include <lipm_walking/FootstepPlan.h>
@@ -47,8 +43,6 @@
 #include <lipm_walking/Sole.h>
 #include <lipm_walking/Stabilizer.h>
 #include <lipm_walking/utils/LowPassVelocityFilter.h>
-#include <mutex>
-#include <thread>
 
 /** Main controller namespace.
  *

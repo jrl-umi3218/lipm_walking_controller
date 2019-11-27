@@ -104,19 +104,21 @@ ayumi:~$ echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/lib/mc_cont
 
 \section controller Building the controller
 
-Now that all dependencies are installed, link the controller in your catkin workspace and follow the standard catkin workflow:
+Now that all dependencies are installed, we can finally install the lipm_walking_controller:
 
 \code
-ayumi:~/Software/$ git clone --recursive https://github.com/stephane-caron/lipm_walking_controller/
-ayumi:~/Software/catkin_ws/src/$ ln -s ~/Software/lipm_walking_controller
-ayumi:~/Software/catkin_ws/$ catkin_make -DCMAKE_BUILD_TYPE=Release
+ayumi:~/Software$ git clone --recursive https://github.com/stephane-caron/lipm_walking_controller/
+ayumi:~/Software$ cd lipm_walking_controller
+ayumi:~/Software$ mkdir build && cd build
+ayumi:~/Software$ cmake -DCMAKE_BUILD_TYPE=Release ..
+ayumi:~/Software$ make 
+ayumi:~/Software$ sudo make install 
 \endcode
 
-To avoid a sudo at catkin_make install you can change ownership or permissions of the ``/usr/local/lib/mc_controller`` folder:
+To avoid installing with root privileges (sudo) you can change ownership or permissions of the ``/usr/local/lib/mc_controller`` folder:
 
 \code
 ayumi:~$ sudo chown -R ayumi:ayumi /usr/local/lib/mc_controller
-ayumi:~/Software/catkin_ws/$ catkin_make install
 \endcode
 
 \section choreonoid_build Building Choreonoid
