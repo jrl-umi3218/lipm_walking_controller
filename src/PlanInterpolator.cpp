@@ -28,6 +28,7 @@
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/PlanInterpolator.h>
 #include <lipm_walking/utils/clamp.h>
+#include <mc_rtc/gui.h>
 
 namespace lipm_walking
 {

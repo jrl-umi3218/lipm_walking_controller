@@ -31,7 +31,6 @@
 #include <copra/costFunctions.h>
 #include <copra/LMPC.h>
 #include <copra/PreviewSystem.h>
-#include <mc_rtc/GUIState.h>
 
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/Pendulum.h>
