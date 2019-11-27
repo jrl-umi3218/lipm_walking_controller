@@ -30,10 +30,6 @@
 #include <mutex>
 #include <thread>
 
-#include <ros/ros.h>
-#include <tf2_ros/transform_broadcaster.h>
-#include <visualization_msgs/MarkerArray.h>
-
 #include <mc_control/api.h>
 #include <mc_control/fsm/Controller.h>
 #include <mc_control/mc_controller.h>

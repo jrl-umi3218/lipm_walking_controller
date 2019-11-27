@@ -30,6 +30,7 @@
 #include <lipm_walking/Stabilizer.h>
 #include <lipm_walking/utils/clamp.h>
 #include <lipm_walking/utils/world.h>
+#include <mc_rtc/gui.h>
 
 namespace
 {

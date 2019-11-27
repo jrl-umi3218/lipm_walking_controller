@@ -7,16 +7,10 @@
     <license>LGPLv3</license>
     <url type="repository"></url>
     <buildtool_depend>catkin</buildtool_depend>
-    <build_depend>geometry_msgs</build_depend>
-    <build_depend>roscpp</build_depend>
-    <build_depend>roslib</build_depend>
     <build_depend>rviz</build_depend>
     <build_depend>std_msgs</build_depend>
     <build_depend>tf</build_depend>
-    <run_depend>geometry_msgs</run_depend>
     <run_depend>jvrc_description</run_depend>
-    <run_depend>roscpp</run_depend>
-    <run_depend>roslib</run_depend>
     <run_depend>rviz</run_depend>
     <run_depend>std_msgs</run_depend>
     <run_depend>tf</run_depend>

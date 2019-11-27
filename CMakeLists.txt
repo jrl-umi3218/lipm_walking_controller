@@ -23,14 +23,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.1)
 
 set(CMAKE_CXX_FLAGS "-pedantic -Wno-long-long -Wall -Wextra -Wcast-align -Wcast-qual -Wformat -Wwrite-strings -Wconversion")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 include(cmake/base.cmake)
-include(cmake/boost.cmake)
 
 set(PROJECT_NAME lipm_walking_controller)
 set(PROJECT_DESCRIPTION "Walking controller based on linear inverted pendulum tracking")
@@ -52,7 +51,7 @@ find_package(catkin REQUIRED COMPONENTS roscpp)
 find_package(copra REQUIRED)
 find_package(mc_rtc REQUIRED)
 
-catkin_package(CATKIN_DEPENDS geometry_msgs roscpp roslib std_msgs tf)
+catkin_package()
 
 include_directories(include ${catkin_INCLUDE_DIRS} $ENV{HOME}/.local/include)
 link_directories(${catkin_LIBRARY_DIRS} $ENV{HOME}/.local/lib)
