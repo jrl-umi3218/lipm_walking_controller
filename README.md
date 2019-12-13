@@ -57,7 +57,7 @@ If it is not there already, enable the controller in your mc\_rtc configuration:
 ```
 Launch RViz for the JVRC-1 model by:
 ```sh
-roslaunch lipm_walking_controller display.launch robot:=jvrc1
+roslaunch lipm_walking_controller display.launch
 ```
 Finally, start the controller from your mc\_rtc interface. Here is the example
 of the [Choreonoid](https://choreonoid.org/en/) project installed from
