@@ -1,0 +1,17 @@
+\form#0:$T_i$
+\form#1:$T_i = 10~\text{s}$
+\form#2:$T_i = 15~\text{s}$
+\form#3:\[ \dot{\xi} = \dot{\xi}^{d} + k_p (\xi^d - \xi) + k_i \int (\xi^d - \xi) \]
+\form#4:\[ y(t) = \frac{1}{T} \int_{\tau=0}^t x(\tau) e^{(\tau - t) / T} {\rm d}{\tau} \]
+\form#5:$T > 0$
+\form#6:$x(t)$
+\form#7:$T$
+\form#8:$1-1/e \ (\approx 63\%)$
+\form#9:$s \in [0, 1]$
+\form#10:$t \in [0, T]$
+\form#11:$ s(t) = t / T $
+\form#12:$s(t) \in [0, 1]$
+\form#13:$\dot{s}(t) = \frac{{\rm d}(s(t))}{{\rm d}t}$
+\form#14:$\in [0, T]$
+\form#15:\[ \ddot{c} = K (c^d - c) - B \dot{c} \]
+\form#16:$B = 2 \sqrt{K}$
