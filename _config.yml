@@ -1,0 +1,3 @@
+name: lipm_walking_controller documentation
+gems:
+  - jekyll-redirect-from
