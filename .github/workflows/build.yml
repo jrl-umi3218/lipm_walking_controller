@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      # Changes to those files don't mandate running CI
+      - ".jrl-ci"
+      - ".gitignore"
+      - ".github/workflows/package.yml"
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-16.04, ubuntu-18.04]
+        build-type: [RelWithDebInfo, Release]
+        compiler: [gcc, clang]
+
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Temporary APT mirrors cleanup
+      run: |
+        sudo rm -f /etc/apt/sources.list.d/dotnetdev.list /etc/apt/sources.list.d/microsoft-prod.list
+    - name: Setup multi-contact repositories
+      run: |
+        # Make sure you have required tools
+        sudo apt-get -qq install apt-transport-https lsb-release ca-certificates gnupg
+        # Add our key
+        sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 892EA6EE273707C6495A6FB6220D644C64666806
+        # Add our repository (head versions)
+        sudo sh -c 'echo "deb https://dl.bintray.com/gergondet/multi-contact-head $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/multi-contact.list'
+        # Update packages list
+        sudo apt -qq update
+    - uses: actions/checkout@v1
+      with:
+        submodules: recursive
+    - name: Install dependencies
+      uses: jrl-umi3218/github-actions/install-dependencies@master
+      with:
+        compiler: ${{ matrix.compiler }}
+        build-type: ${{ matrix.build-type }}
+        ubuntu: |
+          apt: libeigen3-dev doxygen doxygen-latex libboost-all-dev libmc-rtc-dev gfortran
+        github: |
+          - path: jrl-umi3218/eigen-quadprog
+          - path: vsamy/copra
+    - name: Build and test
+      uses: jrl-umi3218/github-actions/build-cmake-project@master
+      with:
+        compiler: ${{ matrix.compiler }}
+        build-type: ${{ matrix.build-type }}
+    - name: Upload documentation
+      # Only run on master branch and for one configuration
+      if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc' && github.ref == 'refs/heads/topic/ci'
+      uses: jrl-umi3218/github-actions/upload-documentation@master
+      with:
+        # upload doc
+        GH_USER: arntanguy
+        GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
