@@ -227,7 +227,7 @@ Almost there! We can finally:
 
 - Start the RViz GUI:
     \code
-    ayumi:~$ roslaunch lipm_walking_controller display.launch robot:=jvrc1
+    ayumi:~$ roslaunch lipm_walking_controller display.launch
     \endcode
 - Start the Choreonoid simulation:
     \code
