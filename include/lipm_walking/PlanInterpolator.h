@@ -35,11 +35,11 @@
 
 namespace mc_rtc
 {
- namespace gui
- {
-   struct StateBuilder;
- } /* gui */
-} /* mc_rtc */
+namespace gui
+{
+struct StateBuilder;
+} // namespace gui
+} // namespace mc_rtc
 
 namespace lipm_walking
 {

@@ -581,4 +581,3 @@ bool Controller::updatePreview()
   }
 }
 } // namespace lipm_walking
-

@@ -25,11 +25,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <mc_rtc/gui.h>
+
 #include <iomanip>
 #include <lipm_walking/ModelPredictiveControl.h>
 #include <lipm_walking/utils/clamp.h>
 #include <lipm_walking/utils/slerp.h>
-#include <mc_rtc/gui.h>
 
 namespace lipm_walking
 {
