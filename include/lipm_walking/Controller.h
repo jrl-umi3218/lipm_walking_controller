@@ -31,7 +31,6 @@
 #include <mc_control/fsm/Controller.h>
 #include <mc_control/mc_controller.h>
 #include <mc_rtc/logging.h>
-#include <mc_rtc/ros.h>
 
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/FloatingBaseObserver.h>

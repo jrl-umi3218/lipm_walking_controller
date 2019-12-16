@@ -33,6 +33,9 @@ set(PROJECT_DESCRIPTION "Walking controller based on linear inverted pendulum tr
 set(PROJECT_URL https://github.com/stephane-caron/lipm_walking_controller/)
 set(PROJECT_VERSION 1.6.0)
 
+include(cmake/base.cmake)
+set(CXX_DISABLE_WERROR True)
+
 project(${PROJECT_NAME} CXX)
 
 find_package(copra REQUIRED)

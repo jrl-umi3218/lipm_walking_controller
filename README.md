@@ -1,7 +1,8 @@
 # LIPM Walking Controller
 
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-green.svg)](https://opensource.org/licenses/BSD-2-Clause)
-[![Documentation](https://img.shields.io/badge/doxygen-online-brightgreen?logo=read-the-docs&style=flat)](https://scaron.info/doc/lipm_walking_controller/)
+[![CI](https://github.com/jrl-umi3218/lipm_walking_controller/workflows/CI/badge.svg?branch=topic/ci)](https://github.com/jrl-umi3218/lipm_walking_controller/actions?query=workflow%3A%22CI%22)
+[![Documentation](https://img.shields.io/badge/doxygen-online-brightgreen?logo=read-the-docs&style=flat)](http://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/index.html)
 
 [![Stair climbing by the HRP-4 humanoid robot](https://scaron.info/images/stair-climbing.jpg)](https://www.youtube.com/watch?v=vFCFKAunsYM&t=22)
 
