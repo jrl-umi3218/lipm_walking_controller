@@ -107,7 +107,7 @@ ayumi:~$ echo "export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/lib/mc_cont
 Now that all dependencies are installed, we can finally install the lipm_walking_controller:
 
 \code
-ayumi:~/Software$ git clone --recursive https://github.com/stephane-caron/lipm_walking_controller/
+ayumi:~/Software$ git clone --recursive https://github.com/jrl-umi3218/lipm_walking_controller/
 ayumi:~/Software$ cd lipm_walking_controller
 ayumi:~/Software$ mkdir build && cd build
 ayumi:~/Software$ cmake -DCMAKE_BUILD_TYPE=Release ..
