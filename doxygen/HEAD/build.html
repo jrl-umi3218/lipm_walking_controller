@@ -114,7 +114,7 @@ Building mc_rtc</h1>
 <div class="fragment"><div class="line">ayumi:~$ echo <span class="stringliteral">&quot;export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/lib&quot;</span> &gt;&gt; ~/.bashrc</div><div class="line">ayumi:~$ echo <span class="stringliteral">&quot;export LD_LIBRARY_PATH=\${LD_LIBRARY_PATH}:/usr/local/lib/mc_controller&quot;</span> &gt;&gt; ~/.bashrc</div></div><!-- fragment --><h1><a class="anchor" id="controller"></a>
 Building the controller</h1>
 <p>Now that all dependencies are installed, we can finally install the lipm_walking_controller:</p>
-<div class="fragment"><div class="line">ayumi:~/Software$ git clone --recursive https:<span class="comment">//github.com/stephane-caron/lipm_walking_controller/</span></div><div class="line">ayumi:~/Software$ cd lipm_walking_controller</div><div class="line">ayumi:~/Software$ mkdir build &amp;&amp; cd build</div><div class="line">ayumi:~/Software$ cmake -DCMAKE_BUILD_TYPE=Release ..</div><div class="line">ayumi:~/Software$ make </div><div class="line">ayumi:~/Software$ sudo make install </div></div><!-- fragment --><p>To avoid installing with root privileges (sudo) you can change ownership or permissions of the <code>/usr/local/lib/mc_controller</code> folder:</p>
+<div class="fragment"><div class="line">ayumi:~/Software$ git clone --recursive https:<span class="comment">//github.com/jrl-umi3218/lipm_walking_controller/</span></div><div class="line">ayumi:~/Software$ cd lipm_walking_controller</div><div class="line">ayumi:~/Software$ mkdir build &amp;&amp; cd build</div><div class="line">ayumi:~/Software$ cmake -DCMAKE_BUILD_TYPE=Release ..</div><div class="line">ayumi:~/Software$ make </div><div class="line">ayumi:~/Software$ sudo make install </div></div><!-- fragment --><p>To avoid installing with root privileges (sudo) you can change ownership or permissions of the <code>/usr/local/lib/mc_controller</code> folder:</p>
 <div class="fragment"><div class="line">ayumi:~$ sudo chown -R ayumi:ayumi /usr/local/lib/mc_controller</div></div><!-- fragment --><h1><a class="anchor" id="choreonoid_build"></a>
 Building Choreonoid</h1>
 <p>You can test the controller in simulation using Choreonoid and the AIST dynamics simulator. First, install the following packages:</p>
@@ -154,7 +154,7 @@ Configuring and running the controller</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Dec 16 2019 02:42:56 for lipm_walking_controller by
+    <li class="footer">Generated on Mon Dec 16 2019 02:56:56 for lipm_walking_controller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
   </ul>
