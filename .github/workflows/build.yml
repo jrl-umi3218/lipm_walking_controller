@@ -18,9 +18,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-16.04, ubuntu-18.04]
-        build-type: [RelWithDebInfo, Release]
-        compiler: [gcc, clang]
+        os: [ubuntu-18.04]
+        build-type: [RelWithDebInfo]
+        compiler: [gcc]
+        #os: [ubuntu-16.04, ubuntu-18.04]
+        #build-type: [RelWithDebInfo, Debug]
+        #compiler: [gcc, clang]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -36,7 +39,7 @@ jobs:
         # Add our repository (head versions)
         sudo sh -c 'echo "deb https://dl.bintray.com/gergondet/multi-contact-head $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/multi-contact.list'
         # Update packages list
-        sudo apt -qq update
+        sudo apt-get -qq update
     - uses: actions/checkout@v1
       with:
         submodules: recursive
@@ -46,10 +49,7 @@ jobs:
         compiler: ${{ matrix.compiler }}
         build-type: ${{ matrix.build-type }}
         ubuntu: |
-          apt: libeigen3-dev doxygen doxygen-latex libboost-all-dev libmc-rtc-dev gfortran
-        github: |
-          - path: jrl-umi3218/eigen-quadprog
-          - path: vsamy/copra
+          apt: libeigen3-dev doxygen doxygen-latex libboost-all-dev libmc-rtc-dev gfortran libcopra-dev
     - name: Build and test
       uses: jrl-umi3218/github-actions/build-cmake-project@master
       with:
@@ -58,6 +58,14 @@ jobs:
     - name: Upload documentation
       # Only run on master branch and for one configuration
       if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc' && github.ref == 'refs/heads/topic/ci'
+      uses: jrl-umi3218/github-actions/upload-documentation@master
+      with:
+        # upload doc
+        GH_USER: arntanguy
+        GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+    - name: Run JVRC1 simulation
+      # Only run on master branch and for one configuration
+      if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc'
       uses: jrl-umi3218/github-actions/upload-documentation@master
       with:
         # upload doc
