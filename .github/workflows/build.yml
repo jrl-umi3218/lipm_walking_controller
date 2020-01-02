@@ -82,7 +82,7 @@ jobs:
         choreonoid --start-simulation sim_mc.cnoid &
         CNOID_PID=$!
         popd
-        sleep 80s
+        sleep 70s
         kill -2 $CNOID_PID
         kill -2 $FFMPEG_PID
         sleep 10s
