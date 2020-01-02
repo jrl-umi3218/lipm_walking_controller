@@ -70,7 +70,7 @@ jobs:
         sleep 10s
         fluxbox &
         mkdir -p $HOME/.config/mc_rtc/controllers
-        cp .github/workflows/mc_rtc.yaml ~/.config/mc_rtc
+        cp .github/workflows/mc_rtc.conf ~/.config/mc_rtc
         cp .github/workflows/LIPMWalking.conf ~/.config/mc_rtc/controllers/
         mkdir -p /tmp/simulation
         cd /usr/share/hrpsys/samples/JVRC1
