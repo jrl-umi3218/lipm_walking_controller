@@ -37,7 +37,7 @@ void states::Initial::start()
   postureTaskIsActive_ = true;
   postureTaskWasActive_ = true;
   startStandingButton_ = false;
-  startStanding_ = false;
+  startStanding_ = ctl.config()("autoplay", false);
 
   ctl.internalReset();
 

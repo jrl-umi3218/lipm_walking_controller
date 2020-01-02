@@ -50,7 +50,7 @@ void states::Standing::start()
   lastInterpolatorIter_ = ctl.planInterpolator.nbIter;
   leftFootRatio_ = ctl.leftFootRatio();
   releaseHeight_ = 0.05; // [m]
-  startWalking_ = false;
+  startWalking_ = ctl.config()("autoplay", false);
   if(supportContact.surfaceName == "RightFootCenter")
   {
     leftFootContact_ = targetContact;
