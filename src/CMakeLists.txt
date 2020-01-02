@@ -67,6 +67,7 @@ add_controller(${PROJECT_NAME}_controller lib.cpp "")
 set_target_properties(${PROJECT_NAME}_controller PROPERTIES OUTPUT_NAME "${PROJECT_NAME}")
 target_link_libraries(${PROJECT_NAME}_controller PUBLIC ${PROJECT_NAME})
 
+set(AROBASE "@")
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/../etc/LIPMWalking.conf.cmake" "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.conf")
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.conf" DESTINATION "${MC_RTC_LIBDIR}/mc_controller/etc/")
 
