@@ -89,7 +89,7 @@ void FootstepPlan::save(mc_rtc::Configuration & config) const
   }
   if(!mpcConfig.empty())
   {
-    config("mpc") = mpcConfig;
+    config.add("mpc") = mpcConfig;
   }
 }
 

@@ -110,7 +110,16 @@ void PlanInterpolator::addGUIElements()
       Label("Number of steps", [this]() { return nbFootsteps_; }),
       Label("Step angle [deg]", [this]() { return std::round(stepAngle_ * 180. / M_PI * 10.) / 10.; }),
       Label("Step length [m]", [this]() { return std::round(stepLength_ * 1000.) / 1000.; }),
-      Label("Total length [m]", [this]() { return std::round(supportPath_.arcLength(0., 1.) * 1000.) / 1000.; }));
+      Label("Total length [m]", [this]() { return std::round(supportPath_.arcLength(0., 1.) * 1000.) / 1000.; }),
+      Form("Save plan",
+           [this](const mc_rtc::Configuration & config)
+           {
+             std::string out = config("Output file");
+             mc_rtc::Configuration pout;
+             customPlan_.save(pout);
+             pout.save(out);
+           },
+           FormStringInput("Output file", true, "/tmp/plan.json")));
 }
 
 void PlanInterpolator::removeGUIElements()
