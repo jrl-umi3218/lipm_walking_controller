@@ -96,6 +96,24 @@ void states::Standing::start()
   logger().addLogEntry("walking_phase", []() { return 3.; });
   ctl.stopLogSegment();
 
+  if(startWalking_) // autoplay
+  {
+    auto plans = ctl.config()("autoplay_plans", std::vector<std::string>{});
+    if(plans.size() == 0)
+    {
+      startWalking_ = false;
+      ctl.config().add("autoplay", false);
+    }
+    else
+    {
+      std::string plan = plans[0];
+      plans.erase(plans.begin());
+      ctl.config().add("autoplay_plans", plans);
+      lastInterpolatorIter_++;
+      updatePlan(plan);
+    }
+  }
+
   if(gui())
   {
     using namespace mc_rtc::gui;
