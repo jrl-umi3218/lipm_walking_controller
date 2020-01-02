@@ -18,12 +18,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-18.04]
-        build-type: [RelWithDebInfo]
-        compiler: [gcc]
-        #os: [ubuntu-16.04, ubuntu-18.04]
-        #build-type: [RelWithDebInfo, Debug]
-        #compiler: [gcc, clang]
+        os: [ubuntu-16.04, ubuntu-18.04]
+        build-type: [RelWithDebInfo, Debug]
+        compiler: [gcc, clang]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -61,13 +58,37 @@ jobs:
       uses: jrl-umi3218/github-actions/upload-documentation@master
       with:
         # upload doc
-        GH_USER: arntanguy
+        GH_USER: gergondet
         GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     - name: Run JVRC1 simulation
       # Only run on master branch and for one configuration
       if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc'
-      uses: jrl-umi3218/github-actions/upload-documentation@master
+      run: |
+        sudo apt-get install -qq mc-openrtm jvrc-choreonoid xvfb ffmpeg mesa-utils fluxbox xserver-xorg xserver-xorg-core xserver-xorg-video-all libwayland-egl1-mesa
+        export DISPLAY=":1"
+        Xvfb $DISPLAY -screen 0 1920x1080x24 &
+        sleep 10s
+        fluxbox &
+        mkdir -p $HOME/.config/mc_rtc/controllers
+        cp .github/workflows/mc_rtc.yaml ~/.config/mc_rtc
+        cp .github/workflows/LIPMWalking.conf ~/.config/mc_rtc/controllers/
+        mkdir -p /tmp/simulation
+        cd /usr/share/hrpsys/samples/JVRC1
+        ./clear-omninames.sh
+        choreonoid --start-simulation sim_mc.cnoid &
+        CNOID_PID=$!
+        ffmpeg -y -f x11grab -s 1920x1080 -r 30 -i $DISPLAY -qscale 0 -vcodec huffyuv grab.avi &
+        FFMPEG_PID=$!
+        sleep 80s
+        kill -2 $CNOID_PID
+        kill -2 $FFMPEG_PID
+        ffmpeg -i grab.avi /tmp/simulation/simulation.mp4
+        cp /tmp/mc-control-LIPMWalking-latest.bin mc-control-LIPMWalking-latest.bin
+        tar czf /tmp/simulation/log.tar.gz mc-control-LIPMWalking-latest.bin
+    - name: Upload simulation data
+      # Only run on master branch and for one configuration
+      if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc'
+      uses: actions/upload-artifact@v1
       with:
-        # upload doc
-        GH_USER: arntanguy
-        GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
+        name: simulation
+        path: /tmp/simulation
