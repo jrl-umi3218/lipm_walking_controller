@@ -19,33 +19,11 @@ docker run -it --rm --user ayumi -e DISPLAY=${DISPLAY} -v /tmp/.X11-unix:/tmp/.X
     lipm_walking --floor
 ```
 
-See the [documentation](https://scaron.info/doc/lipm_walking_controller/docker.html) for more usage instructions.
+See the [documentation](http://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/docker.html) for more usage instructions.
 
 ## Installation
 
-The controller has been tested on Ubuntu 14.04 with ROS Indigo and Ubuntu 16.04 with ROS Kinetic. See the instructions to [build from source](https://scaron.info/doc/lipm_walking_controller/build.html) in the documentation.
-
-### Dependencies
-
-Compilation requires:
-
-* [ROS](http://www.ros.org/) with a working [catkin workspace](http://wiki.ros.org/catkin/Tutorials/create_a_workspace)
-* [Eigen3ToPython](https://github.com/jrl-umi3218/Eigen3ToPython): Python bindings for Eigen
-* [SpaceVecAlg](https://github.com/jrl-umi3218/SpaceVecAlg): spatial vector algebra
-* [RBDyn](https://github.com/jrl-umi3218/RBDyn/): rigid body dynamics
-* [eigen-qld](https://github.com/jrl-umi3218/eigen-qld): quadratic programming
-* [eigen-quadprog](https://github.com/jrl-umi3218/eigen-quadprog): quadratic programming
-* [sch-core](https://github.com/jrl-umi3218/sch-core): collision detection
-* [sch-core-python](https://github.com/jrl-umi3218/sch-core-python): Python bindings for sch-core
-* [Tasks](https://github.com/jrl-umi3218/Tasks/): inverse kinematics
-* [mc\_rbdyn\_urdf](https://github.com/jrl-umi3218/mc_rbdyn_urdf): robot model loader
-* [copra](https://github.com/vsamy/copra): linear model predictive control
-
-The following dependencies are not publicly released but available upon request to [Pierre Gergondet](mailto:pierre.gergondet@gmail.com):
-
-* [mc\_rtc](https://gite.lirmm.fr/multi-contact/mc_rtc): robot controller library (includes mc\_control, mc\_rbdyn, mc\_solver and mc\_tasks)
-* [mc\_rtc\_ros](https://gite.lirmm.fr/multi-contact/mc_rtc_ros): ROS tools for mc\_rtc
-* [mc\_rtc\_ros\_data](https://gite.lirmm.fr/multi-contact/mc_rtc_ros_data): ROS environment and object descriptions for mc\_rtc
+The controller has been tested on Ubuntu 14.04, Ubuntu 16.04 and Ubuntu 18.04. See the instructions to [build and install](http://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/build.html) in the documentation.
 
 ## Usage
 
@@ -58,14 +36,14 @@ If it is not there already, enable the controller in your mc\_rtc configuration:
 ```
 Launch RViz for the JVRC-1 model by:
 ```sh
-roslaunch lipm_walking_controller display.launch
+roslaunch mc_rtc_ticker display.launch
 ```
 Finally, start the controller from your mc\_rtc interface. Here is the example
 of the [Choreonoid](https://choreonoid.org/en/) project installed from
-[jvrc\_choreonoid](https://gite.lirmm.fr/multi-contact/jvrc_choreonoid) in the
+[mc\_openrtm](https://github.com/jrl-umi3218/mc_openrtm) in the
 Docker image:
 ```sh
-cd /usr/local/share/hrpsys/samples/JVRC1
+cd /usr/share/hrpsys/samples/JVRC1
 choreonoid --start-simulation sim_mc.cnoid
 ```
 You should end up with the following windows:
