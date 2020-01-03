@@ -1,8 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"structlipm__walking_1_1states_1_1_double_support.html#af294ae30c724a63d098582fe7df6ce97":[6,0,0,0,0,4],
-"structlipm__walking_1_1states_1_1_initial.html":[6,0,0,0,1],
-"structlipm__walking_1_1states_1_1_initial.html#a4056f9919c098d4c37a794116519600c":[6,0,0,0,1,5],
 "structlipm__walking_1_1states_1_1_initial.html#a4f56878e90299d890cffa24b4a08497f":[6,0,0,0,1,0],
 "structlipm__walking_1_1states_1_1_initial.html#a77e281905d8f54ed7922c8fd9d08dd79":[6,0,0,0,1,4],
 "structlipm__walking_1_1states_1_1_initial.html#a8b92d8228e7bd0e810d491cdc081d216":[6,0,0,0,1,2],

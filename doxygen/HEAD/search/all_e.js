@@ -9,7 +9,6 @@ var searchData=
   ['pendulum_2ecpp',['Pendulum.cpp',['../_pendulum_8cpp.html',1,'']]],
   ['pendulum_2eh',['Pendulum.h',['../_pendulum_8h.html',1,'']]],
   ['phasedurations',['phaseDurations',['../structlipm__walking_1_1_model_predictive_control.html#abc0a5abba15c0c3c3ff9b0255d4c8138',1,'lipm_walking::ModelPredictiveControl']]],
-  ['phaselabel',['phaseLabel',['../structlipm__walking_1_1_model_predictive_control.html#a58473c3e83592c9282ab1f9148c64a8f',1,'lipm_walking::ModelPredictiveControl']]],
   ['plan',['plan',['../structlipm__walking_1_1_controller.html#a2f62356c15b1a5d9663b991435dfdd59',1,'lipm_walking::Controller::plan()'],['../structlipm__walking_1_1_state.html#abc8b5084142375e5c582cb55cf5b1bee',1,'lipm_walking::State::plan()']]],
   ['planinterpolator',['PlanInterpolator',['../structlipm__walking_1_1_plan_interpolator.html',1,'lipm_walking::PlanInterpolator'],['../structlipm__walking_1_1_plan_interpolator.html#aae8ae89ab43ded8201a5ba9eabf2ff4d',1,'lipm_walking::PlanInterpolator::PlanInterpolator()'],['../structlipm__walking_1_1_controller.html#af37c79c6da811ea10e42b6b9e40f5174',1,'lipm_walking::Controller::planInterpolator()']]],
   ['planinterpolator_2ecpp',['PlanInterpolator.cpp',['../_plan_interpolator_8cpp.html',1,'']]],
@@ -25,7 +24,7 @@ var searchData=
   ['pose',['pose',['../structlipm__walking_1_1_contact.html#a1da40d557f896d1fd978985288d56a6f',1,'lipm_walking::Contact::pose()'],['../structlipm__walking_1_1_swing_foot.html#a1f7fec723bf64466e7088e102dd013a7',1,'lipm_walking::SwingFoot::pose()']]],
   ['position',['position',['../structlipm__walking_1_1_contact.html#ac460195a9b2ba49a120aa8a0abfa6c08',1,'lipm_walking::Contact']]],
   ['prevcontact',['prevContact',['../structlipm__walking_1_1_controller.html#a0a87a2a1ccde73d5d7849e35532c69ea',1,'lipm_walking::Controller::prevContact()'],['../structlipm__walking_1_1_footstep_plan.html#af81a985382e9c1734e4129f006b12782',1,'lipm_walking::FootstepPlan::prevContact()']]],
-  ['preview',['Preview',['../structlipm__walking_1_1_preview.html',1,'lipm_walking::Preview'],['../structlipm__walking_1_1_controller.html#a870167397866be6bad4a39de5e4edfb3',1,'lipm_walking::Controller::preview()'],['../structlipm__walking_1_1_preview.html#ac0526baca66afc28f69b0f9b0fef6114',1,'lipm_walking::Preview::Preview()'],['../structlipm__walking_1_1_preview.html#a02d90de749cf30f18ee604bb6df83bce',1,'lipm_walking::Preview::Preview(const Eigen::VectorXd &amp;stateTraj, const Eigen::VectorXd &amp;inputTraj)']]],
+  ['preview',['Preview',['../structlipm__walking_1_1_preview.html',1,'lipm_walking::Preview'],['../structlipm__walking_1_1_preview.html#ac0526baca66afc28f69b0f9b0fef6114',1,'lipm_walking::Preview::Preview()'],['../structlipm__walking_1_1_preview.html#a02d90de749cf30f18ee604bb6df83bce',1,'lipm_walking::Preview::Preview(const Eigen::VectorXd &amp;stateTraj, const Eigen::VectorXd &amp;inputTraj)'],['../structlipm__walking_1_1_controller.html#a870167397866be6bad4a39de5e4edfb3',1,'lipm_walking::Controller::preview()']]],
   ['preview_2ecpp',['Preview.cpp',['../_preview_8cpp.html',1,'']]],
   ['preview_2eh',['Preview.h',['../_preview_8h.html',1,'']]],
   ['preview_5fupdate_5fperiod',['PREVIEW_UPDATE_PERIOD',['../namespacelipm__walking.html#abccb4317c936fd3671cf62d0b4cdd4d0',1,'lipm_walking']]]

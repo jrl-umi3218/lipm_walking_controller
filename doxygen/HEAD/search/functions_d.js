@@ -4,7 +4,6 @@ var searchData=
   ['pausewalkingcallback',['pauseWalkingCallback',['../structlipm__walking_1_1_controller.html#a964de87a8124e0994c1b86ddc7d17414',1,'lipm_walking::Controller']]],
   ['pendulum',['pendulum',['../structlipm__walking_1_1_controller.html#a23bfad83bc8f20ab3b5216b7f3cf09e3',1,'lipm_walking::Controller::pendulum()'],['../structlipm__walking_1_1_state.html#adaa864f708dd6d0ec5932a309c12e4c9',1,'lipm_walking::State::pendulum()'],['../structlipm__walking_1_1_pendulum.html#a4b5eeca21f604b45d6de38e944357ff0',1,'lipm_walking::Pendulum::Pendulum()']]],
   ['phasedurations',['phaseDurations',['../structlipm__walking_1_1_model_predictive_control.html#abc0a5abba15c0c3c3ff9b0255d4c8138',1,'lipm_walking::ModelPredictiveControl']]],
-  ['phaselabel',['phaseLabel',['../structlipm__walking_1_1_model_predictive_control.html#a58473c3e83592c9282ab1f9148c64a8f',1,'lipm_walking::ModelPredictiveControl']]],
   ['plan',['plan',['../structlipm__walking_1_1_state.html#abc8b5084142375e5c582cb55cf5b1bee',1,'lipm_walking::State']]],
   ['planinterpolator',['PlanInterpolator',['../structlipm__walking_1_1_plan_interpolator.html#aae8ae89ab43ded8201a5ba9eabf2ff4d',1,'lipm_walking::PlanInterpolator']]],
   ['playbackstep',['playbackStep',['../structlipm__walking_1_1_preview.html#a48da795e194da0405968cf5b8546f86e',1,'lipm_walking::Preview']]],

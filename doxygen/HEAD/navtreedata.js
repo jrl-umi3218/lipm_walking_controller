@@ -1,14 +1,15 @@
 var NAVTREE =
 [
   [ "lipm_walking_controller", "index.html", [
-    [ "Building from source", "build.html", [
-      [ "JRL dependencies", "build.html#jrl", null ],
-      [ "ROS dependencies", "build.html#ros", null ],
-      [ "Building mc_rtc", "build.html#rtc", null ],
+    [ "Build and install the LIPMWalking controller", "build.html", [
       [ "Building the controller", "build.html#controller", null ],
-      [ "Building Choreonoid", "build.html#choreonoid_build", null ],
       [ "Simulation with the JVRC-1 model", "build.html#jvrc", null ],
-      [ "Configuring and running the controller", "build.html#config", null ]
+      [ "Install dependencies from Ubuntu mirror", "build.html#binaries", null ],
+      [ "Install dependencies from source", "build.html#source", [
+        [ "JRL dependencies", "build.html#jrl", null ],
+        [ "Building Choreonoid", "build.html#choreonoid_build", null ],
+        [ "Install mc_openrtm and the sample project", "build.html#mc_openrtm", null ]
+      ] ]
     ] ],
     [ "Using the Docker image", "docker.html", [
       [ "Running all at once", "docker.html#docker_run", null ],
@@ -55,7 +56,6 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
@@ -68,8 +68,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_contact_8h.html",
-"structlipm__walking_1_1_controller.html#a74adaf293e6f1538a6ec871b824d64f7",
-"structlipm__walking_1_1states_1_1_double_support.html#af294ae30c724a63d098582fe7df6ce97"
+"structlipm__walking_1_1_controller.html#a8079dc069109e7f7d8c8f2b598a2eadc",
+"structlipm__walking_1_1states_1_1_initial.html#a4f56878e90299d890cffa24b4a08497f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

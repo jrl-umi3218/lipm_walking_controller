@@ -1,6 +1,5 @@
 var structlipm__walking_1_1_model_predictive_control =
 [
-    [ "RefVec", "structlipm__walking_1_1_model_predictive_control.html#abdd4cb91a4303a90d0209605fd864ab8", null ],
     [ "ModelPredictiveControl", "structlipm__walking_1_1_model_predictive_control.html#a405567c58b51c840fed12ae70afc4587", null ],
     [ "addGUIElements", "structlipm__walking_1_1_model_predictive_control.html#a34e1786d0f1be3909228a5a6304490d6", null ],
     [ "addLogEntries", "structlipm__walking_1_1_model_predictive_control.html#a208ef5db5b3c1a147331e08cc2423df3", null ],
@@ -15,9 +14,8 @@ var structlipm__walking_1_1_model_predictive_control =
     [ "nbInitSupportSteps", "structlipm__walking_1_1_model_predictive_control.html#ab1d89b470d3d9510352bc2e85c964ff3", null ],
     [ "nextContact", "structlipm__walking_1_1_model_predictive_control.html#a365a48fa1a4de3482cbaeeae4f5f6859", null ],
     [ "phaseDurations", "structlipm__walking_1_1_model_predictive_control.html#abc0a5abba15c0c3c3ff9b0255d4c8138", null ],
-    [ "phaseLabel", "structlipm__walking_1_1_model_predictive_control.html#a58473c3e83592c9282ab1f9148c64a8f", null ],
     [ "sole", "structlipm__walking_1_1_model_predictive_control.html#abb82c87a0b4467c42507b6f63150cf67", null ],
-    [ "solution", "structlipm__walking_1_1_model_predictive_control.html#a2ebf242a27efad10ae25cae4eaf93a07", null ],
+    [ "solution", "structlipm__walking_1_1_model_predictive_control.html#a7d296ba991c1bdeeb48a133d6bfdfe3c", null ],
     [ "targetContact", "structlipm__walking_1_1_model_predictive_control.html#a9b498525afff8d6183a6ca54852c247f", null ],
     [ "INPUT_SIZE", "structlipm__walking_1_1_model_predictive_control.html#a9a86c87474dbffb7354d4a0fbc1a0e05", null ],
     [ "jerkWeight", "structlipm__walking_1_1_model_predictive_control.html#ae6d85bfe30443c198b9341f54b3b3e54", null ],

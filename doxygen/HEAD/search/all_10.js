@@ -5,7 +5,6 @@ var searchData=
   ['rawvalue_5f',['rawValue_',['../structutils_1_1_exponential_moving_average.html#a8d56f731990b31d86eafba90fc587b55',1,'utils::ExponentialMovingAverage']]],
   ['realrobot',['realRobot',['../structlipm__walking_1_1_controller.html#ad872a59a6700ae3851ee7c25051a4898',1,'lipm_walking::Controller']]],
   ['reconfigure',['reconfigure',['../structlipm__walking_1_1_stabilizer.html#aa637ebf7a318515e23672a4910d9f956',1,'lipm_walking::Stabilizer']]],
-  ['refvec',['RefVec',['../structlipm__walking_1_1_model_predictive_control.html#abdd4cb91a4303a90d0209605fd864ab8',1,'lipm_walking::ModelPredictiveControl']]],
   ['refvel',['refVel',['../structlipm__walking_1_1_contact.html#a09d914ef244caa215c7d11f30c848e46',1,'lipm_walking::Contact']]],
   ['releasefootcontact',['releaseFootContact',['../structlipm__walking_1_1states_1_1_standing.html#ae8f98779a470959d336e30eaf2d43b06',1,'lipm_walking::states::Standing']]],
   ['releaseleftfootcontact',['releaseLeftFootContact',['../structlipm__walking_1_1states_1_1_standing.html#a3dfd0b2e2a52fa84c411bbb0dde9f08e',1,'lipm_walking::states::Standing']]],
