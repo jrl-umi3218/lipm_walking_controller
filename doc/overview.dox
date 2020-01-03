@@ -21,7 +21,7 @@ The ``Controller`` class has some main attributes that you will see everywhere i
 - ``Controller::realRobot()``: estimated robot state
 - ``Controller::stabilizer()``: balance feedback control component that updates task targets
 
-As a general rule, look out for documentation in header files or on the [API documentation](https://scaron.info/doc/lipm_walking_controller/).
+As a general rule, look out for documentation in header files or on the [API documentation](https://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/).
 
 \section fsm Finite state machine
 
@@ -34,7 +34,7 @@ The last instruction in the controller's ``run()`` function calls ``mc_control::
 
 If you just want some balance control without walking, you can modify the ``Standing`` state to suit your needs.
 
-If you want the robot to do something while walking, you can extend the FSM and execute your new states [in parallel](https://gite.lirmm.fr/multi-contact/mc_rtc/wikis/FSMController#parallel) with ``states::SingleSupport`` and ``states::DoubleSupport``.
+If you want the robot to do something while walking, you can extend the FSM and execute your new states in parallel using the [built-in Parallel state](https://jrl-umi3218.github.io/mc_rtc/tutorials/recipes/fsm.html) with ``states::SingleSupport`` and ``states::DoubleSupport``.
 
 */
 
