@@ -1,10 +1,11 @@
-name: CI
+name: CI of LIPMWalking
 
 on:
+  repository_dispatch:
+    types: [build]
   push:
     paths-ignore:
       # Changes to those files don't mandate running CI
-      - ".jrl-ci"
       - ".gitignore"
       - ".github/workflows/package.yml"
     branches:
@@ -54,11 +55,11 @@ jobs:
         build-type: ${{ matrix.build-type }}
     - name: Upload documentation
       # Only run on master branch and for one configuration
-      if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc' && github.ref == 'refs/heads/topic/ci'
+      if: matrix.os == 'ubuntu-18.04' && matrix.build-type == 'RelWithDebInfo' && matrix.compiler == 'gcc' && github.ref == 'refs/heads/master'
       uses: jrl-umi3218/github-actions/upload-documentation@master
       with:
         # upload doc
-        GH_USER: gergondet
+        GH_USER: arntanguy
         GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     - name: Run JVRC1 simulation
       # Only run on master branch and for one configuration
@@ -69,13 +70,13 @@ jobs:
         export DISPLAY=":1"
         Xvfb $DISPLAY -screen 0 1920x1080x24 &
         sleep 10s
-        fluxbox &
+        fluxbox 2> /dev/null &
         mkdir -p $HOME/.config/mc_rtc/controllers
         cp .github/workflows/mc_rtc.conf ~/.config/mc_rtc
         cp .github/workflows/LIPMWalking.conf ~/.config/mc_rtc/controllers/
         mkdir -p /tmp/simulation
         pushd .
-        ffmpeg -y -f x11grab -s 1920x1080 -r 30 -i $DISPLAY -qscale 0 -vcodec huffyuv grab.avi &
+        ffmpeg -y -f x11grab -s 1920x1080 -r 30 -i $DISPLAY -qscale 0 -vcodec huffyuv grab.avi 2> /dev/null &
         FFMPEG_PID=$!
         cd /usr/share/hrpsys/samples/JVRC1
         ./clear-omninames.sh
