@@ -85,7 +85,7 @@ sudo sh -c 'echo "deb https://dl.bintray.com/gergondet/multi-contact-head $(lsb_
 # Update packages list
 sudo apt-get -qq update
 # Install required dependencies, Choreonoid, JVRC1 sample project and mc_rtc tools
-sudo apt install libeigen3-dev doxygen libboost-all-dev libmc-rtc-dev libcopra-dev mc-openrtm jvrc-choreonoid mc-rtc-tools ros-${ROS_DISTRO}-mc-rtc-tools
+sudo apt install libeigen3-dev doxygen libboost-all-dev libmc-rtc-dev libcopra-dev mc-openrtm jvrc-choreonoid mc-rtc-utils ros-${ROS_DISTRO}-mc-rtc-tools
 \endcode
 
 You can now \ref controller "build the controller" and \ref jvrc "run a simulation".
