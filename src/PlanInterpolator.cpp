@@ -112,8 +112,7 @@ void PlanInterpolator::addGUIElements()
       Label("Step length [m]", [this]() { return std::round(stepLength_ * 1000.) / 1000.; }),
       Label("Total length [m]", [this]() { return std::round(supportPath_.arcLength(0., 1.) * 1000.) / 1000.; }),
       Form("Save plan",
-           [this](const mc_rtc::Configuration & config)
-           {
+           [this](const mc_rtc::Configuration & config) {
              std::string out = config("Output file");
              mc_rtc::Configuration pout;
              customPlan_.save(pout);

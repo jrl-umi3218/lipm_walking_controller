@@ -266,14 +266,6 @@ struct MC_CONTROL_DLLAPI Controller : public mc_control::fsm::Controller
     return plan.prevContact();
   }
 
-  /** Get observed robot state.
-   *
-   */
-  mc_rbdyn::Robot & realRobot()
-  {
-    return real_robots->robot();
-  }
-
   /** Get next SSP duration.
    *
    */

@@ -56,7 +56,8 @@ struct ModelPredictiveControl
   static constexpr double SAMPLING_PERIOD = 0.1; /**< Duration of each sampling step in [s] */
   static constexpr unsigned INPUT_SIZE = 2; /**< Input is the 2D horizontal CoM jerk */
   static constexpr unsigned NB_STEPS = 16; /**< Number of sampling steps */
-  static constexpr unsigned STATE_SIZE = 6; /**< State is the 6D stacked vector of CoM positions, velocities and accelerations */
+  static constexpr unsigned STATE_SIZE =
+      6; /**< State is the 6D stacked vector of CoM positions, velocities and accelerations */
 
   /** Initialize new problem.
    *
@@ -260,8 +261,10 @@ private:
   RefVector velRef_ = RefVector::Zero(); /**< Stacked vector of reference CoM velocities */
   RefVector zmpRef_ = RefVector::Zero(); /**< Stacked vector of reference ZMPs */
   Eigen::Matrix<double, 2 * (NB_STEPS + 1), STATE_SIZE *(NB_STEPS + 1)> velCostMat_;
-  StateMatrix dcmFromState_ = StateMatrix::Zero(); /**< Linear map to extract the DCM of a CoM state (position, velocity, acceleration) */
-  StateMatrix zmpFromState_ = StateMatrix::Zero(); /**< Linear map to compute the ZMP of a CoM state (position, velocity, acceleration) */
+  StateMatrix dcmFromState_ =
+      StateMatrix::Zero(); /**< Linear map to extract the DCM of a CoM state (position, velocity, acceleration) */
+  StateMatrix zmpFromState_ =
+      StateMatrix::Zero(); /**< Linear map to compute the ZMP of a CoM state (position, velocity, acceleration) */
   Eigen::VectorXd initState_; /**< Initial CoM state (position, velocity, acceleration) */
   HrepXd hreps_[4]; /**< Halfspace representation for ZMP inequality constraints */
   copra::SolverFlag solver_ = copra::SolverFlag::QLD; /**< Quadratic programming solver */
@@ -269,7 +272,8 @@ private:
   double solveTime_ = 0.; /**< Time in [s] taken to solve the MPC problem */
   std::shared_ptr<Preview> solution_ = nullptr; /**< Placeholder for solution trajectories */
   std::shared_ptr<copra::ControlCost> jerkCost_ = nullptr; /**< Jerk term in the MPC cost function */
-  std::shared_ptr<copra::PreviewSystem> previewSystem_ = nullptr; /**< Linear model predictive control problem for copra */
+  std::shared_ptr<copra::PreviewSystem> previewSystem_ =
+      nullptr; /**< Linear model predictive control problem for copra */
   std::shared_ptr<copra::TrajectoryConstraint> termDCMCons_ = nullptr; /**< Terminal DCM constraint */
   std::shared_ptr<copra::TrajectoryConstraint> termZMPCons_ = nullptr; /**< Terminal ZMP constraint */
   std::shared_ptr<copra::TrajectoryConstraint> zmpCons_ = nullptr; /**< ZMP support area constraints */
@@ -278,9 +282,12 @@ private:
   unsigned indexToHrep_[NB_STEPS + 1]; /**< Mapping from timestep index to ZMP inequality constraints */
   unsigned nbDoubleSupportSteps_ = 0; /**< Number of discretization steps for the double support phase */
   Sole sole_; /**< Sole dimensions of the robot model */
-  unsigned nbInitSupportSteps_ = 0; /**< Number of sampling steps in the preview spent in the first single-support phase */
-  unsigned nbNextDoubleSupportSteps_ = 0; /**< Number of sampling steps in the preview spent on a potential second double-support phase */
-  unsigned nbTargetSupportSteps_ = 0; /**< Number of sampling steps in the preview spent on the second single-support phase */
+  unsigned nbInitSupportSteps_ =
+      0; /**< Number of sampling steps in the preview spent in the first single-support phase */
+  unsigned nbNextDoubleSupportSteps_ =
+      0; /**< Number of sampling steps in the preview spent on a potential second double-support phase */
+  unsigned nbTargetSupportSteps_ =
+      0; /**< Number of sampling steps in the preview spent on the second single-support phase */
 };
 
 } // namespace lipm_walking
