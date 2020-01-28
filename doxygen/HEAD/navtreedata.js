@@ -69,7 +69,7 @@ var NAVTREEINDEX =
 [
 "_contact_8h.html",
 "structlipm__walking_1_1_controller.html#a8079dc069109e7f7d8c8f2b598a2eadc",
-"structlipm__walking_1_1states_1_1_initial.html#a4f56878e90299d890cffa24b4a08497f"
+"structlipm__walking_1_1states_1_1_initial.html#a77e281905d8f54ed7922c8fd9d08dd79"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

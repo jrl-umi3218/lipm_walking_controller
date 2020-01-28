@@ -19,7 +19,6 @@ var structlipm__walking_1_1_controller =
     [ "pauseWalkingCallback", "structlipm__walking_1_1_controller.html#a964de87a8124e0994c1b86ddc7d17414", null ],
     [ "pendulum", "structlipm__walking_1_1_controller.html#a23bfad83bc8f20ab3b5216b7f3cf09e3", null ],
     [ "prevContact", "structlipm__walking_1_1_controller.html#a0a87a2a1ccde73d5d7849e35532c69ea", null ],
-    [ "realRobot", "structlipm__walking_1_1_controller.html#ad872a59a6700ae3851ee7c25051a4898", null ],
     [ "reset", "structlipm__walking_1_1_controller.html#af273817014373365c1be96cbf9cec130", null ],
     [ "run", "structlipm__walking_1_1_controller.html#a2f1983a1772cb13335c6ded2ec742726", null ],
     [ "singleSupportDuration", "structlipm__walking_1_1_controller.html#a99929d59af3b6d2afb0c04e0d41f8294", null ],

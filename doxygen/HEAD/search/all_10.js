@@ -3,7 +3,6 @@ var searchData=
   ['rate',['rate',['../structutils_1_1_leaky_integrator.html#ad8c4a40a692441a50c6646c71fc5d56d',1,'utils::LeakyIntegrator::rate() const'],['../structutils_1_1_leaky_integrator.html#ac9e342c201f79a696d5df0ee8a825a92',1,'utils::LeakyIntegrator::rate(double rate)']]],
   ['raw',['raw',['../structutils_1_1_exponential_moving_average.html#ace89b10fd013d99a5838b1093e596133',1,'utils::ExponentialMovingAverage::raw()'],['../structutils_1_1_stationary_offset_filter.html#a7abae63cc178284e8fc02ac34859ab4c',1,'utils::StationaryOffsetFilter::raw()']]],
   ['rawvalue_5f',['rawValue_',['../structutils_1_1_exponential_moving_average.html#a8d56f731990b31d86eafba90fc587b55',1,'utils::ExponentialMovingAverage']]],
-  ['realrobot',['realRobot',['../structlipm__walking_1_1_controller.html#ad872a59a6700ae3851ee7c25051a4898',1,'lipm_walking::Controller']]],
   ['reconfigure',['reconfigure',['../structlipm__walking_1_1_stabilizer.html#aa637ebf7a318515e23672a4910d9f956',1,'lipm_walking::Stabilizer']]],
   ['refvel',['refVel',['../structlipm__walking_1_1_contact.html#a09d914ef244caa215c7d11f30c848e46',1,'lipm_walking::Contact']]],
   ['releasefootcontact',['releaseFootContact',['../structlipm__walking_1_1states_1_1_standing.html#ae8f98779a470959d336e30eaf2d43b06',1,'lipm_walking::states::Standing']]],
