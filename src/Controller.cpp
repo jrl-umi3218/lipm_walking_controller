@@ -36,9 +36,7 @@ namespace lipm_walking
 Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
                        double dt,
                        const mc_rtc::Configuration & config)
-: mc_control::fsm::Controller(robotModule, dt, config), planInterpolator(gui()), halfSitPose(controlRobot().mbc().q),
-  floatingBaseObs_(controlRobot()), comVelFilter_(dt, /* cutoff period = */ 0.01), netWrenchObs_(),
-  stabilizer_(controlRobot(), pendulum_, dt)
+: mc_control::fsm::Controller(robotModule, dt, config), planInterpolator(gui()), halfSitPose(controlRobot().mbc().q)
 {
   auto robotConfig = config("robot_models")(controlRobot().name());
   auto planConfig = config("plans")(controlRobot().name());
@@ -46,10 +44,6 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
   // Patch CoM height and step width in all plans
   std::vector<std::string> plans = planConfig.keys();
   double comHeight = robotConfig("com")("height");
-  maxCoMHeight_ = robotConfig("com")("max_height");
-  minCoMHeight_ = robotConfig("com")("min_height");
-  maxTorsoPitch_ = robotConfig("torso")("max_pitch");
-  minTorsoPitch_ = robotConfig("torso")("min_pitch");
   for(const auto & p : plans)
   {
     auto plan = planConfig(p);
@@ -59,30 +53,11 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
     }
   }
 
-  // Add upper-body tasks
-  double pelvisStiffness = config("tasks")("pelvis")("stiffness");
-  double pelvisWeight = config("tasks")("pelvis")("weight");
-  std::string pelvisBodyName = robot().mb().body(0).name();
-  pelvisTask = std::make_shared<mc_tasks::OrientationTask>(pelvisBodyName, robots(), 0);
-  pelvisTask->orientation(pelvisOrientation_);
-  pelvisTask->stiffness(pelvisStiffness);
-  pelvisTask->weight(pelvisWeight);
-
   double postureStiffness = config("tasks")("posture")("stiffness");
   double postureWeight = config("tasks")("posture")("weight");
   postureTask = getPostureTask(robot().name());
   postureTask->stiffness(postureStiffness);
   postureTask->weight(postureWeight);
-
-  std::string torsoName = robotConfig("torso")("name");
-  robotConfig("torso")("pitch", defaultTorsoPitch_);
-  double torsoStiffness = config("tasks")("torso")("stiffness");
-  double torsoWeight = config("tasks")("torso")("weight");
-  torsoPitch_ = defaultTorsoPitch_;
-  torsoTask = std::make_shared<mc_tasks::OrientationTask>(torsoName, robots(), 0);
-  torsoTask->orientation(mc_rbdyn::rpyToMat({0, torsoPitch_, 0}) * pelvisOrientation_);
-  torsoTask->stiffness(torsoStiffness);
-  torsoTask->weight(torsoWeight);
 
   // Set half-sitting pose for posture task
   const auto & halfSit = robotModule->stance();
@@ -106,15 +81,9 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
   sole_.leftAnkleOffset = X_lfc_lf.translation().head<2>();
 
   // Configure MPC solver
+  // TODO sole for the MPC
   mpcConfig_ = config("mpc");
   mpc_.sole(sole_);
-
-  // Forward robot-specific settings to stabilizer configuration
-  std::vector<std::string> comActiveJoints = robotConfig("com")("active_joints");
-  config("stabilizer").add("admittance", robotConfig("admittance"));
-  config("stabilizer").add("dcm_tracking", robotConfig("dcm_tracking"));
-  config("stabilizer")("tasks")("com").add("active_joints", comActiveJoints);
-  stabilizer_.configure(config("stabilizer"));
 
   // Read footstep plans from configuration
   planInterpolator.configure(planConfig);
@@ -123,21 +92,30 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
   config("initial_plan", initialPlan);
   loadFootstepPlan(initialPlan);
 
-  stabilizer_.reset(robots());
-  stabilizer_.sole(sole_);
-  stabilizer_.wrenchFaceMatrix(sole_);
+  // Load default configuration from robot module
+  LOG_INFO("Loading default stabilizer configuration");
+  auto stabiConf = robot().module().defaultLIPMStabilizerConfiguration();
+  stabilizer_.reset(new mc_tasks::lipm_stabilizer::StabilizerTask(
+      solver().robots(), solver().realRobots(), robot().robotIndex(), stabiConf.leftFootSurface,
+      stabiConf.rightFootSurface, stabiConf.torsoBodyName, solver().dt()));
+  if(config.has(robot().name()))
+  {
+    if(config.has("Stabilizer"))
+    {
+      LOG_INFO("Loading additional stabilizer configuration");
+      stabiConf.load(config("Stabilizer"));
+    }
+  }
+  stabilizer_->configure(stabiConf);
 
   addLogEntries(logger());
   mpc_.addLogEntries(logger());
-  stabilizer_.addLogEntries(logger());
 
   if(gui_)
   {
     addGUIElements(gui_);
     mpc_.addGUIElements(gui_);
-    stabilizer_.addGUIElements(gui_);
   }
-
   LOG_SUCCESS("LIPMWalking controller init done " << this)
 }
 
@@ -148,18 +126,9 @@ void Controller::addLogEntries(mc_rtc::Logger & logger)
   logger.addLogEntry("controlRobot_RightFoot", [this]() { return controlRobot().surfacePose("RightFoot"); });
   logger.addLogEntry("controlRobot_RightFootCenter",
                      [this]() { return controlRobot().surfacePose("RightFootCenter"); });
-  logger.addLogEntry("controlRobot_com", [this]() { return controlRobot().com(); });
-  logger.addLogEntry("controlRobot_comd", [this]() { return controlRobot().comVelocity(); });
-  logger.addLogEntry("controlRobot_posW", [this]() { return controlRobot().posW(); });
   logger.addLogEntry("mpc_failures", [this]() { return nbMPCFailures_; });
   logger.addLogEntry("left_foot_ratio", [this]() { return leftFootRatio_; });
   logger.addLogEntry("left_foot_ratio_measured", [this]() { return measuredLeftFootRatio(); });
-  logger.addLogEntry("pendulum_com", [this]() { return pendulum_.com(); });
-  logger.addLogEntry("pendulum_comd", [this]() { return pendulum_.comd(); });
-  logger.addLogEntry("pendulum_comdd", [this]() { return pendulum_.comdd(); });
-  logger.addLogEntry("pendulum_dcm", [this]() { return pendulum_.dcm(); });
-  logger.addLogEntry("pendulum_omega", [this]() { return pendulum_.omega(); });
-  logger.addLogEntry("pendulum_zmp", [this]() { return pendulum_.zmp(); });
   logger.addLogEntry("plan_com_height", [this]() { return plan.comHeight(); });
   logger.addLogEntry("plan_double_support_duration", [this]() { return plan.doubleSupportDuration(); });
   logger.addLogEntry("plan_final_dsp_duration", [this]() { return plan.finalDSPDuration(); });
@@ -176,53 +145,16 @@ void Controller::addLogEntries(mc_rtc::Logger & logger)
   logger.addLogEntry("realRobot_LeftFootCenter", [this]() { return realRobot().surfacePose("LeftFootCenter"); });
   logger.addLogEntry("realRobot_RightFoot", [this]() { return realRobot().surfacePose("RightFoot"); });
   logger.addLogEntry("realRobot_RightFootCenter", [this]() { return realRobot().surfacePose("RightFootCenter"); });
-  logger.addLogEntry("realRobot_com", [this]() { return realCom_; });
-  logger.addLogEntry("realRobot_comd", [this]() { return realComd_; });
-  logger.addLogEntry("realRobot_dcm", [this]() -> Eigen::Vector3d { return realCom_ + realComd_ / pendulum_.omega(); });
   logger.addLogEntry("realRobot_posW", [this]() { return realRobot().posW(); });
-  logger.addLogEntry("realRobot_wrench", [this]() { return netWrenchObs_.wrench(); });
-  logger.addLogEntry("realRobot_zmp", [this]() { return netWrenchObs_.zmp(); });
 }
 
 void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
 {
   using namespace mc_rtc::gui;
 
-  constexpr double ARROW_HEAD_DIAM = 0.015;
-  constexpr double ARROW_HEAD_LEN = 0.05;
-  constexpr double ARROW_SHAFT_DIAM = 0.015;
-  constexpr double FORCE_SCALE = 0.0015;
-
   const std::map<char, Color> COLORS = {{'r', Color{1.0, 0.0, 0.0}}, {'g', Color{0.0, 1.0, 0.0}},
                                         {'b', Color{0.0, 0.0, 1.0}}, {'y', Color{1.0, 0.5, 0.0}},
                                         {'c', Color{0.0, 0.5, 1.0}}, {'m', Color{1.0, 0.0, 0.5}}};
-
-  ArrowConfig pendulumArrowConfig;
-  pendulumArrowConfig.color = COLORS.at('y');
-  pendulumArrowConfig.end_point_scale = 0.02;
-  pendulumArrowConfig.head_diam = .1 * ARROW_HEAD_DIAM;
-  pendulumArrowConfig.head_len = .1 * ARROW_HEAD_LEN;
-  pendulumArrowConfig.scale = 1.;
-  pendulumArrowConfig.shaft_diam = .1 * ARROW_SHAFT_DIAM;
-  pendulumArrowConfig.start_point_scale = 0.02;
-
-  ArrowConfig pendulumForceArrowConfig;
-  pendulumForceArrowConfig.shaft_diam = 1 * ARROW_SHAFT_DIAM;
-  pendulumForceArrowConfig.head_diam = 1 * ARROW_HEAD_DIAM;
-  pendulumForceArrowConfig.head_len = 1 * ARROW_HEAD_LEN;
-  pendulumForceArrowConfig.scale = 1.;
-  pendulumForceArrowConfig.start_point_scale = 0.02;
-  pendulumForceArrowConfig.end_point_scale = 0.;
-
-  ArrowConfig netWrenchForceArrowConfig = pendulumForceArrowConfig;
-  netWrenchForceArrowConfig.color = COLORS.at('r');
-
-  ArrowConfig refPendulumForceArrowConfig = pendulumForceArrowConfig;
-  refPendulumForceArrowConfig = COLORS.at('y');
-
-  ForceConfig copForceConfig(COLORS.at('g'));
-  copForceConfig.start_point_scale = 0.02;
-  copForceConfig.end_point_scale = 0.;
 
   auto footStepPolygon = [](const Contact & contact) {
     std::vector<Eigen::Vector3d> polygon;
@@ -232,18 +164,6 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
     polygon.push_back(contact.vertex3());
     return polygon;
   };
-
-  constexpr double COM_POINT_SIZE = 0.02;
-  constexpr double DCM_POINT_SIZE = 0.015;
-
-  gui->addElement(
-      {"Markers", "CoM"},
-      Arrow("Pendulum_CoM", pendulumArrowConfig, [this]() -> Eigen::Vector3d { return this->pendulum_.zmp(); },
-            [this]() -> Eigen::Vector3d { return this->pendulum_.com(); }),
-      Point3D("Measured_CoM", PointConfig(COLORS.at('g'), COM_POINT_SIZE), [this]() { return realCom_; }),
-      Point3D("Pendulum_DCM", PointConfig(COLORS.at('y'), DCM_POINT_SIZE), [this]() { return pendulum_.dcm(); }),
-      Point3D("Measured_DCM", PointConfig(COLORS.at('g'), DCM_POINT_SIZE),
-              [this]() -> Eigen::Vector3d { return realCom_ + realComd_ / pendulum().omega(); }));
 
   gui->addElement(
       {"Markers", "Footsteps"},
@@ -268,28 +188,6 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
         return polygons;
       }));
 
-  gui->addElement({"Markers", "Net wrench"},
-                  Point3D("Stabilizer_ZMP", PointConfig(COLORS.at('m'), 0.02), [this]() { return stabilizer_.zmp(); }),
-                  Point3D("Measured_ZMP", PointConfig(COLORS.at('r'), 0.02),
-                          [this]() -> Eigen::Vector3d { return netWrenchObs_.zmp(); }),
-                  Arrow("Measured_ZMPForce", netWrenchForceArrowConfig,
-                        [this]() -> Eigen::Vector3d { return this->netWrenchObs_.zmp(); },
-                        [this, FORCE_SCALE]() -> Eigen::Vector3d {
-                          return netWrenchObs_.zmp() + FORCE_SCALE * netWrenchObs_.wrench().force();
-                        }));
-
-  gui->addElement({"Markers", "Foot wrenches"},
-                  Point3D("Stabilizer_LeftCoP", PointConfig(COLORS.at('m'), 0.01),
-                          [this]() { return stabilizer_.leftFootTask->targetCoPW(); }),
-                  Force("Measured_LeftCoPForce", copForceConfig,
-                        [this]() { return this->robot().surfaceWrench("LeftFootCenter"); },
-                        [this]() { return sva::PTransformd(this->robot().copW("LeftFootCenter")); }),
-                  Point3D("Stabilizer_RightCoP", PointConfig(COLORS.at('m'), 0.01),
-                          [this]() { return stabilizer_.rightFootTask->targetCoPW(); }),
-                  Force("Measured_RightCoPForce", copForceConfig,
-                        [this]() { return this->robot().surfaceWrench("RightFootCenter"); },
-                        [this]() { return sva::PTransformd(this->robot().copW("RightFootCenter")); }));
-
   gui->addElement({"Walking", "Main"},
                   Button("# EMERGENCY STOP",
                          [this]() {
@@ -302,18 +200,7 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
                     this->resume("Initial");
                   }));
 
-  gui->addElement({"Walking", "CoM"}, Label("Plan name", [this]() { return plan.name; }),
-                  NumberInput("CoM height [m]", [this]() { return plan.comHeight(); },
-                              [this](double height) {
-                                height = clamp(height, minCoMHeight_, maxCoMHeight_);
-                                plan.comHeight(height);
-                              }),
-                  NumberInput("Torso pitch [rad]", [this]() { return torsoPitch_; },
-                              [this](double pitch) {
-                                pitch = clamp(pitch, minTorsoPitch_, maxTorsoPitch_);
-                                defaultTorsoPitch_ = pitch;
-                                torsoPitch_ = pitch;
-                              }));
+  gui->addElement({"Walking", "CoM"}, Label("Plan name", [this]() { return plan.name; }));
 
   gui->addElement({"Walking", "Swing"}, Label("Plan name", [this]() { return plan.name; }),
                   NumberInput("Swing height [m]", [this]() { return plan.swingHeight(); },
@@ -349,6 +236,9 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
 void Controller::reset(const mc_control::ControllerResetData & data)
 {
   mc_control::fsm::Controller::reset(data);
+
+  stabilizer_->reset();
+
   if(gui_)
   {
     gui_->removeCategory({"Contacts"});
@@ -358,20 +248,18 @@ void Controller::reset(const mc_control::ControllerResetData & data)
 void Controller::internalReset()
 {
   // (1) update floating-base transforms of both robot mbc's
-  auto X_0_fb = supportContact().robotTransform(controlRobot());
-  controlRobot().posW(X_0_fb);
-  controlRobot().velW(sva::MotionVecd::Zero());
-  realRobot().posW(X_0_fb);
-  realRobot().velW(sva::MotionVecd::Zero());
+  // auto X_0_fb = supportContact().robotTransform(controlRobot());
+  // controlRobot().posW(X_0_fb);
+  // controlRobot().velW(sva::MotionVecd::Zero());
+  // realRobot().posW(X_0_fb);
+  // realRobot().velW(sva::MotionVecd::Zero());
 
   // (2) update contact frames to coincide with surface ones
   loadFootstepPlan(plan.name);
 
   // (3) reset solver tasks
   postureTask->posture(halfSitPose);
-  solver().removeTask(pelvisTask);
-  solver().removeTask(torsoTask);
-  stabilizer_.reset(robots());
+  // stabilizer_.reset(robots());
 
   // (4) reset controller attributes
   leftFootRatioJumped_ = true;
@@ -380,19 +268,11 @@ void Controller::internalReset()
   pauseWalking = false;
   pauseWalkingRequested = false;
 
-  Eigen::Vector3d controlCoM = controlRobot().com();
-  comVelFilter_.reset(controlCoM);
-  pendulum_.reset(controlCoM);
-
-  // (5) reset floating-base observers
-  floatingBaseObs_.reset(controlRobot().posW());
-  floatingBaseObs_.leftFootRatio(leftFootRatio_);
-  floatingBaseObs_.run(realRobot());
-  updateRealFromKinematics(); // after leftFootRatio_ is initialized
+  pendulum_.reset(controlRobot().com());
 
   // (6) updates that depend on realCom_
-  netWrenchObs_.update(realRobot(), supportContact());
-  stabilizer_.updateState(realCom_, realComd_, netWrenchObs_.wrench(), leftFootRatio_);
+  // netWrenchObs_.update(realRobot(), supportContact());
+  // stabilizer_.updateState(realCom_, realComd_, netWrenchObs_.wrench(), leftFootRatio_);
 
   stopLogSegment();
 }
@@ -410,6 +290,12 @@ void Controller::leftFootRatio(double ratio)
 
 bool Controller::run()
 {
+  LOG_INFO("left foot ratio: " << leftFootRatio_);
+  // Update observers
+  anchorFrame(sva::interpolate(robot().surfacePose("RightFoot"), robot().surfacePose("LeftFoot"), leftFootRatio_));
+  anchorFrameReal(
+      sva::interpolate(realRobot().surfacePose("RightFoot"), realRobot().surfacePose("LeftFoot"), leftFootRatio_));
+
   if(emergencyStop)
   {
     return false;
@@ -426,17 +312,6 @@ bool Controller::run()
   ctlTime_ += timeStep;
 
   warnIfRobotIsInTheAir();
-
-  floatingBaseObs_.leftFootRatio(leftFootRatio_);
-  floatingBaseObs_.run(realRobot());
-  updateRealFromKinematics();
-  sva::PTransformd X_0_a = floatingBaseObs_.getAnchorFrame(controlRobot());
-  pelvisOrientation_ = X_0_a.rotation();
-  pelvisTask->orientation(pelvisOrientation_);
-  torsoTask->orientation(mc_rbdyn::rpyToMat({0, torsoPitch_, 0}) * pelvisOrientation_);
-
-  netWrenchObs_.update(realRobot(), supportContact());
-  stabilizer_.updateState(realCom_, realComd_, netWrenchObs_.wrench(), leftFootRatio_);
 
   bool ret = mc_control::fsm::Controller::run();
   if(mc_control::fsm::Controller::running())
@@ -500,21 +375,21 @@ void Controller::warnIfRobotIsInTheAir()
   }
 }
 
-void Controller::updateRealFromKinematics()
-{
-  floatingBaseObs_.updateRobot(realRobot());
-  realCom_ = realRobot().com();
-  if(!leftFootRatioJumped_)
-  {
-    comVelFilter_.update(realCom_);
-  }
-  else // don't update velocity when CoM position jumped
-  {
-    comVelFilter_.updatePositionOnly(realCom_);
-    leftFootRatioJumped_ = false;
-  }
-  realComd_ = comVelFilter_.vel();
-}
+// void Controller::updateRealFromKinematics()
+// {
+// realCom_ = realRobot().com();
+// FIXME seems important probably an update to the observer
+// if(!leftFootRatioJumped_)
+// {
+//   comVelFilter_.update(realCom_);
+// }
+// else // don't update velocity when CoM position jumped
+// {
+//   comVelFilter_.updatePositionOnly(realCom_);
+//   leftFootRatioJumped_ = false;
+// }
+// realComd_ = comVelFilter_.vel();
+// }
 
 void Controller::loadFootstepPlan(std::string name)
 {
@@ -542,7 +417,6 @@ void Controller::loadFootstepPlan(std::string name)
   planInterpolator.worldReference(plan.initPose());
   planInterpolator.updateSupportPath(X_0_lf, X_0_rf);
   plan.rewind();
-  torsoPitch_ = (plan.hasTorsoPitch()) ? plan.torsoPitch() : defaultTorsoPitch_;
   if(loadingNewPlan)
   {
     LOG_INFO("Loaded footstep plan \"" << name << "\"");

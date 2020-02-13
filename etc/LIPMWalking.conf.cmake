@@ -763,23 +763,29 @@
   //
   // Finite state machine
   // 
-  "StatesFiles": [],
-  "StatesLibraries": ["@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states"],
+  "StatesFiles": ["@MC_CONTROLLER_INSTALL_PREFIX@/fsm/states/data"],
+  "StatesLibraries": ["@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states", "@MC_CONTROLLER_INSTALL_PREFIX@/fsm/states"],
   "Managed": false,
   "StepByStep": false,
+  "IdleKeepState": true,
   "configs": {},
   "init": "Initial",
-  "states": {},
+  "states": {
+    "Standing":
+    {
+      "base": "Stabilizer::Standing"
+    }
+  },
   "transitions":
   [
-    ["Initial", "Standing", "Standing"],
-    ["Standing", "DoubleSupport", "DoubleSupport"],
-    ["DoubleSupport", "SingleSupport", "SingleSupport"],
-    ["DoubleSupport", "Standing", "Standing"],
-    ["SingleSupport", "DoubleSupport", "DoubleSupport"]
+    ["Initial", "Standing", "Standing"]
   ],
+    // ["Standing", "DoubleSupport", "DoubleSupport"],
+    // ["DoubleSupport", "SingleSupport", "SingleSupport"],
+    // ["DoubleSupport", "Standing", "Standing"],
+    // ["SingleSupport", "DoubleSupport", "DoubleSupport"]
 
   // Set realRobot's joint configuration from encoder readings
-  "RunObservers": ["Encoder"],
-  "UpdateObservers": ["Encoder"]
+  "RunObservers": ["Encoder", "KinematicInertial", "BodySensor"],
+  "UpdateObservers": ["Encoder", "KinematicInertial"]
 }

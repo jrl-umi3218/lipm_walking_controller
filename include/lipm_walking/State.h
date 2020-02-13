@@ -112,7 +112,7 @@ struct State : mc_control::fsm::State
    * \returns stabilizer Reference to stabilizer.
    *
    */
-  Stabilizer & stabilizer()
+  mc_tasks::lipm_stabilizer::StabilizerTask & stabilizer()
   {
     return controller_->stabilizer();
   }
