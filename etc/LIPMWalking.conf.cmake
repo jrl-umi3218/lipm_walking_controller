@@ -774,16 +774,21 @@
     "Standing":
     {
       "base": "Stabilizer::Standing"
+    },
+    "StandingWait":
+    {
+      "base": "Parallel",
+      "states": ["Standing", "StartWalkingChoice"]
     }
   },
   "transitions":
   [
-    ["Initial", "Standing", "Standing"]
+    ["Initial", "Standing", "StandingWait"],
+    ["StandingWait", "DoubleSupport", "DoubleSupport"],
+    ["DoubleSupport", "SingleSupport", "SingleSupport"],
+    ["DoubleSupport", "Standing", "StandingWait"],
+    ["SingleSupport", "DoubleSupport", "DoubleSupport"]
   ],
-    // ["Standing", "DoubleSupport", "DoubleSupport"],
-    // ["DoubleSupport", "SingleSupport", "SingleSupport"],
-    // ["DoubleSupport", "Standing", "Standing"],
-    // ["SingleSupport", "DoubleSupport", "DoubleSupport"]
 
   // Set realRobot's joint configuration from encoder readings
   "RunObservers": ["Encoder", "KinematicInertial", "BodySensor"],

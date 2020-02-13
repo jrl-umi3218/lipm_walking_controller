@@ -290,7 +290,6 @@ void Controller::leftFootRatio(double ratio)
 
 bool Controller::run()
 {
-  LOG_INFO("left foot ratio: " << leftFootRatio_);
   // Update observers
   anchorFrame(sva::interpolate(robot().surfacePose("RightFoot"), robot().surfacePose("LeftFoot"), leftFootRatio_));
   anchorFrameReal(

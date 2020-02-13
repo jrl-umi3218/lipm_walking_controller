@@ -282,9 +282,9 @@ struct MC_CONTROL_DLLAPI Controller : public mc_control::fsm::Controller
   /** This getter is only used for consistency with the rest of mc_rtc.
    *
    */
-  mc_tasks::lipm_stabilizer::StabilizerTask & stabilizer()
+  std::shared_ptr<mc_tasks::lipm_stabilizer::StabilizerTask> stabilizer()
   {
-    return *stabilizer_;
+    return stabilizer_;
   }
 
   /** Get current support contact.

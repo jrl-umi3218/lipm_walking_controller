@@ -25,28 +25,22 @@
 
 set(CONTROLLER_SRC
     Controller.cpp
-    FloatingBaseObserver.cpp
     FootstepPlan.cpp
     ModelPredictiveControl.cpp
-    NetWrenchObserver.cpp
     Pendulum.cpp
     PlanInterpolator.cpp
     Preview.cpp
-    Stabilizer.cpp
     SwingFoot.cpp)
 
 set(CONTROLLER_HDR
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Contact.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Controller.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/FloatingBaseObserver.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/FootstepPlan.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/ModelPredictiveControl.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/NetWrenchObserver.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Pendulum.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/PlanInterpolator.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Preview.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Sole.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Stabilizer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/State.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/SwingFoot.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/ExponentialMovingAverage.h

@@ -30,6 +30,7 @@
 #include <mc_rbdyn/Robot.h>
 #include <mc_rtc/Configuration.h>
 #include <mc_rtc/logging.h>
+#include <mc_tasks/lipm_stabilizer/Contact.h>
 
 #include <SpaceVecAlg/SpaceVecAlg>
 
@@ -42,15 +43,7 @@ namespace lipm_walking
 
 using HrepXd = std::pair<Eigen::MatrixXd, Eigen::VectorXd>;
 
-/** Contact state: set of feet in contact.
- *
- */
-enum class ContactState
-{
-  DoubleSupport,
-  LeftFoot,
-  RightFoot
-};
+using ContactState = mc_tasks::lipm_stabilizer::ContactState;
 
 /** Contacts wrap foot frames with extra info from the footstep plan.
  *

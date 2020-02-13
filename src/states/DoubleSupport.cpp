@@ -30,6 +30,8 @@
 namespace lipm_walking
 {
 
+using ContactState = mc_tasks::lipm_stabilizer::ContactState;
+
 void states::DoubleSupport::start()
 {
   auto & ctl = controller();
@@ -58,24 +60,28 @@ void states::DoubleSupport::start()
     stopDuringThisDSP_ = true;
   }
 
-  stabilizer().contactState(ContactState::DoubleSupport);
+  // stabilizer().contactState(ContactState::DoubleSupport);
   if(ctl.prevContact().surfaceName == "LeftFootCenter")
   {
-    stabilizer().setContact(stabilizer().leftFootTask, ctl.prevContact());
-    stabilizer().setContact(stabilizer().rightFootTask, ctl.supportContact());
+    // stabilizer().setContact(stabilizer().leftFootTask, ctl.prevContact());
+    // stabilizer().setContact(stabilizer().rightFootTask, ctl.supportContact());
+    stabilizer()->setContacts(
+        {{ContactState::Left, ctl.prevContact().pose}, {ContactState::Right, ctl.supportContact().pose}});
     targetLeftFootRatio_ = 0.;
   }
   else // (ctl.prevContact().surfaceName == "RightFootCenter")
   {
-    stabilizer().setContact(stabilizer().leftFootTask, ctl.supportContact());
-    stabilizer().setContact(stabilizer().rightFootTask, ctl.prevContact());
+    // stabilizer().setContact(stabilizer().leftFootTask, ctl.supportContact());
+    // stabilizer().setContact(stabilizer().rightFootTask, ctl.prevContact());
+    stabilizer()->setContacts(
+        {{ContactState::Left, ctl.supportContact().pose}, {ContactState::Right, ctl.prevContact().pose}});
     targetLeftFootRatio_ = 1.;
   }
   if(stopDuringThisDSP_)
   {
     targetLeftFootRatio_ = 0.5;
   }
-  stabilizer().addTasks(ctl.solver());
+  controller().solver().addTask(stabilizer());
 
   logger().addLogEntry("rem_phase_time", [this]() { return remTime_; });
   logger().addLogEntry("support_xmax",
@@ -102,7 +108,7 @@ void states::DoubleSupport::start()
 
 void states::DoubleSupport::teardown()
 {
-  stabilizer().removeTasks(controller().solver());
+  controller().solver().removeTask(stabilizer());
 
   logger().removeLogEntry("rem_phase_time");
   logger().removeLogEntry("support_xmax");
@@ -131,7 +137,7 @@ void states::DoubleSupport::runState()
   ctl.preview->integrate(pendulum(), dt);
   pendulum().completeIPM(ctl.prevContact());
   pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.prevContact());
-  stabilizer().run();
+  controller().stabilizer()->target(pendulum().com(), pendulum().comd(), pendulum().comdd(), pendulum().zmp());
 
   remTime_ -= dt;
   stateTime_ += dt;
