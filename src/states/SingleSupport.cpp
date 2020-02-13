@@ -48,7 +48,8 @@ void states::SingleSupport::start()
     // stabilizer().contactState(ContactState::LeftFoot);
     // supportFootTask = stabilizer().leftFootTask;
     stabilizer()->setContacts({{ContactState::Left, supportContact.pose}});
-    swingFootTask.reset(new mc_tasks::force::CoPTask("RightFoot", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
+    swingFootTask.reset(
+        new mc_tasks::force::CoPTask("RightFootCenter", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
   }
   else // (ctl.supportContact.surfaceName == "RightFootCenter")
   {
@@ -56,9 +57,15 @@ void states::SingleSupport::start()
     // stabilizer().contactState(ContactState::RightFoot);
     stabilizer()->setContacts({{ContactState::Right, supportContact.pose}});
     // supportFootTask = stabilizer().rightFootTask;
-    swingFootTask.reset(new mc_tasks::force::CoPTask("LeftFoot", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
+    swingFootTask.reset(
+        new mc_tasks::force::CoPTask("LeftFootCenter", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
   }
   swingFootTask->reset();
+  // XXX we don't care about angular vel for the swing foot
+  // XXX should be a surface transform task
+  swingFootTask->maxLinearVel(Eigen::Vector3d::Ones());
+  swingFootTask->maxAngularVel(Eigen::Vector3d::Ones());
+  ctl.solver().addTask(swingFootTask);
 
   swingFoot_.landingDuration(ctl.plan.landingDuration());
   swingFoot_.landingPitch(ctl.plan.landingPitch());
@@ -87,6 +94,7 @@ void states::SingleSupport::start()
 void states::SingleSupport::teardown()
 {
   controller().solver().removeTask(stabilizer());
+  controller().solver().removeTask(swingFootTask);
 
   logger().removeLogEntry("contact_impulse");
   logger().removeLogEntry("rem_phase_time");
