@@ -52,16 +52,37 @@ namespace states
  */
 struct Standing : State
 {
-  /** Start state. */
+  /** Start state.
+   *
+   */
   void start() override;
 
-  /** Teardown state. */
+  /** Teardown state.
+   *
+   */
   void teardown() override;
 
-  /** Main state function, called if no transition at this cycle. */
+  /** Check for footstep plan updates.
+   *
+   */
+  void checkPlanUpdates();
+
+  /** Check transitions at beginning of control cycle.
+   *
+   */
+  bool checkTransitions() override;
+
+  /** Main state function, called if no transition at this cycle.
+   *
+   */
   void runState() override;
 
-  bool checkTransitions() override;
+  /** Update target CoM and CoP.
+   *
+   * \param leftFootRatio Left foot weight index between 0 and 1.
+   *
+   */
+  void updateTarget(double leftFootRatio);
 
   /** Enable startWalking_ boolean and update GUI.
    *
@@ -69,8 +90,6 @@ struct Standing : State
   void startWalking();
 
 protected:
-  void checkPlanUpdates();
-
   /** Change footstep plan.
    *
    * \param name New plan name.
@@ -79,8 +98,12 @@ protected:
   void updatePlan(const std::string & name);
 
 private:
+  Contact leftFootContact_; /**< Current left foot contact handle in plan */
+  Contact rightFootContact_; /**< Current right foot contact handle in plan */
+  Eigen::Vector3d copTarget_; /**< CoP target computed from GUI input */
   bool planChanged_; /**< Has footstep plan changed? */
   bool startWalking_; /**< Has the user clicked on "Start walking"? */
+  double leftFootRatio_; /**< Left foot ratio from GUI input */
   unsigned lastInterpolatorIter_; /**< Last iteration number of the plan interpolator */
 };
 

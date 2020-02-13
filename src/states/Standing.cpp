@@ -33,13 +33,35 @@
 namespace lipm_walking
 {
 
+namespace
+{
+constexpr double COM_STIFFNESS = 5.; // standing has CoM set-point task
+}
+
 void states::Standing::start()
 {
   auto & ctl = controller();
+  auto & supportContact = ctl.supportContact();
+  auto & targetContact = ctl.targetContact();
 
   planChanged_ = false;
   lastInterpolatorIter_ = ctl.planInterpolator.nbIter;
+  leftFootRatio_ = ctl.leftFootRatio();
   startWalking_ = ctl.config()("autoplay", false);
+  if(supportContact.surfaceName == "RightFootCenter")
+  {
+    leftFootContact_ = targetContact;
+    rightFootContact_ = supportContact;
+  }
+  else if(supportContact.surfaceName == "LeftFootCenter")
+  {
+    leftFootContact_ = supportContact;
+    rightFootContact_ = targetContact;
+  }
+  else
+  {
+    LOG_ERROR_AND_THROW(std::invalid_argument, "Unknown surface name: " << supportContact.surfaceName);
+  }
 
   if(ctl.isLastDSP())
   {
@@ -50,11 +72,25 @@ void states::Standing::start()
   // stabilizer().setContact(stabilizer().leftFootTask, leftFootContact_);
   // stabilizer().setContact(stabilizer().rightFootTask, rightFootContact_);
   // stabilizer().addTasks(ctl.solver());
-  // ctl.solver().addTask(ctl.pelvisTask);
-  // ctl.solver().addTask(ctl.torsoTask);
+  stabilizer()->setContacts(
+      {{ContactState::Left, leftFootContact_.pose}, {ContactState::Right, rightFootContact_.pose}});
+  ctl.solver().addTask(stabilizer());
 
   updatePlan(ctl.plan.name);
+  updateTarget(leftFootRatio_);
 
+  logger().addLogEntry("support_xmax",
+                       [&ctl]() { return std::max(ctl.supportContact().xmax(), ctl.targetContact().xmax()); });
+  logger().addLogEntry("support_xmin",
+                       [&ctl]() { return std::min(ctl.supportContact().xmin(), ctl.targetContact().xmin()); });
+  logger().addLogEntry("support_ymax",
+                       [&ctl]() { return std::max(ctl.supportContact().ymax(), ctl.targetContact().ymax()); });
+  logger().addLogEntry("support_ymin",
+                       [&ctl]() { return std::min(ctl.supportContact().ymin(), ctl.targetContact().ymin()); });
+  logger().addLogEntry("support_zmax",
+                       [&ctl]() { return std::max(ctl.supportContact().zmax(), ctl.targetContact().zmax()); });
+  logger().addLogEntry("support_zmin",
+                       [&ctl]() { return std::min(ctl.supportContact().zmin(), ctl.targetContact().zmin()); });
   logger().addLogEntry("walking_phase", []() { return 3.; });
   ctl.stopLogSegment();
 
@@ -83,7 +119,18 @@ void states::Standing::start()
     gui()->addElement({"Walking", "Main"}, ComboInput("Footstep plan", ctl.planInterpolator.availablePlans(),
                                                       [&ctl]() { return ctl.plan.name; },
                                                       [this](const std::string & name) { updatePlan(name); }));
-    gui()->addElement({"Walking", "Main"}, Button("Start walking", [this]() { startWalking(); }));
+    gui()->addElement({"Walking", "Main"}, Button((supportContact.id == 0) ? "Start walking" : "Resume walking",
+                                                  [this]() { startWalking(); }));
+    gui()->addElement({"Standing"},
+                      NumberInput("CoM target [0-1]", [this]() { return std::round(leftFootRatio_ * 10.) / 10.; },
+                                  [this](double leftFootRatio) { updateTarget(leftFootRatio); }),
+                      Label("Left foot force [N]",
+                            [&ctl]() { return ctl.realRobot().forceSensor("LeftFootForceSensor").force().z(); }),
+                      Label("Right foot force [N]",
+                            [&ctl]() { return ctl.realRobot().forceSensor("RightFootForceSensor").force().z(); }),
+                      Button("Go to left foot", [this]() { updateTarget(1.); }),
+                      Button("Go to middle", [this]() { updateTarget(0.5); }),
+                      Button("Go to right foot", [this]() { updateTarget(0.); }));
   }
 
   runState(); // don't wait till next cycle to update reference and tasks
@@ -91,29 +138,51 @@ void states::Standing::start()
 
 void states::Standing::teardown()
 {
+  auto & ctl = controller();
+
+  ctl.solver().removeTask(stabilizer());
+
+  logger().removeLogEntry("support_xmax");
+  logger().removeLogEntry("support_xmin");
+  logger().removeLogEntry("support_ymax");
+  logger().removeLogEntry("support_ymin");
+  logger().removeLogEntry("support_zmax");
+  logger().removeLogEntry("support_zmin");
+  logger().removeLogEntry("walking_phase");
+
   if(gui())
   {
     gui()->removeCategory({"Standing"});
-    gui()->removeCategory({"Walking"});
+    gui()->removeElement({"Walking", "Main"}, "Footstep plan");
+    gui()->removeElement({"Walking", "Main"}, "Gait");
+    gui()->removeElement({"Walking", "Main"}, "Go to middle");
+    gui()->removeElement({"Walking", "Main"}, "Resume walking");
+    gui()->removeElement({"Walking", "Main"}, "Start walking");
   }
 }
 
 void states::Standing::runState()
 {
   checkPlanUpdates();
-}
 
-bool states::Standing::checkTransitions()
-{
-  if(!startWalking_)
-  {
-    return false;
-  }
-  else
-  {
-    output("DoubleSupport");
-    return true;
-  }
+  auto & ctl = controller();
+  auto & pendulum = ctl.pendulum();
+
+  Eigen::Vector3d comTarget = copTarget_ + Eigen::Vector3d{0., 0., ctl.plan.comHeight()};
+  const Eigen::Vector3d & com_i = pendulum.com();
+  const Eigen::Vector3d & comd_i = pendulum.comd();
+  const Eigen::Vector3d & cop_f = copTarget_;
+
+  double K = COM_STIFFNESS;
+  double D = 2 * std::sqrt(K);
+  Eigen::Vector3d comdd = K * (comTarget - com_i) - D * comd_i;
+  Eigen::Vector3d n = ctl.supportContact().normal();
+  double lambda = n.dot(comdd - world::gravity) / n.dot(com_i - cop_f);
+  Eigen::Vector3d zmp = com_i + (world::gravity - comdd) / lambda;
+
+  pendulum.integrateIPM(zmp, lambda, ctl.timeStep);
+  ctl.leftFootRatio(leftFootRatio_);
+  ctl.stabilizer()->target(pendulum.com(), pendulum.comd(), pendulum.comdd(), pendulum.zmp());
 }
 
 void states::Standing::checkPlanUpdates()
@@ -135,6 +204,42 @@ void states::Standing::checkPlanUpdates()
     }
     planChanged_ = false;
   }
+}
+
+void states::Standing::updateTarget(double leftFootRatio)
+{
+  auto & sole = controller().sole();
+  if(!controller().stabilizer()->inDoubleSupport())
+  {
+    LOG_ERROR("Cannot update CoM target while in single support");
+    return;
+  }
+  leftFootRatio = clamp(leftFootRatio, 0., 1., "Standing target");
+  sva::PTransformd X_0_lfr =
+      sva::interpolate(rightFootContact_.anklePose(sole), leftFootContact_.anklePose(sole), leftFootRatio);
+  copTarget_ = X_0_lfr.translation();
+  leftFootRatio_ = leftFootRatio;
+}
+
+bool states::Standing::checkTransitions()
+{
+  auto & ctl = controller();
+
+  if(!startWalking_)
+  {
+    return false;
+  }
+
+  ctl.mpc().contacts(ctl.supportContact(), ctl.targetContact(), ctl.nextContact());
+  ctl.mpc().phaseDurations(0., ctl.plan.initDSPDuration(), ctl.singleSupportDuration());
+  if(ctl.updatePreview())
+  {
+    ctl.nextDoubleSupportDuration(ctl.plan.initDSPDuration());
+    ctl.startLogSegment(ctl.plan.name);
+    output("DoubleSupport");
+    return true;
+  }
+  return false;
 }
 
 void states::Standing::startWalking()
@@ -188,4 +293,4 @@ void states::Standing::updatePlan(const std::string & name)
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("StartWalkingChoice", lipm_walking::states::Standing)
+EXPORT_SINGLE_STATE("Standing", lipm_walking::states::Standing)

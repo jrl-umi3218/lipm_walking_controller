@@ -770,23 +770,13 @@
   "IdleKeepState": true,
   "configs": {},
   "init": "Initial",
-  "states": {
-    "Standing":
-    {
-      "base": "Stabilizer::Standing"
-    },
-    "StandingWait":
-    {
-      "base": "Parallel",
-      "states": ["Standing", "StartWalkingChoice"]
-    }
-  },
+  "states": {},
   "transitions":
   [
-    ["Initial", "Standing", "StandingWait"],
-    ["StandingWait", "DoubleSupport", "DoubleSupport"],
+    ["Initial", "Standing", "Standing"],
+    ["Standing", "DoubleSupport", "DoubleSupport"],
     ["DoubleSupport", "SingleSupport", "SingleSupport"],
-    ["DoubleSupport", "Standing", "StandingWait"],
+    ["DoubleSupport", "Standing", "Standing"],
     ["SingleSupport", "DoubleSupport", "DoubleSupport"]
   ],
 

@@ -157,7 +157,7 @@ void states::SingleSupport::updateSwingFoot()
       swingFootTask->refVelB(swingFoot_.vel());
       swingFootTask->refAccel(swingFoot_.accel());
     }
-    else // !DoubleSupport
+    else // (stabilizer().contactState() != ContactState::DoubleSupport)
     {
       if(supportContact.surfaceName == "LeftFootCenter")
       {
