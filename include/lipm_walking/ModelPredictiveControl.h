@@ -28,6 +28,7 @@
 #pragma once
 
 #include <mc_planning/Pendulum.h>
+#include <mc_rbdyn/constants.h>
 #include <mc_rtc/gui.h>
 #include <mc_rtc/log/Logger.h>
 
@@ -38,7 +39,6 @@
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/Preview.h>
 #include <lipm_walking/Sole.h>
-#include <lipm_walking/utils/world.h>
 
 namespace lipm_walking
 {
@@ -119,7 +119,7 @@ struct ModelPredictiveControl
    */
   void comHeight(double height)
   {
-    double zeta = height / world::GRAVITY;
+    double zeta = height / mc_rbdyn::constants::GRAVITY;
     double omegaInv = std::sqrt(zeta);
     // clang-format off
     dcmFromState_ <<

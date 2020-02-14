@@ -27,7 +27,6 @@ set(CONTROLLER_SRC
     Controller.cpp
     FootstepPlan.cpp
     ModelPredictiveControl.cpp
-    Pendulum.cpp
     PlanInterpolator.cpp
     Preview.cpp
     SwingFoot.cpp)
@@ -37,20 +36,13 @@ set(CONTROLLER_HDR
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Controller.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/FootstepPlan.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/ModelPredictiveControl.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Pendulum.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/PlanInterpolator.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Preview.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Sole.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/State.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/SwingFoot.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/ExponentialMovingAverage.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/LeakyIntegrator.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/LowPassVelocityFilter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/StationaryOffsetFilter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/clamp.h
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/polynomials.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/slerp.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/world.h)
+    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/slerp.h)
 
 add_library(${PROJECT_NAME} SHARED ${CONTROLLER_SRC} ${CONTROLLER_HDR})
 target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)

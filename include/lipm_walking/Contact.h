@@ -28,6 +28,7 @@
 #pragma once
 
 #include <mc_rbdyn/Robot.h>
+#include <mc_rbdyn/constants.h>
 #include <mc_rtc/Configuration.h>
 #include <mc_rtc/logging.h>
 #include <mc_tasks/lipm_stabilizer/Contact.h>
@@ -36,7 +37,6 @@
 
 #include <cmath>
 #include <lipm_walking/Sole.h>
-#include <lipm_walking/utils/world.h>
 
 namespace lipm_walking
 {
@@ -279,7 +279,7 @@ struct Contact
       halfWidth,
       halfWidth;
     // clang-format on
-    if((normal() - world::vertical).norm() > 1e-3)
+    if((normal() - mc_rbdyn::constants::vertical).norm() > 1e-3)
     {
       LOG_WARNING("Contact is not horizontal");
     }

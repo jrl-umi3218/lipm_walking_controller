@@ -27,8 +27,9 @@
 
 #include "Standing.h"
 
+#include <mc_rbdyn/constants.h>
+
 #include <lipm_walking/utils/clamp.h>
-#include <lipm_walking/utils/world.h>
 
 namespace lipm_walking
 {
@@ -159,8 +160,8 @@ void states::Standing::runState()
   double D = 2 * std::sqrt(K);
   Eigen::Vector3d comdd = K * (comTarget - com_i) - D * comd_i;
   Eigen::Vector3d n = ctl.supportContact().normal();
-  double lambda = n.dot(comdd - world::gravity) / n.dot(com_i - cop_f);
-  Eigen::Vector3d zmp = com_i + (world::gravity - comdd) / lambda;
+  double lambda = n.dot(comdd + mc_rbdyn::constants::gravity) / n.dot(com_i - cop_f);
+  Eigen::Vector3d zmp = com_i - (mc_rbdyn::constants::gravity + comdd) / lambda;
 
   pendulum.integrateIPM(zmp, lambda, ctl.timeStep);
   ctl.leftFootRatio(leftFootRatio_);
