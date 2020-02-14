@@ -149,11 +149,6 @@ struct MC_CONTROL_DLLAPI Controller : public mc_control::fsm::Controller
    */
   bool updatePreview();
 
-  /** Update measured robot's floating base from kinematic observer.
-   *
-   */
-  // void updateRealFromKinematics();
-
   /** Log a warning message when robot is in the air.
    *
    */
@@ -312,6 +307,9 @@ public: /* visible to FSM states */
   std::shared_ptr<Preview> preview; /**< Current solution trajectory from the walking pattern generator */
   std::vector<std::vector<double>>
       halfSitPose; /**< Half-sit joint-angle configuration stored when the controller starts. */
+
+  std::shared_ptr<mc_tasks::SurfaceTransformTask> swingFootTaskLeft_;
+  std::shared_ptr<mc_tasks::SurfaceTransformTask> swingFootTaskRight_;
 
 private: /* hidden from FSM states */
   std::shared_ptr<mc_tasks::lipm_stabilizer::StabilizerTask> stabilizer_;

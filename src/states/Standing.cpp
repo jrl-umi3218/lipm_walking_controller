@@ -79,18 +79,6 @@ void states::Standing::start()
   updatePlan(ctl.plan.name);
   updateTarget(leftFootRatio_);
 
-  logger().addLogEntry("support_xmax",
-                       [&ctl]() { return std::max(ctl.supportContact().xmax(), ctl.targetContact().xmax()); });
-  logger().addLogEntry("support_xmin",
-                       [&ctl]() { return std::min(ctl.supportContact().xmin(), ctl.targetContact().xmin()); });
-  logger().addLogEntry("support_ymax",
-                       [&ctl]() { return std::max(ctl.supportContact().ymax(), ctl.targetContact().ymax()); });
-  logger().addLogEntry("support_ymin",
-                       [&ctl]() { return std::min(ctl.supportContact().ymin(), ctl.targetContact().ymin()); });
-  logger().addLogEntry("support_zmax",
-                       [&ctl]() { return std::max(ctl.supportContact().zmax(), ctl.targetContact().zmax()); });
-  logger().addLogEntry("support_zmin",
-                       [&ctl]() { return std::min(ctl.supportContact().zmin(), ctl.targetContact().zmin()); });
   logger().addLogEntry("walking_phase", []() { return 3.; });
   ctl.stopLogSegment();
 
@@ -142,12 +130,6 @@ void states::Standing::teardown()
 
   ctl.solver().removeTask(stabilizer());
 
-  logger().removeLogEntry("support_xmax");
-  logger().removeLogEntry("support_xmin");
-  logger().removeLogEntry("support_ymax");
-  logger().removeLogEntry("support_ymin");
-  logger().removeLogEntry("support_zmax");
-  logger().removeLogEntry("support_zmin");
   logger().removeLogEntry("walking_phase");
 
   if(gui())

@@ -45,26 +45,16 @@ void states::SingleSupport::start()
   if(supportContact.surfaceName == "LeftFootCenter")
   {
     ctl.leftFootRatio(1.);
-    // stabilizer().contactState(ContactState::LeftFoot);
-    // supportFootTask = stabilizer().leftFootTask;
     stabilizer()->setContacts({{ContactState::Left, supportContact.pose}});
-    swingFootTask.reset(
-        new mc_tasks::force::CoPTask("RightFootCenter", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
+    swingFootTask = ctl.swingFootTaskRight_;
   }
   else // (ctl.supportContact.surfaceName == "RightFootCenter")
   {
     ctl.leftFootRatio(0.);
-    // stabilizer().contactState(ContactState::RightFoot);
     stabilizer()->setContacts({{ContactState::Right, supportContact.pose}});
-    // supportFootTask = stabilizer().rightFootTask;
-    swingFootTask.reset(
-        new mc_tasks::force::CoPTask("LeftFootCenter", ctl.robots(), ctl.robots().robotIndex(), 2000, 500));
+    swingFootTask = ctl.swingFootTaskLeft_;
   }
   swingFootTask->reset();
-  // XXX we don't care about angular vel for the swing foot
-  // XXX should be a surface transform task
-  swingFootTask->maxLinearVel(Eigen::Vector3d::Ones());
-  swingFootTask->maxAngularVel(Eigen::Vector3d::Ones());
   ctl.solver().addTask(swingFootTask);
 
   swingFoot_.landingDuration(ctl.plan.landingDuration());
@@ -73,18 +63,9 @@ void states::SingleSupport::start()
   swingFoot_.takeoffOffset(ctl.plan.takeoffOffset());
   swingFoot_.takeoffPitch(ctl.plan.takeoffPitch());
   swingFoot_.reset(swingFootTask->surfacePose(), targetContact.pose, duration_, ctl.plan.swingHeight());
-  // stabilizer().setContact(supportFootTask, supportContact);
-  // stabilizer().setSwingFoot(swingFootTask);
-  // stabilizer().addTasks(ctl.solver());
   ctl.solver().addTask(stabilizer());
 
   logger().addLogEntry("rem_phase_time", [this]() { return remTime_; });
-  logger().addLogEntry("support_xmax", [&ctl]() { return ctl.supportContact().xmax(); });
-  logger().addLogEntry("support_xmin", [&ctl]() { return ctl.supportContact().xmin(); });
-  logger().addLogEntry("support_ymax", [&ctl]() { return ctl.supportContact().ymax(); });
-  logger().addLogEntry("support_ymin", [&ctl]() { return ctl.supportContact().ymin(); });
-  logger().addLogEntry("support_zmax", [&ctl]() { return ctl.supportContact().zmax(); });
-  logger().addLogEntry("support_zmin", [&ctl]() { return ctl.supportContact().zmin(); });
   logger().addLogEntry("walking_phase", []() { return 1.; });
   swingFoot_.addLogEntries(logger());
 
@@ -98,12 +79,6 @@ void states::SingleSupport::teardown()
 
   logger().removeLogEntry("contact_impulse");
   logger().removeLogEntry("rem_phase_time");
-  logger().removeLogEntry("support_xmax");
-  logger().removeLogEntry("support_xmin");
-  logger().removeLogEntry("support_ymax");
-  logger().removeLogEntry("support_ymin");
-  logger().removeLogEntry("support_zmax");
-  logger().removeLogEntry("support_zmin");
   logger().removeLogEntry("walking_phase");
   swingFoot_.removeLogEntries(logger());
 }
@@ -161,7 +136,7 @@ void states::SingleSupport::updateSwingFoot()
     if(liftPhase || !touchdownDetected)
     {
       swingFoot_.integrate(dt);
-      swingFootTask->targetPose(swingFoot_.pose());
+      swingFootTask->target(swingFoot_.pose());
       swingFootTask->refVelB(swingFoot_.vel());
       swingFootTask->refAccel(swingFoot_.accel());
     }
@@ -181,7 +156,7 @@ void states::SingleSupport::updateSwingFoot()
   }
 }
 
-bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::force::CoPTask> footTask,
+bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::SurfaceTransformTask> footTask,
                                             const sva::PTransformd & contactPose)
 {
   const sva::PTransformd X_0_s = footTask->surfacePose();
@@ -190,7 +165,7 @@ bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::forc
   double xDist = std::abs(X_c_s.translation().x());
   double yDist = std::abs(X_c_s.translation().y());
   double zDist = std::abs(X_c_s.translation().z());
-  double Fz = footTask->measuredWrench().force().z();
+  double Fz = controller().robot().surfaceWrench(footTask->surface()).force().z();
   return (xDist < 0.03 && yDist < 0.03 && zDist < 0.03 && Fz > 50.);
 }
 

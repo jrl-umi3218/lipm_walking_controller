@@ -30,6 +30,8 @@
 #include <lipm_walking/Controller.h>
 #include <lipm_walking/utils/clamp.h>
 
+using Color = mc_rtc::gui::Color;
+
 namespace lipm_walking
 {
 
@@ -92,7 +94,18 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
   config("initial_plan", initialPlan);
   loadFootstepPlan(initialPlan);
 
-  // Load default configuration from robot module
+  // ====================
+  // Create Stabilizer
+  // - Default configuration from the robot module
+  // - Additional configuration from the configuration, in section
+  //    robot_name
+  //    {
+  //      Stabilizer
+  //      {
+  //        ... stabilizer configuration ...
+  //      }
+  //    }
+  // ====================
   LOG_INFO("Loading default stabilizer configuration");
   auto stabiConf = robot().module().defaultLIPMStabilizerConfiguration();
   stabilizer_.reset(new mc_tasks::lipm_stabilizer::StabilizerTask(
@@ -107,6 +120,14 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
     }
   }
   stabilizer_->configure(stabiConf);
+
+  // =========================
+  // Create Swing foot tasks
+  // =========================
+  swingFootTaskRight_.reset(
+      new mc_tasks::SurfaceTransformTask("RightFootCenter", robots(), robots().robotIndex(), 2000, 500));
+  swingFootTaskLeft_.reset(
+      new mc_tasks::SurfaceTransformTask("LeftFootCenter", robots(), robots().robotIndex(), 2000, 500));
 
   addLogEntries(logger());
   mpc_.addLogEntries(logger());
@@ -152,10 +173,6 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
 {
   using namespace mc_rtc::gui;
 
-  const std::map<char, Color> COLORS = {{'r', Color{1.0, 0.0, 0.0}}, {'g', Color{0.0, 1.0, 0.0}},
-                                        {'b', Color{0.0, 0.0, 1.0}}, {'y', Color{1.0, 0.5, 0.0}},
-                                        {'c', Color{0.0, 0.5, 1.0}}, {'m', Color{1.0, 0.0, 0.5}}};
-
   auto footStepPolygon = [](const Contact & contact) {
     std::vector<Eigen::Vector3d> polygon;
     polygon.push_back(contact.vertex0());
@@ -167,10 +184,8 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
 
   gui->addElement(
       {"Markers", "Footsteps"},
-      Polygon("SupportContact", COLORS.at('g'),
-              [this, footStepPolygon]() { return footStepPolygon(supportContact()); }),
-      Polygon("TargetContact", COLORS.at('b'), [this, footStepPolygon]() { return footStepPolygon(targetContact()); }),
-      Polygon("FootstepPlan", COLORS.at('b'), [this, footStepPolygon]() {
+      Polygon("TargetContact", Color::Red, [this, footStepPolygon]() { return footStepPolygon(targetContact()); }),
+      Polygon("FootstepPlan", Color::Blue, [this, footStepPolygon]() {
         std::vector<std::vector<Eigen::Vector3d>> polygons;
         const auto & contacts = plan.contacts();
         for(unsigned i = 0; i < contacts.size(); i++)
@@ -247,19 +262,23 @@ void Controller::reset(const mc_control::ControllerResetData & data)
 
 void Controller::internalReset()
 {
+  // FIXME:
+  // - resets does not respect the foot plan position when pausing walking (feet come back align
+  // dragging on the floor)
+  // - Do we still need the posture tricks?
+
   // (1) update floating-base transforms of both robot mbc's
-  // auto X_0_fb = supportContact().robotTransform(controlRobot());
-  // controlRobot().posW(X_0_fb);
-  // controlRobot().velW(sva::MotionVecd::Zero());
-  // realRobot().posW(X_0_fb);
-  // realRobot().velW(sva::MotionVecd::Zero());
+  auto X_0_fb = supportContact().robotTransform(controlRobot());
+  controlRobot().posW(X_0_fb);
+  controlRobot().velW(sva::MotionVecd::Zero());
+  realRobot().posW(X_0_fb);
+  realRobot().velW(sva::MotionVecd::Zero());
 
   // (2) update contact frames to coincide with surface ones
   loadFootstepPlan(plan.name);
 
   // (3) reset solver tasks
   postureTask->posture(halfSitPose);
-  // stabilizer_.reset(robots());
 
   // (4) reset controller attributes
   leftFootRatioJumped_ = true;
@@ -269,10 +288,6 @@ void Controller::internalReset()
   pauseWalkingRequested = false;
 
   pendulum_.reset(controlRobot().com());
-
-  // (6) updates that depend on realCom_
-  // netWrenchObs_.update(realRobot(), supportContact());
-  // stabilizer_.updateState(realCom_, realComd_, netWrenchObs_.wrench(), leftFootRatio_);
 
   stopLogSegment();
 }
@@ -291,9 +306,10 @@ void Controller::leftFootRatio(double ratio)
 bool Controller::run()
 {
   // Update observers
-  anchorFrame(sva::interpolate(robot().surfacePose("RightFoot"), robot().surfacePose("LeftFoot"), leftFootRatio_));
-  anchorFrameReal(
-      sva::interpolate(realRobot().surfacePose("RightFoot"), realRobot().surfacePose("LeftFoot"), leftFootRatio_));
+  anchorFrame(
+      sva::interpolate(robot().surfacePose("RightFootCenter"), robot().surfacePose("LeftFootCenter"), leftFootRatio_));
+  anchorFrameReal(sva::interpolate(realRobot().surfacePose("RightFootCenter"),
+                                   realRobot().surfacePose("LeftFootCenter"), leftFootRatio_));
 
   if(emergencyStop)
   {
@@ -373,22 +389,6 @@ void Controller::warnIfRobotIsInTheAir()
     }
   }
 }
-
-// void Controller::updateRealFromKinematics()
-// {
-// realCom_ = realRobot().com();
-// FIXME seems important probably an update to the observer
-// if(!leftFootRatioJumped_)
-// {
-//   comVelFilter_.update(realCom_);
-// }
-// else // don't update velocity when CoM position jumped
-// {
-//   comVelFilter_.updatePositionOnly(realCom_);
-//   leftFootRatioJumped_ = false;
-// }
-// realComd_ = comVelFilter_.vel();
-// }
 
 void Controller::loadFootstepPlan(std::string name)
 {
