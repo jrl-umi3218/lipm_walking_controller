@@ -25,6 +25,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <mc_rbdyn/constants.h>
 #include <mc_rbdyn/rpy_utils.h>
 
 #include <lipm_walking/Controller.h>
@@ -287,7 +288,12 @@ void Controller::internalReset()
   pauseWalking = false;
   pauseWalkingRequested = false;
 
-  pendulum_.reset(controlRobot().com());
+  // XXX Default height is the same as that defined hidden in Stephan's
+  // Pendulum::reset() function. This should probably be ready from config
+  // or use the robot height above ground instead.
+  constexpr double DEFAULT_HEIGHT = 0.8; // [m]
+  double lambda = mc_rbdyn::constants::GRAVITY / DEFAULT_HEIGHT;
+  pendulum_.reset(lambda, controlRobot().com());
 
   stopLogSegment();
 }

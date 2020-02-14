@@ -54,7 +54,7 @@ set(CONTROLLER_HDR
 
 add_library(${PROJECT_NAME} SHARED ${CONTROLLER_SRC} ${CONTROLLER_HDR})
 target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)
-target_link_libraries(${PROJECT_NAME} PUBLIC copra::copra eigen-quadprog::eigen-quadprog mc_rtc::mc_control_fsm)
+target_link_libraries(${PROJECT_NAME} PUBLIC copra::copra eigen-quadprog::eigen-quadprog mc_rtc::mc_control_fsm mc_rtc::mc_planning)
 install(TARGETS ${PROJECT_NAME} DESTINATION "${MC_RTC_LIBDIR}")
 
 add_controller(${PROJECT_NAME}_controller lib.cpp "")

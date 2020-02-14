@@ -112,8 +112,8 @@ void states::DoubleSupport::runState()
   ctl.leftFootRatio(x * initLeftFootRatio_ + (1. - x) * targetLeftFootRatio_);
 
   ctl.preview->integrate(pendulum(), dt);
-  pendulum().completeIPM(ctl.prevContact());
-  pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.prevContact());
+  pendulum().completeIPM(ctl.prevContact().p(), ctl.prevContact().normal());
+  pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.prevContact().p(), ctl.prevContact().normal());
   controller().stabilizer()->target(pendulum().com(), pendulum().comd(), pendulum().comdd(), pendulum().zmp());
 
   remTime_ -= dt;

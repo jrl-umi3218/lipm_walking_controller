@@ -34,6 +34,8 @@
 namespace lipm_walking
 {
 
+using Pendulum = mc_planning::Pendulum;
+
 namespace
 {
 

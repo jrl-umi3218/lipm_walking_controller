@@ -27,14 +27,15 @@
 
 #pragma once
 
+#include <mc_planning/Pendulum.h>
 #include <mc_rtc/gui.h>
+#include <mc_rtc/log/Logger.h>
 
 #include <copra/LMPC.h>
 #include <copra/PreviewSystem.h>
 #include <copra/constraints.h>
 #include <copra/costFunctions.h>
 #include <lipm_walking/Contact.h>
-#include <lipm_walking/Pendulum.h>
 #include <lipm_walking/Preview.h>
 #include <lipm_walking/Sole.h>
 #include <lipm_walking/utils/world.h>
@@ -151,7 +152,7 @@ struct ModelPredictiveControl
    * \param pendulum CoM state.
    *
    */
-  void initState(const Pendulum & pendulum)
+  void initState(const mc_planning::Pendulum & pendulum)
   {
     initState_ = Eigen::VectorXd(STATE_SIZE);
     initState_ << pendulum.com().head<2>(), pendulum.comd().head<2>(), pendulum.comdd().head<2>();

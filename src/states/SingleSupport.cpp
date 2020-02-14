@@ -107,12 +107,12 @@ void states::SingleSupport::runState()
   ctl.preview->integrate(pendulum(), dt);
   if(hasUpdatedMPCOnce_)
   {
-    pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.supportContact());
-    pendulum().completeIPM(ctl.supportContact());
+    pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.supportContact().p(), ctl.supportContact().normal());
+    pendulum().completeIPM(ctl.supportContact().p(), ctl.supportContact().normal());
   }
   else // still in DSP of preview
   {
-    pendulum().completeIPM(ctl.prevContact());
+    pendulum().completeIPM(ctl.prevContact().p(), ctl.prevContact().normal());
   }
 
   stabilizer()->target(pendulum().com(), pendulum().comd(), pendulum().comdd(), pendulum().zmp());

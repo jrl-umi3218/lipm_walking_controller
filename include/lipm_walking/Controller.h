@@ -30,13 +30,13 @@
 #include <mc_control/api.h>
 #include <mc_control/fsm/Controller.h>
 #include <mc_control/mc_controller.h>
+#include <mc_planning/Pendulum.h>
 #include <mc_rtc/logging.h>
 #include <mc_tasks/lipm_stabilizer/StabilizerTask.h>
 
 #include <lipm_walking/Contact.h>
 #include <lipm_walking/FootstepPlan.h>
 #include <lipm_walking/ModelPredictiveControl.h>
-#include <lipm_walking/Pendulum.h>
 #include <lipm_walking/PlanInterpolator.h>
 #include <lipm_walking/Sole.h>
 
@@ -245,7 +245,7 @@ struct MC_CONTROL_DLLAPI Controller : public mc_control::fsm::Controller
   /** This getter is only used for consistency with the rest of mc_rtc.
    *
    */
-  Pendulum & pendulum()
+  mc_planning::Pendulum & pendulum()
   {
     return pendulum_;
   }
@@ -315,7 +315,8 @@ private: /* hidden from FSM states */
   std::shared_ptr<mc_tasks::lipm_stabilizer::StabilizerTask> stabilizer_;
   ModelPredictiveControl mpc_; /**< MPC problem solver used for walking pattern generation */
   mc_rtc::Configuration mpcConfig_; /**< Configuration dictionary for the walking pattern generator */
-  Pendulum pendulum_; /**< Holds the reference state (CoM position, velocity, ZMP, ...) from the walking pattern */
+  mc_planning::Pendulum
+      pendulum_; /**< Holds the reference state (CoM position, velocity, ZMP, ...) from the walking pattern */
   Sole sole_; /**< Sole dimensions of the robot model */
   bool leftFootRatioJumped_ = false; /**< Flag used to avoid discontinuous CoM velocity updates */
   double ctlTime_ = 0.; /**< Controller time */

@@ -79,7 +79,7 @@ struct State : mc_control::fsm::State
    * \returns pendulum Reference to pendulum state.
    *
    */
-  Pendulum & pendulum()
+  mc_planning::Pendulum & pendulum()
   {
     return controller_->pendulum();
   }
