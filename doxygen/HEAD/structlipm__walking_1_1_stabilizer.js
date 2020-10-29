@@ -1,7 +1,7 @@
 var structlipm__walking_1_1_stabilizer =
 [
     [ "Stabilizer", "structlipm__walking_1_1_stabilizer.html#ad0ff6963596e4d82c41efb5613a9f7b4", null ],
-    [ "addGUIElements", "structlipm__walking_1_1_stabilizer.html#a65dc4be732a9a4295ddaed8646b8500b", null ],
+    [ "addGUIElements", "structlipm__walking_1_1_stabilizer.html#a4e12dd3583af4397fa828d85783ec1ab", null ],
     [ "addLogEntries", "structlipm__walking_1_1_stabilizer.html#afac497d773604277d06591eecaa1214b", null ],
     [ "addTasks", "structlipm__walking_1_1_stabilizer.html#a1ef298aea5699f33fdaeba690ad49664", null ],
     [ "computeZMP", "structlipm__walking_1_1_stabilizer.html#ab051ee942d6eeedd7cac6cb768381745", null ],
