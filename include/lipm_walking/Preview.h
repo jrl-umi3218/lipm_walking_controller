@@ -27,7 +27,7 @@
 
 #pragma once
 
-#include <lipm_walking/Pendulum.h>
+#include <mc_planning/Pendulum.h>
 
 namespace lipm_walking
 {
@@ -64,7 +64,7 @@ struct Preview
    * \param dt Duration.
    *
    */
-  void integrate(Pendulum & state, double dt);
+  void integrate(mc_planning::Pendulum & state, double dt);
 
   /** Playback integration of state reference.
    *
@@ -73,7 +73,7 @@ struct Preview
    * \param dt Duration.
    *
    */
-  void integratePlayback(Pendulum & state, double dt);
+  void integratePlayback(mc_planning::Pendulum & state, double dt);
 
   /** Post-playback integration of state reference.
    *
@@ -82,7 +82,7 @@ struct Preview
    * \param dt Duration.
    *
    */
-  void integratePostPlayback(Pendulum & state, double dt);
+  void integratePostPlayback(mc_planning::Pendulum & state, double dt);
 
   /** Get current playback step.
    *

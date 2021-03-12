@@ -25,42 +25,28 @@
 
 set(CONTROLLER_SRC
     Controller.cpp
-    FloatingBaseObserver.cpp
     FootstepPlan.cpp
     ModelPredictiveControl.cpp
-    NetWrenchObserver.cpp
-    Pendulum.cpp
     PlanInterpolator.cpp
     Preview.cpp
-    Stabilizer.cpp
     SwingFoot.cpp)
 
 set(CONTROLLER_HDR
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Contact.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Controller.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/FloatingBaseObserver.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/FootstepPlan.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/ModelPredictiveControl.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/NetWrenchObserver.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Pendulum.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/PlanInterpolator.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Preview.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Sole.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/Stabilizer.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/State.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/SwingFoot.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/ExponentialMovingAverage.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/LeakyIntegrator.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/LowPassVelocityFilter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/StationaryOffsetFilter.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/clamp.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/polynomials.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/slerp.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include/lipm_walking/utils/world.h)
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/Contact.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/Controller.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/FootstepPlan.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/ModelPredictiveControl.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/PlanInterpolator.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/Preview.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/Sole.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/State.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/SwingFoot.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/utils/polynomials.h
+    ${CMAKE_SOURCE_DIR}/include/lipm_walking/utils/slerp.h)
 
 add_library(${PROJECT_NAME} SHARED ${CONTROLLER_SRC} ${CONTROLLER_HDR})
 target_include_directories(${PROJECT_NAME} PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)
-target_link_libraries(${PROJECT_NAME} PUBLIC copra::copra eigen-quadprog::eigen-quadprog mc_rtc::mc_control_fsm)
+target_link_libraries(${PROJECT_NAME} PUBLIC copra::copra eigen-quadprog::eigen-quadprog mc_rtc::mc_control_fsm mc_rtc::mc_planning)
 install(TARGETS ${PROJECT_NAME} DESTINATION "${MC_RTC_LIBDIR}")
 
 add_controller(${PROJECT_NAME}_controller lib.cpp "")
@@ -72,3 +58,13 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/../etc/LIPMWalking.in.yaml" "${CMAKE
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/LIPMWalking.yaml" DESTINATION "${MC_RTC_LIBDIR}/mc_controller/etc/")
 
 add_subdirectory(states)
+
+install(TARGETS ${PROJECT_NAME}
+  EXPORT "${TARGETS_EXPORT_NAME}"
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
+
+install(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
+

@@ -27,8 +27,9 @@
 
 #include "Standing.h"
 
+#include <mc_rtc/constants.h>
+
 #include <lipm_walking/utils/clamp.h>
-#include <lipm_walking/utils/world.h>
 
 namespace lipm_walking
 {
@@ -44,12 +45,9 @@ void states::Standing::start()
   auto & supportContact = ctl.supportContact();
   auto & targetContact = ctl.targetContact();
 
-  freeFootGain_ = 30.;
-  isMakingFootContact_ = false;
   planChanged_ = false;
   lastInterpolatorIter_ = ctl.planInterpolator.nbIter;
   leftFootRatio_ = ctl.leftFootRatio();
-  releaseHeight_ = 0.05; // [m]
   startWalking_ = ctl.config()("autoplay", false);
   if(supportContact.surfaceName == "RightFootCenter")
   {
@@ -71,28 +69,11 @@ void states::Standing::start()
     ctl.loadFootstepPlan(ctl.plan.name);
   }
 
-  stabilizer().contactState(ContactState::DoubleSupport);
-  stabilizer().setContact(stabilizer().leftFootTask, leftFootContact_);
-  stabilizer().setContact(stabilizer().rightFootTask, rightFootContact_);
-  stabilizer().addTasks(ctl.solver());
-  ctl.solver().addTask(ctl.pelvisTask);
-  ctl.solver().addTask(ctl.torsoTask);
+  ctl.setContacts({{ContactState::Left, leftFootContact_.pose}, {ContactState::Right, rightFootContact_.pose}});
 
   updatePlan(ctl.plan.name);
   updateTarget(leftFootRatio_);
 
-  logger().addLogEntry("support_xmax",
-                       [&ctl]() { return std::max(ctl.supportContact().xmax(), ctl.targetContact().xmax()); });
-  logger().addLogEntry("support_xmin",
-                       [&ctl]() { return std::min(ctl.supportContact().xmin(), ctl.targetContact().xmin()); });
-  logger().addLogEntry("support_ymax",
-                       [&ctl]() { return std::max(ctl.supportContact().ymax(), ctl.targetContact().ymax()); });
-  logger().addLogEntry("support_ymin",
-                       [&ctl]() { return std::min(ctl.supportContact().ymin(), ctl.targetContact().ymin()); });
-  logger().addLogEntry("support_zmax",
-                       [&ctl]() { return std::max(ctl.supportContact().zmax(), ctl.targetContact().zmax()); });
-  logger().addLogEntry("support_zmin",
-                       [&ctl]() { return std::min(ctl.supportContact().zmin(), ctl.targetContact().zmin()); });
   logger().addLogEntry("walking_phase", []() { return 3.; });
   ctl.stopLogSegment();
 
@@ -126,21 +107,13 @@ void states::Standing::start()
     gui()->addElement({"Standing"},
                       NumberInput("CoM target [0-1]", [this]() { return std::round(leftFootRatio_ * 10.) / 10.; },
                                   [this](double leftFootRatio) { updateTarget(leftFootRatio); }),
-                      NumberInput("Free foot gain", [this]() { return std::round(freeFootGain_); },
-                                  [this](double gain) { freeFootGain_ = clamp(gain, 5., 100.); }),
-                      NumberInput("Release height [m]", [this]() { return std::round(releaseHeight_ * 100.) / 100.; },
-                                  [this](double height) { releaseHeight_ = clamp(height, 0., 0.25); }),
                       Label("Left foot force [N]",
                             [&ctl]() { return ctl.realRobot().forceSensor("LeftFootForceSensor").force().z(); }),
                       Label("Right foot force [N]",
                             [&ctl]() { return ctl.realRobot().forceSensor("RightFootForceSensor").force().z(); }),
                       Button("Go to left foot", [this]() { updateTarget(1.); }),
                       Button("Go to middle", [this]() { updateTarget(0.5); }),
-                      Button("Go to right foot", [this]() { updateTarget(0.); }),
-                      Button("Make left foot contact", [this]() { makeLeftFootContact(); }),
-                      Button("Make right foot contact", [this]() { makeRightFootContact(); }),
-                      Button("Release left foot", [this]() { releaseLeftFootContact(); }),
-                      Button("Release right foot", [this]() { releaseRightFootContact(); }));
+                      Button("Go to right foot", [this]() { updateTarget(0.); }));
   }
 
   runState(); // don't wait till next cycle to update reference and tasks
@@ -150,14 +123,6 @@ void states::Standing::teardown()
 {
   auto & ctl = controller();
 
-  stabilizer().removeTasks(ctl.solver());
-
-  logger().removeLogEntry("support_xmax");
-  logger().removeLogEntry("support_xmin");
-  logger().removeLogEntry("support_ymax");
-  logger().removeLogEntry("support_ymin");
-  logger().removeLogEntry("support_zmax");
-  logger().removeLogEntry("support_zmin");
   logger().removeLogEntry("walking_phase");
 
   if(gui())
@@ -175,31 +140,6 @@ void states::Standing::runState()
 {
   checkPlanUpdates();
 
-  if(isMakingFootContact_)
-  {
-    auto & leftFootTask = stabilizer().leftFootTask;
-    auto & rightFootTask = stabilizer().rightFootTask;
-    bool isLeftFootSeekingContact = (leftFootTask->admittance().couple().x() < 1e-10);
-    bool isRightFootSeekingContact = (rightFootTask->admittance().couple().x() < 1e-10);
-    bool leftFootTouchdown = stabilizer().detectTouchdown(leftFootTask, leftFootContact_);
-    bool rightFootTouchdown = stabilizer().detectTouchdown(rightFootTask, rightFootContact_);
-    if(isLeftFootSeekingContact && leftFootTouchdown)
-    {
-      stabilizer().setContact(leftFootTask, leftFootContact_);
-    }
-    if(isRightFootSeekingContact && rightFootTouchdown)
-    {
-      stabilizer().setContact(rightFootTask, rightFootContact_);
-    }
-    isLeftFootSeekingContact = (leftFootTask->admittance().couple().x() < 1e-10);
-    isRightFootSeekingContact = (rightFootTask->admittance().couple().x() < 1e-10);
-    if(!isLeftFootSeekingContact && !isRightFootSeekingContact)
-    {
-      isMakingFootContact_ = false;
-      stabilizer().contactState(ContactState::DoubleSupport);
-    }
-  }
-
   auto & ctl = controller();
   auto & pendulum = ctl.pendulum();
 
@@ -212,12 +152,12 @@ void states::Standing::runState()
   double D = 2 * std::sqrt(K);
   Eigen::Vector3d comdd = K * (comTarget - com_i) - D * comd_i;
   Eigen::Vector3d n = ctl.supportContact().normal();
-  double lambda = n.dot(comdd - world::gravity) / n.dot(com_i - cop_f);
-  Eigen::Vector3d zmp = com_i + (world::gravity - comdd) / lambda;
+  double lambda = n.dot(comdd + mc_rtc::constants::gravity) / n.dot(com_i - cop_f);
+  Eigen::Vector3d zmp = com_i - (mc_rtc::constants::gravity + comdd) / lambda;
 
   pendulum.integrateIPM(zmp, lambda, ctl.timeStep);
   ctl.leftFootRatio(leftFootRatio_);
-  ctl.stabilizer().run();
+  ctl.stabilizer()->target(pendulum.com(), pendulum.comd(), pendulum.comdd(), pendulum.zmp());
 }
 
 void states::Standing::checkPlanUpdates()
@@ -244,7 +184,7 @@ void states::Standing::checkPlanUpdates()
 void states::Standing::updateTarget(double leftFootRatio)
 {
   auto & sole = controller().sole();
-  if(controller().stabilizer().contactState() != ContactState::DoubleSupport)
+  if(!controller().stabilizer()->inDoubleSupport())
   {
     mc_rtc::log::error("Cannot update CoM target while in single support");
     return;
@@ -256,77 +196,10 @@ void states::Standing::updateTarget(double leftFootRatio)
   leftFootRatio_ = leftFootRatio;
 }
 
-void states::Standing::makeFootContact(std::shared_ptr<mc_tasks::force::CoPTask> footTask, const Contact & contact)
-{
-  auto & stabilizer = controller().stabilizer();
-  if(footTask->admittance().couple().x() > 1e-10 || stabilizer.detectTouchdown(footTask, contact))
-  {
-    mc_rtc::log::warning("Foot is already in contact");
-    return;
-  }
-  stabilizer.setSwingFoot(footTask);
-  stabilizer.seekTouchdown(footTask);
-  footTask->stiffness(freeFootGain_); // sets damping as well
-  footTask->targetPose(contact.pose);
-  isMakingFootContact_ = true;
-}
-
-void states::Standing::makeLeftFootContact()
-{
-  makeFootContact(controller().stabilizer().leftFootTask, leftFootContact_);
-}
-
-void states::Standing::makeRightFootContact()
-{
-  makeFootContact(controller().stabilizer().rightFootTask, rightFootContact_);
-}
-
-bool states::Standing::releaseFootContact(std::shared_ptr<mc_tasks::force::CoPTask> footTask)
-{
-  constexpr double MAX_FOOT_RELEASE_FORCE = 50.; // [N]
-  auto & stabilizer = controller().stabilizer();
-  if(footTask->admittance().couple().x() < 1e-10)
-  {
-    mc_rtc::log::warning("Foot contact is already released");
-    return false;
-  }
-  else if(footTask->measuredWrench().force().z() > MAX_FOOT_RELEASE_FORCE)
-  {
-    mc_rtc::log::error("Contact force is too high to release foot");
-    return false;
-  }
-  sva::PTransformd X_0_f = footTask->surfacePose();
-  sva::PTransformd X_f_t = Eigen::Vector3d{0., 0., releaseHeight_};
-  stabilizer.setSwingFoot(footTask);
-  footTask->stiffness(freeFootGain_); // sets damping as well
-  footTask->targetPose(X_f_t * X_0_f);
-  return true;
-}
-
-void states::Standing::releaseLeftFootContact()
-{
-  if(releaseFootContact(controller().stabilizer().leftFootTask))
-  {
-    controller().stabilizer().contactState(ContactState::RightFoot);
-  }
-}
-
-void states::Standing::releaseRightFootContact()
-{
-  if(releaseFootContact(controller().stabilizer().rightFootTask))
-  {
-    controller().stabilizer().contactState(ContactState::LeftFoot);
-  }
-}
-
 bool states::Standing::checkTransitions()
 {
   auto & ctl = controller();
 
-  if(isMakingFootContact_)
-  {
-    return false;
-  }
   if(!startWalking_)
   {
     return false;

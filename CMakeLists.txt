@@ -32,15 +32,17 @@ set(PROJECT_NAME lipm_walking_controller)
 set(PROJECT_DESCRIPTION "Walking controller based on linear inverted pendulum tracking")
 set(PROJECT_URL https://github.com/stephane-caron/lipm_walking_controller/)
 set(PROJECT_VERSION 1.6.0)
+set(PROJECT_USE_CMAKE_EXPORT TRUE)
+
 
 include(cmake/base.cmake)
 set(CXX_DISABLE_WERROR True)
 
 project(${PROJECT_NAME} CXX)
 
-find_package(copra REQUIRED)
-find_package(mc_rtc REQUIRED)
-find_package(eigen-quadprog REQUIRED)
+add_project_dependency(copra REQUIRED)
+add_project_dependency(mc_rtc REQUIRED)
+add_project_dependency(eigen-quadprog REQUIRED)
 
 if(EXISTS "${MC_RTC_LIBDIR}/mc_controller/etc/LIPMWalking.conf")
   message(FATAL_ERROR "\n \

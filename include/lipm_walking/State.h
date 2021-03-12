@@ -79,7 +79,7 @@ struct State : mc_control::fsm::State
    * \returns pendulum Reference to pendulum state.
    *
    */
-  Pendulum & pendulum()
+  mc_planning::Pendulum & pendulum()
   {
     return controller_->pendulum();
   }
@@ -112,7 +112,7 @@ struct State : mc_control::fsm::State
    * \returns stabilizer Reference to stabilizer.
    *
    */
-  Stabilizer & stabilizer()
+  std::shared_ptr<mc_tasks::lipm_stabilizer::StabilizerTask> stabilizer()
   {
     return controller_->stabilizer();
   }

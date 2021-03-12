@@ -45,17 +45,17 @@ void states::SingleSupport::start()
   if(supportContact.surfaceName == "LeftFootCenter")
   {
     ctl.leftFootRatio(1.);
-    stabilizer().contactState(ContactState::LeftFoot);
-    supportFootTask = stabilizer().leftFootTask;
-    swingFootTask = stabilizer().rightFootTask;
+    ctl.setContacts({{ContactState::Left, supportContact.pose}});
+    swingFootTask = ctl.swingFootTaskRight_;
   }
-  else // (ctl.supportContact.surfaceName == "RightFootCenter")
+  else
   {
     ctl.leftFootRatio(0.);
-    stabilizer().contactState(ContactState::RightFoot);
-    supportFootTask = stabilizer().rightFootTask;
-    swingFootTask = stabilizer().leftFootTask;
+    ctl.setContacts({{ContactState::Right, supportContact.pose}});
+    swingFootTask = ctl.swingFootTaskLeft_;
   }
+  swingFootTask->reset();
+  ctl.solver().addTask(swingFootTask);
 
   swingFoot_.landingDuration(ctl.plan.landingDuration());
   swingFoot_.landingPitch(ctl.plan.landingPitch());
@@ -63,17 +63,8 @@ void states::SingleSupport::start()
   swingFoot_.takeoffOffset(ctl.plan.takeoffOffset());
   swingFoot_.takeoffPitch(ctl.plan.takeoffPitch());
   swingFoot_.reset(swingFootTask->surfacePose(), targetContact.pose, duration_, ctl.plan.swingHeight());
-  stabilizer().setContact(supportFootTask, supportContact);
-  stabilizer().setSwingFoot(swingFootTask);
-  stabilizer().addTasks(ctl.solver());
 
   logger().addLogEntry("rem_phase_time", [this]() { return remTime_; });
-  logger().addLogEntry("support_xmax", [&ctl]() { return ctl.supportContact().xmax(); });
-  logger().addLogEntry("support_xmin", [&ctl]() { return ctl.supportContact().xmin(); });
-  logger().addLogEntry("support_ymax", [&ctl]() { return ctl.supportContact().ymax(); });
-  logger().addLogEntry("support_ymin", [&ctl]() { return ctl.supportContact().ymin(); });
-  logger().addLogEntry("support_zmax", [&ctl]() { return ctl.supportContact().zmax(); });
-  logger().addLogEntry("support_zmin", [&ctl]() { return ctl.supportContact().zmin(); });
   logger().addLogEntry("walking_phase", []() { return 1.; });
   swingFoot_.addLogEntries(logger());
 
@@ -82,16 +73,10 @@ void states::SingleSupport::start()
 
 void states::SingleSupport::teardown()
 {
-  stabilizer().removeTasks(controller().solver());
+  controller().solver().removeTask(swingFootTask);
 
   logger().removeLogEntry("contact_impulse");
   logger().removeLogEntry("rem_phase_time");
-  logger().removeLogEntry("support_xmax");
-  logger().removeLogEntry("support_xmin");
-  logger().removeLogEntry("support_ymax");
-  logger().removeLogEntry("support_ymin");
-  logger().removeLogEntry("support_zmax");
-  logger().removeLogEntry("support_zmin");
   logger().removeLogEntry("walking_phase");
   swingFoot_.removeLogEntries(logger());
 }
@@ -120,14 +105,15 @@ void states::SingleSupport::runState()
   ctl.preview->integrate(pendulum(), dt);
   if(hasUpdatedMPCOnce_)
   {
-    pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.supportContact());
-    pendulum().completeIPM(ctl.supportContact());
+    pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.supportContact().p(), ctl.supportContact().normal());
+    pendulum().completeIPM(ctl.supportContact().p(), ctl.supportContact().normal());
   }
   else // still in DSP of preview
   {
-    pendulum().completeIPM(ctl.prevContact());
+    pendulum().completeIPM(ctl.prevContact().p(), ctl.prevContact().normal());
   }
-  stabilizer().run();
+
+  stabilizer()->target(pendulum().com(), pendulum().comd(), pendulum().comdd(), pendulum().zmp());
 
   remTime_ -= dt;
   stateTime_ += dt;
@@ -138,25 +124,49 @@ void states::SingleSupport::updateSwingFoot()
 {
   auto & ctl = controller();
   auto & targetContact = ctl.targetContact();
+  auto & supportContact = ctl.supportContact();
   double dt = ctl.timeStep;
 
-  if(stabilizer().contactState() != ContactState::DoubleSupport)
+  if(!stabilizer()->inDoubleSupport())
   {
     bool liftPhase = (remTime_ > duration_ / 3.);
-    bool touchdownDetected = stabilizer().detectTouchdown(swingFootTask, targetContact);
+    bool touchdownDetected = detectTouchdown(swingFootTask, targetContact.pose);
     if(liftPhase || !touchdownDetected)
     {
       swingFoot_.integrate(dt);
-      swingFootTask->targetPose(swingFoot_.pose());
-      swingFootTask->refVelB(swingFoot_.vel());
-      swingFootTask->refAccel(swingFoot_.accel());
+      swingFootTask->target(swingFoot_.pose());
+      // T_0_s transforms a MotionVecd variable from world to surface frame
+      sva::PTransformd T_0_s(swingFootTask->surfacePose().rotation());
+      swingFootTask->refVelB(T_0_s * swingFoot_.vel());
+      swingFootTask->refAccel(T_0_s * swingFoot_.accel());
     }
-    else // (stabilizer().contactState() != ContactState::DoubleSupport)
+    else
     {
-      stabilizer().contactState(ContactState::DoubleSupport);
-      stabilizer().setContact(swingFootTask, targetContact);
+      if(supportContact.surfaceName == "LeftFootCenter")
+      {
+        stabilizer()->setContacts(
+            {{ContactState::Left, supportContact.pose}, {ContactState::Right, targetContact.pose}});
+      }
+      else
+      {
+        stabilizer()->setContacts(
+            {{ContactState::Left, targetContact.pose}, {ContactState::Right, supportContact.pose}});
+      }
     }
   }
+}
+
+bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::SurfaceTransformTask> footTask,
+                                            const sva::PTransformd & contactPose)
+{
+  const sva::PTransformd X_0_s = footTask->surfacePose();
+  const sva::PTransformd & X_0_c = contactPose;
+  sva::PTransformd X_c_s = X_0_s * X_0_c.inv();
+  double xDist = std::abs(X_c_s.translation().x());
+  double yDist = std::abs(X_c_s.translation().y());
+  double zDist = std::abs(X_c_s.translation().z());
+  double Fz = controller().robot().surfaceWrench(footTask->surface()).force().z();
+  return (xDist < 0.03 && yDist < 0.03 && zDist < 0.03 && Fz > 50.);
 }
 
 void states::SingleSupport::updatePreview()

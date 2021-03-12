@@ -4,145 +4,72 @@ mpc:
     jerk: 1.0
     vel: [10.0, 100.0]
     zmp: 1000.0
-stabilizer:
-  fdqp_weights:
-    net_wrench: 10000.0
-    ankle_torque: 100.0
-    force_ratio: 1.0
-  tasks:
-    com:
-      stiffness: [1000.0, 1000.0, 100.0]
-      weight: 1000.0
-    contact:
-      damping: 300.0
-      stiffness: 1.0
-      weight: 10000.0
-    swing_foot:
-      stiffness: 2000.0
-      weight: 500.0
-  vdc:
-    frequency: 1.0
-    stiffness: 1000.0
-  zmpcc:
-    integrator_leak_rate: 0.1
 tasks:
-  pelvis:
-    stiffness: 10.0
-    weight: 100.0
   posture:
     stiffness: 1.0
     weight: 10.0
-  torso:
-    stiffness: 10.0
-    weight: 100.0
 robot_models:
+  hrp2_drc:
+    swingfoot:
+      weight: 2000
+      stiffness: 500
+    # A default configuration is loaded from the robot module 
+    # You may overwrite some parameters here. For supported options, see
+    # See https://jrl-umi3218.github.io/mc_rtc/json-full.html#MetaTask/LIPMStabilizerTask
+    # For example:
+    stabilizer:
+      dcm_tracking:
+        gains:
+          prop: 4
+          integral: 20
+          deriv: 0.5
+      admittance:
+        cop: [0.02, 0.01]
+        # maxVel:
+        #   angular: [1., 1., 1.]
+        #   linear: [0.5, 0.5, 0.5]
+      tasks:
+        contact:
+          damping: 300.
+      dcm_bias:
+        biasDriftPerSecondStd: 0.0001
+        withDCMBias: true
+    sole:
+      half_length: 0.108
+      half_width: 0.07
+      friction: 0.7
   hrp4:
-    admittance:
-      com: [0.0, 0.0]
-      cop: [0.01, 0.01]
-      dfz: 0.0001
-      dfz_damping: 0.0
-    com:
-      active_joints: [Root, R_HIP_Y, R_HIP_R, R_HIP_P, R_KNEE_P, R_ANKLE_P, R_ANKLE_R, L_HIP_Y, L_HIP_R, L_HIP_P, L_KNEE_P, L_ANKLE_P, L_ANKLE_R]
-      height: 0.78
-      max_height: 0.85
-      min_height: 0.55
-    dcm_tracking:
-      gains:
-        prop: 5.0
-        integral: 10.0
-        deriv: 0.0
-      derivator_time_constant: 1.0
-      integrator_time_constant: 10.0
     sole:
       half_length: 0.112
       half_width: 0.065
       friction: 0.7
     torso:
-      max_pitch: 0.4
-      min_pitch: -0.1
-      name: torso
       pitch: 0.1
-  hrp2_drc:
-    admittance:
-      com: [0.0, 0.0]
-      cop: [0.01, 0.01]
-      dfz: 0.0001
-      dfz_damping: 0.0
-    com:
-      active_joints: [Root, RLEG_JOINT0, RLEG_JOINT1, RLEG_JOINT2, RLEG_JOINT3, RLEG_JOINT4, RLEG_JOINT5, LLEG_JOINT0, LLEG_JOINT1, LLEG_JOINT2, LLEG_JOINT3, LLEG_JOINT4, LLEG_JOINT5]
-      height: 0.87
-      max_height: 0.92
-      min_height: 0.6
-    dcm_tracking:
-      gains:
-        prop: 3.0
-        integral: 20.0
-        deriv: 0.5
-      derivator_time_constant: 5.0
-      integrator_time_constant: 30.0
+  hrp4j:
     sole:
-      half_length: 0.108
-      half_width: 0.07
+      half_length: 0.08
+      half_width: 0.038
       friction: 0.7
-    torso:
-      max_pitch: 0.4
-      min_pitch: -0.1
-      name: CHEST_LINK1
-      pitch: 0.0
+      leftAnkleOffset: [0.,0.] # target center of foot
+  hrp4cr:
+    sole:
+      half_length: 0.08
+      half_width: 0.038
+      friction: 0.7
+      leftAnkleOffset: [0.,0.] # target center of foot
   hrp5_p:
-    admittance:
-      com: [0.0, 0.0]
-      cop: [0.008, 0.008]
-      dfz: 0.0001
-      dfz_damping: 0.0
-    com:
-      active_joints: [Root, LCY, LCR, LCP, LKP, LAP, LAR, RCY, RCR, RCP, RKP, RAP, RAR]
-      height: 0.962871
-      max_height: 1.2
-      min_height: 0.6
-    dcm_tracking:
-      gains:
-        prop: 4.0
-        integral: 10.0
-        deriv: 0.5
-      derivator_time_constant: 5.0
-      integrator_time_constant: 15.0
     sole:
       half_length: 0.11895
       half_width: 0.069
       friction: 0.7
     torso:
-      max_pitch: 0.4
-      min_pitch: -0.1
-      name: Chest_Link2
       pitch: 0.0
   jvrc1:
-    admittance:
-      com: [0.0, 0.0]
-      cop: [0.01, 0.01]
-      dfz: 0.0001
-      dfz_damping: 0.0
-    com:
-      active_joints: [Root, R_HIP_Y, R_HIP_R, R_HIP_P, R_KNEE, R_ANKLE_P, R_ANKLE_R, L_HIP_Y, L_HIP_R, L_HIP_P, L_KNEE, L_ANKLE_P, L_ANKLE_R]
-      height: 0.85
-      max_height: 0.9
-      min_height: 0.65
-    dcm_tracking:
-      gains:
-        prop: 5.0
-        integral: 10.0
-        deriv: 0.0
-      derivator_time_constant: 1.0
-      integrator_time_constant: 10.0
     sole:
       half_length: 0.11
       half_width: 0.05
       friction: 0.7
     torso:
-      max_pitch: 0.4
-      min_pitch: -0.1
-      name: WAIST_R_S
       pitch: 0.0
 plans:
   hrp4:
@@ -444,6 +371,121 @@ plans:
         - pose:
             translation: [0.035, 0.09, 0.0]
           surface: LeftFootCenter
+  hrp4j:
+    ashibumi: # stepping in place
+      double_support_duration: 0.5
+      single_support_duration: 0.8
+      com_height: 0.75
+      swing_height: 0.04
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+    custom_backward:
+      double_support_duration: 0.5
+      single_support_duration: 0.8
+      step_length: 0.1
+      swing_height: 0.05
+      com_height: 0.75
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+    custom_forward:
+      double_support_duration: 0.4
+      single_support_duration: 0.7
+      step_length: 0.15
+      swing_height: 0.04
+      com_height: 0.75
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+    custom_lateral:
+      double_support_duration: 0.4
+      single_support_duration: 0.7
+      step_length: 0.1
+      swing_height: 0.04
+      com_height: 0.75
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+      mpc:
+        weights:
+          jerk: 1.0
+          vel: [10.0, 300.0]
+          zmp: 1000.0
+    warmup:
+      double_support_duration: 0.5
+      single_support_duration: 0.7
+      swing_height: 0.04
+      com_height: 0.75
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+  hrp4cr:
+    base: hrp4j
+    warmup:
+      com_height: 0.78
+    ashibumi:
+      com_height: 0.78
+    custom_forward:
+      com_height: 0.78
+    custom_backward:
+      com_height: 0.78
   hrp2_drc:
     ashibumi: # stepping in place
       double_support_duration: 0.2
@@ -1061,21 +1103,40 @@ robots:
 #
 # Finite state machine
 #
-StatesFiles: []
-StatesLibraries: ["@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states"]
+StatesFiles:
+- "@MC_STATES_DEFAULT_INSTALL_PREFIX@/data"
+StatesLibraries:
+- "@MC_STATES_DEFAULT_INSTALL_PREFIX@"
+- "@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states"
 Managed: false
 StepByStep: false
 init: Initial
-states: {}
+states:
+  WalkInternal:
+    base: Meta
+    transitions:
+    - [Standing, DoubleSupport, DoubleSupport]
+    - [DoubleSupport, SingleSupport, SingleSupport]
+    - [DoubleSupport, Standing, Standing]
+    - [SingleSupport, DoubleSupport, DoubleSupport]
+  WalkFSM:
+    base: Parallel
+    states: [RunStabilizer, WalkInternal]
+
 transitions:
-  - [Initial, Standing, Standing]
-  - [Standing, DoubleSupport, DoubleSupport]
-  - [DoubleSupport, SingleSupport, SingleSupport]
-  - [DoubleSupport, Standing, Standing]
-  - [SingleSupport, DoubleSupport, DoubleSupport]
+  - [Initial, Standing, WalkFSM]
 
 # Set realRobot's joint configuration from encoder readings
 ObserverPipelines:
-  name: "EncoderPipeline"
+  name: "LIPMWalkingObserverPipeline"
+  gui: true
   observers:
     - type: Encoder
+    - type: Attitude
+      required: false
+    - type: KinematicInertial
+      config:
+        anchorFrame:
+          maxAnchorFrameDiscontinuity: 0.02
+    - type: BodySensor
+      update: false

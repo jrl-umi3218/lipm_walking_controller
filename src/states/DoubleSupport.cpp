@@ -30,6 +30,8 @@
 namespace lipm_walking
 {
 
+using ContactState = mc_tasks::lipm_stabilizer::ContactState;
+
 void states::DoubleSupport::start()
 {
   auto & ctl = controller();
@@ -58,38 +60,22 @@ void states::DoubleSupport::start()
     stopDuringThisDSP_ = true;
   }
 
-  stabilizer().contactState(ContactState::DoubleSupport);
   if(ctl.prevContact().surfaceName == "LeftFootCenter")
   {
-    stabilizer().setContact(stabilizer().leftFootTask, ctl.prevContact());
-    stabilizer().setContact(stabilizer().rightFootTask, ctl.supportContact());
+    ctl.setContacts({{ContactState::Left, ctl.prevContact().pose}, {ContactState::Right, ctl.supportContact().pose}});
     targetLeftFootRatio_ = 0.;
   }
   else // (ctl.prevContact().surfaceName == "RightFootCenter")
   {
-    stabilizer().setContact(stabilizer().leftFootTask, ctl.supportContact());
-    stabilizer().setContact(stabilizer().rightFootTask, ctl.prevContact());
+    ctl.setContacts({{ContactState::Left, ctl.supportContact().pose}, {ContactState::Right, ctl.prevContact().pose}});
     targetLeftFootRatio_ = 1.;
   }
   if(stopDuringThisDSP_)
   {
     targetLeftFootRatio_ = 0.5;
   }
-  stabilizer().addTasks(ctl.solver());
 
   logger().addLogEntry("rem_phase_time", [this]() { return remTime_; });
-  logger().addLogEntry("support_xmax",
-                       [&ctl]() { return std::max(ctl.prevContact().xmax(), ctl.supportContact().xmax()); });
-  logger().addLogEntry("support_xmin",
-                       [&ctl]() { return std::min(ctl.prevContact().xmin(), ctl.supportContact().xmin()); });
-  logger().addLogEntry("support_ymax",
-                       [&ctl]() { return std::max(ctl.prevContact().ymax(), ctl.supportContact().ymax()); });
-  logger().addLogEntry("support_ymin",
-                       [&ctl]() { return std::min(ctl.prevContact().ymin(), ctl.supportContact().ymin()); });
-  logger().addLogEntry("support_zmax",
-                       [&ctl]() { return std::max(ctl.prevContact().zmax(), ctl.supportContact().zmax()); });
-  logger().addLogEntry("support_zmin",
-                       [&ctl]() { return std::min(ctl.prevContact().zmin(), ctl.supportContact().zmin()); });
   logger().addLogEntry("walking_phase", []() { return 2.; });
 
   if(stopDuringThisDSP_)
@@ -102,15 +88,7 @@ void states::DoubleSupport::start()
 
 void states::DoubleSupport::teardown()
 {
-  stabilizer().removeTasks(controller().solver());
-
   logger().removeLogEntry("rem_phase_time");
-  logger().removeLogEntry("support_xmax");
-  logger().removeLogEntry("support_xmin");
-  logger().removeLogEntry("support_ymax");
-  logger().removeLogEntry("support_ymin");
-  logger().removeLogEntry("support_zmax");
-  logger().removeLogEntry("support_zmin");
   logger().removeLogEntry("walking_phase");
 }
 
@@ -129,9 +107,9 @@ void states::DoubleSupport::runState()
   ctl.leftFootRatio(x * initLeftFootRatio_ + (1. - x) * targetLeftFootRatio_);
 
   ctl.preview->integrate(pendulum(), dt);
-  pendulum().completeIPM(ctl.prevContact());
-  pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.prevContact());
-  stabilizer().run();
+  pendulum().completeIPM(ctl.prevContact().p(), ctl.prevContact().normal());
+  pendulum().resetCoMHeight(ctl.plan.comHeight(), ctl.prevContact().p(), ctl.prevContact().normal());
+  controller().stabilizer()->target(pendulum().com(), pendulum().comd(), pendulum().comdd(), pendulum().zmp());
 
   remTime_ -= dt;
   stateTime_ += dt;

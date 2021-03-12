@@ -29,28 +29,21 @@
 
 #include <mc_rbdyn/Robot.h>
 #include <mc_rtc/Configuration.h>
+#include <mc_rtc/constants.h>
 #include <mc_rtc/logging.h>
+#include <mc_tasks/lipm_stabilizer/Contact.h>
 
 #include <SpaceVecAlg/SpaceVecAlg>
 
 #include <cmath>
 #include <lipm_walking/Sole.h>
-#include <lipm_walking/utils/world.h>
 
 namespace lipm_walking
 {
 
 using HrepXd = std::pair<Eigen::MatrixXd, Eigen::VectorXd>;
 
-/** Contact state: set of feet in contact.
- *
- */
-enum class ContactState
-{
-  DoubleSupport,
-  LeftFoot,
-  RightFoot
-};
+using ContactState = mc_tasks::lipm_stabilizer::ContactState;
 
 /** Contacts wrap foot frames with extra info from the footstep plan.
  *
@@ -286,7 +279,7 @@ struct Contact
       halfWidth,
       halfWidth;
     // clang-format on
-    if((normal() - world::vertical).norm() > 1e-3)
+    if((normal() - mc_rtc::constants::vertical).norm() > 1e-3)
     {
       mc_rtc::log::warning("Contact is not horizontal");
     }

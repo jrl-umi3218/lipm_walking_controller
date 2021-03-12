@@ -29,6 +29,7 @@
 
 #include <mc_control/fsm/Controller.h>
 #include <mc_control/fsm/State.h>
+#include <mc_tasks/CoPTask.h>
 
 #include <lipm_walking/Controller.h>
 #include <lipm_walking/State.h>
@@ -70,6 +71,9 @@ struct SingleSupport : State
    */
   void updateSwingFoot();
 
+  bool detectTouchdown(const std::shared_ptr<mc_tasks::SurfaceTransformTask> footTask,
+                       const sva::PTransformd & contactPose);
+
   /** Update horizontal MPC preview.
    *
    */
@@ -82,8 +86,7 @@ private:
   double remTime_; /**< Time remainin guntil the end of the phase */
   double stateTime_; /** Time since the beginning of the SSP */
   double timeSinceLastPreviewUpdate_; /**< Time count used to schedule MPC udpates, in [s] */
-  std::shared_ptr<mc_tasks::force::CoPTask> supportFootTask; /**< Current support foot task from the stabilizer */
-  std::shared_ptr<mc_tasks::force::CoPTask> swingFootTask; /**< Current swing foot task from the stabilizer */
+  std::shared_ptr<mc_tasks::SurfaceTransformTask> swingFootTask; /**< Current swing foot task from the stabilizer */
 };
 
 } // namespace states

@@ -77,54 +77,12 @@ struct Standing : State
    */
   void runState() override;
 
-  /** Distribute spatial ZMP into foot CoPs in double support.
-   *
-   */
-  void distributeFootCoPs();
-
   /** Update target CoM and CoP.
    *
    * \param leftFootRatio Left foot weight index between 0 and 1.
    *
    */
   void updateTarget(double leftFootRatio);
-
-  /** Make foot contact.
-   *
-   * \param footTask Stabilizer task corresponding to the foot to release.
-   *
-   * \param contact Contact target.
-   *
-   */
-  void makeFootContact(std::shared_ptr<mc_tasks::force::CoPTask> footTask, const Contact & contact);
-
-  /** Make left foot contact.
-   *
-   */
-  void makeLeftFootContact();
-
-  /** Make right foot contact.
-   *
-   */
-  void makeRightFootContact();
-
-  /** Release foot contact.
-   *
-   * \param footTask Stabilizer task corresponding to the foot to release.
-   *
-   * \return True if the contact was released, false if not.
-   */
-  bool releaseFootContact(std::shared_ptr<mc_tasks::force::CoPTask> footTask);
-
-  /** Release left foot contact.
-   *
-   */
-  void releaseLeftFootContact();
-
-  /** Release right foot contact.
-   *
-   */
-  void releaseRightFootContact();
 
   /** Enable startWalking_ boolean and update GUI.
    *
@@ -143,12 +101,9 @@ private:
   Contact leftFootContact_; /**< Current left foot contact handle in plan */
   Contact rightFootContact_; /**< Current right foot contact handle in plan */
   Eigen::Vector3d copTarget_; /**< CoP target computed from GUI input */
-  bool isMakingFootContact_; /**< Is the robot going back to double support? */
   bool planChanged_; /**< Has footstep plan changed? */
   bool startWalking_; /**< Has the user clicked on "Start walking"? */
-  double freeFootGain_; /**< Foot task gain when lifting one foot in the air */
   double leftFootRatio_; /**< Left foot ratio from GUI input */
-  double releaseHeight_; /**< Desired height when lifting one foot in the air */
   unsigned lastInterpolatorIter_; /**< Last iteration number of the plan interpolator */
 };
 
