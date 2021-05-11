@@ -52,11 +52,30 @@ robot_models:
       friction: 0.7
       leftAnkleOffset: [0.,0.] # target center of foot
   hrp4cr:
+    stabilizer:
+      dcm_tracking:
+        gains:
+          prop: 4
+          integral: 10
+          deriv: 0.2
+      admittance:
+        cop: [0.03, 0.04]
+        # maxVel:
+        #   angular: [1., 1., 1.]
+        #   linear: [0.5, 0.5, 0.5]
+      tasks:
+        contact:
+          damping: 300.
+      #dcm_bias:
+      #  biasDriftPerSeconStd: 0.0001
+      #  withDCMBias: true
     sole:
       half_length: 0.08
       half_width: 0.038
       friction: 0.7
       leftAnkleOffset: [0.,0.] # target center of foot
+    torso:
+      pitch: 0.0
   hrp5_p:
     sole:
       half_length: 0.11895
@@ -476,16 +495,135 @@ plans:
         - pose:
             translation: [0.035, 0.07, 0.0]
           surface: LeftFootCenter
+    external:
+      double_support_duration: 0.5
+      single_support_duration: 0.7
+      swing_height: 0.04
+      com_height: 0.75
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
   hrp4cr:
-    base: hrp4j
-    warmup:
-      com_height: 0.78
-    ashibumi:
-      com_height: 0.78
-    custom_forward:
-      com_height: 0.78
+    ashibumi: # stepping in place
+      double_support_duration: 0.5
+      single_support_duration: 0.8
+      com_height: 0.817301
+      swing_height: 0.04
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
     custom_backward:
-      com_height: 0.78
+      double_support_duration: 0.5
+      single_support_duration: 0.8
+      step_length: 0.1
+      swing_height: 0.05
+      com_height: 0.817301
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+    custom_forward:
+      double_support_duration: 0.4
+      single_support_duration: 0.7
+      step_length: 0.15
+      swing_height: 0.04
+      com_height: 0.817301
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+    custom_lateral:
+      double_support_duration: 0.4
+      single_support_duration: 0.7
+      step_length: 0.1
+      swing_height: 0.04
+      com_height: 0.817301
+      contacts:
+        - pose:
+            translation: [0.0, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.07, 0.0]
+          surface: LeftFootCenter
+      mpc:
+        weights:
+          jerk: 1.0
+          vel: [10.0, 300.0]
+          zmp: 1000.0
+    warmup:
+      double_support_duration: 0.5
+      single_support_duration: 0.7
+      swing_height: 0.04
+      com_height: 0.817301
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
+    external:
+      double_support_duration: 0.5
+      single_support_duration: 0.7
+      swing_height: 0.04
+      com_height: 0.817301
+      contacts:
+        - pose:
+            translation: [0.035, -0.07, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.035, 0.07, 0.0]
+          surface: LeftFootCenter
   hrp2_drc:
     ashibumi: # stepping in place
       double_support_duration: 0.2
@@ -1100,7 +1238,6 @@ robots:
   ground:
     module: env/ground
 
-#
 # Finite state machine
 #
 StatesFiles:
