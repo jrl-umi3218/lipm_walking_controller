@@ -56,24 +56,26 @@ robot_models:
       dcm_tracking:
         gains:
           prop: 4
-          integral: 10
+          integral: 0
           deriv: 0.2
       admittance:
         cop: [0.03, 0.04]
-        # maxVel:
-        #   angular: [1., 1., 1.]
-        #   linear: [0.5, 0.5, 0.5]
+        maxVel:
+          angular: [3., 3., 3.]
+          linear: [1., 1., 1.]
       tasks:
         contact:
           damping: 300.
-      #dcm_bias:
-      #  biasDriftPerSeconStd: 0.0001
-      #  withDCMBias: true
+      dcm_bias:
+        #biasDriftPerSeconStd: 0.0001
+        zmpMeasureErrorStd: 0.0005
+        biasLimit: [0.05, 0.05]
+        withDCMBias: true
     sole:
       half_length: 0.08
       half_width: 0.038
       friction: 0.7
-      leftAnkleOffset: [0.,0.] # target center of foot
+      leftAnkleOffset: [-0.05, 0.] # target center of foot
     torso:
       pitch: 0.0
   hrp5_p:
