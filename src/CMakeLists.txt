@@ -24,6 +24,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 set(CONTROLLER_SRC
+    Controller.cpp
     FootstepPlan.cpp
     ModelPredictiveControl.cpp
     PlanInterpolator.cpp
