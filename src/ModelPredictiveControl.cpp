@@ -91,7 +91,7 @@ void ModelPredictiveControl::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBu
   using namespace mc_rtc::gui;
   gui->addElement({"Walking", "CoM"},
                   ComboInput("MPC QP solver", {"QuadProgDense", "QLD"},
-                             [this]() {
+                             [this]() -> std::string {
                                switch(solver_)
                                {
                                  case copra::SolverFlag::QLD:
