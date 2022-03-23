@@ -92,9 +92,6 @@ SE2d InputConvertor::convert_Oculus_to_SE2d(const sensor_msgs::Joy & joy_msg)
   result.y = radius * sin(origin_theta);
   result.theta = val_theta;
 
-  ROS_WARN("[ExFootPlanPlugin::convert_Oculus_to_SE2d] foward: %f, lateral: %f, yaw: %f", result.x, result.y,
-           result.theta);
-
   return result;
 }
 
