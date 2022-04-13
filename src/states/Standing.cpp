@@ -135,12 +135,14 @@ void states::Standing::start()
     gui_.removeElement({"Walking", "Main"}, "Pause walking");
     gui_.removeElement({"Walking", "Main"}, "Resume walking");
     gui_.removeElement({"Walking", "Main"}, "Start walking");
-    gui_.addElement({"Walking", "Main"}, ComboInput("Footstep plan", ctl.planInterpolator.availablePlans(),
-                                                    [&ctl]() { return ctl.plan.name; },
-                                                    [&ctl](const std::string & name) { ctl.updatePlan(name); }));
+    gui_.addElement({"Walking", "Main"},
+                    ComboInput(
+                        "Footstep plan", ctl.planInterpolator.availablePlans(), [&ctl]() { return ctl.plan.name; },
+                        [&ctl](const std::string & name) { ctl.updatePlan(name); }));
     gui_.addElement({"Standing"},
-                    NumberInput("CoM target [0-1]", [this]() { return std::round(leftFootRatio_ * 10.) / 10.; },
-                                [this](double leftFootRatio) { updateTarget(leftFootRatio); }),
+                    NumberInput(
+                        "CoM target [0-1]", [this]() { return std::round(leftFootRatio_ * 10.) / 10.; },
+                        [this](double leftFootRatio) { updateTarget(leftFootRatio); }),
                     Label("Left foot force [N]",
                           [&ctl]() { return ctl.realRobot().forceSensor("LeftFootForceSensor").force().z(); }),
                     Label("Right foot force [N]",

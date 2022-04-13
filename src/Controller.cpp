@@ -220,34 +220,43 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
   gui->addElement({"Walking", "CoM"}, Label("Plan name", [this]() { return plan.name; }));
 
   gui->addElement({"Walking", "Swing"}, Label("Plan name", [this]() { return plan.name; }),
-                  NumberInput("Swing height [m]", [this]() { return plan.swingHeight(); },
-                              [this](double height) { plan.swingHeight(height); }),
-                  NumberInput("Takeoff duration [s]", [this]() { return plan.takeoffDuration(); },
-                              [this](double duration) { plan.takeoffDuration(duration); }),
-                  NumberInput("Takeoff pitch [rad]", [this]() { return plan.takeoffPitch(); },
-                              [this](double pitch) { plan.takeoffPitch(pitch); }),
-                  NumberInput("Landing duration [s]", [this]() { return plan.landingDuration(); },
-                              [this](double duration) { plan.landingDuration(duration); }),
-                  NumberInput("Landing pitch [rad]", [this]() { return plan.landingPitch(); },
-                              [this](double pitch) { plan.landingPitch(pitch); }));
+                  NumberInput(
+                      "Swing height [m]", [this]() { return plan.swingHeight(); },
+                      [this](double height) { plan.swingHeight(height); }),
+                  NumberInput(
+                      "Takeoff duration [s]", [this]() { return plan.takeoffDuration(); },
+                      [this](double duration) { plan.takeoffDuration(duration); }),
+                  NumberInput(
+                      "Takeoff pitch [rad]", [this]() { return plan.takeoffPitch(); },
+                      [this](double pitch) { plan.takeoffPitch(pitch); }),
+                  NumberInput(
+                      "Landing duration [s]", [this]() { return plan.landingDuration(); },
+                      [this](double duration) { plan.landingDuration(duration); }),
+                  NumberInput(
+                      "Landing pitch [rad]", [this]() { return plan.landingPitch(); },
+                      [this](double pitch) { plan.landingPitch(pitch); }));
 
   gui->addElement({"Walking", "Timings"}, Label("Plan name", [this]() { return plan.name; }),
-                  NumberInput("Initial DSP duration [s]", [this]() { return plan.initDSPDuration(); },
-                              [this](double duration) { plan.initDSPDuration(duration); }),
-                  NumberInput("SSP duration [s]", [this]() { return plan.singleSupportDuration(); },
-                              [this](double duration) {
-                                constexpr double T = ModelPredictiveControl::SAMPLING_PERIOD;
-                                duration = std::round(duration / T) * T;
-                                plan.singleSupportDuration(duration);
-                              }),
-                  NumberInput("DSP duration [s]", [this]() { return plan.doubleSupportDuration(); },
-                              [this](double duration) {
-                                constexpr double T = ModelPredictiveControl::SAMPLING_PERIOD;
-                                duration = std::round(duration / T) * T;
-                                plan.doubleSupportDuration(duration);
-                              }),
-                  NumberInput("Final DSP duration [s]", [this]() { return plan.finalDSPDuration(); },
-                              [this](double duration) { plan.finalDSPDuration(duration); }));
+                  NumberInput(
+                      "Initial DSP duration [s]", [this]() { return plan.initDSPDuration(); },
+                      [this](double duration) { plan.initDSPDuration(duration); }),
+                  NumberInput(
+                      "SSP duration [s]", [this]() { return plan.singleSupportDuration(); },
+                      [this](double duration) {
+                        constexpr double T = ModelPredictiveControl::SAMPLING_PERIOD;
+                        duration = std::round(duration / T) * T;
+                        plan.singleSupportDuration(duration);
+                      }),
+                  NumberInput(
+                      "DSP duration [s]", [this]() { return plan.doubleSupportDuration(); },
+                      [this](double duration) {
+                        constexpr double T = ModelPredictiveControl::SAMPLING_PERIOD;
+                        duration = std::round(duration / T) * T;
+                        plan.doubleSupportDuration(duration);
+                      }),
+                  NumberInput(
+                      "Final DSP duration [s]", [this]() { return plan.finalDSPDuration(); },
+                      [this](double duration) { plan.finalDSPDuration(duration); }));
   gui->addElement(
       {"Walking", "Sole"},
       mc_rtc::gui::Label("Ankle offset",
@@ -256,12 +265,12 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
                                "position of ankle w.r.t to left foot center. The corresponding offset for the right "
                                "foot is computed assuming that the feet are symetrical in the lateral direction"};
                          }),
-      mc_rtc::gui::ArrayInput("Left Ankle Offset",
-                              [this]() -> const Eigen::Vector2d & { return sole_.leftAnkleOffset; },
-                              [this](const Eigen::Vector2d & offset) {
-                                sole_.leftAnkleOffset = offset;
-                                mpc_.sole(sole_);
-                              }),
+      mc_rtc::gui::ArrayInput(
+          "Left Ankle Offset", [this]() -> const Eigen::Vector2d & { return sole_.leftAnkleOffset; },
+          [this](const Eigen::Vector2d & offset) {
+            sole_.leftAnkleOffset = offset;
+            mpc_.sole(sole_);
+          }),
       mc_rtc::gui::ArrayLabel("Right Ankle Offset",
                               [this]() -> Eigen::Vector2d {
                                 return {sole_.leftAnkleOffset.x(), -sole_.leftAnkleOffset.y()};

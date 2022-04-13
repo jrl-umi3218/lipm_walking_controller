@@ -198,24 +198,25 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
   if(targetType == "World SE2")
   {
     gui.addElement(category,
-                   XYTheta("World target [m, rad]",
-                           [this]() -> std::array<double, 4> {
-                             return {worldPositionTarget_.x, worldPositionTarget_.y, worldPositionTarget_.theta, 0.};
-                           },
-                           [this](const std::array<double, 4> & target) {
-                             setWorldPositionTarget({target[0], target[1], target[2]});
-                           }));
+                   XYTheta(
+                       "World target [m, rad]",
+                       [this]() -> std::array<double, 4> {
+                         return {worldPositionTarget_.x, worldPositionTarget_.y, worldPositionTarget_.theta, 0.};
+                       },
+                       [this](const std::array<double, 4> & target) {
+                         setWorldPositionTarget({target[0], target[1], target[2]});
+                       }));
   }
   else if(targetType == "Local SE2")
   {
-    gui.addElement(category,
-                   ArrayInput("Local target [m, rad]",
-                              [this]() -> std::array<double, 3> {
-                                return {localPositionTarget_.x, localPositionTarget_.y, localPositionTarget_.theta};
-                              },
-                              [this](const std::array<double, 3> & target) {
-                                setLocalPositionTarget({target[0], target[1], target[2]});
-                              }));
+    gui.addElement(category, ArrayInput(
+                                 "Local target [m, rad]",
+                                 [this]() -> std::array<double, 3> {
+                                   return {localPositionTarget_.x, localPositionTarget_.y, localPositionTarget_.theta};
+                                 },
+                                 [this](const std::array<double, 3> & target) {
+                                   setLocalPositionTarget({target[0], target[1], target[2]});
+                                 }));
   }
   else if(targetType == "Local Velocity")
   {
@@ -225,35 +226,39 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
       gui.removeElement(category, "Local Velocity [y]");
       gui.removeElement(category, "Local Velocity [theta]");
       gui.addElement(category,
-                     NumberSlider("Local Velocity [x]", [this]() { return localVelocityTarget_.x; },
-                                  [this](double vx) {
-                                    localVelocityTarget_.x = vx;
-                                    setLocalVelocityTarget(localVelocityTarget_);
-                                  },
-                                  -planningDistance_.x, planningDistance_.x),
-                     NumberSlider("Local Velocity [y]", [this]() { return localVelocityTarget_.y; },
-                                  [this](double vy) {
-                                    localVelocityTarget_.y = vy;
-                                    setLocalVelocityTarget(localVelocityTarget_);
-                                  },
-                                  -planningDistance_.y, planningDistance_.y),
-                     NumberSlider("Local Velocity [theta]", [this]() { return localVelocityTarget_.theta; },
-                                  [this](double vy) {
-                                    localVelocityTarget_.theta = vy;
-                                    setLocalVelocityTarget(localVelocityTarget_);
-                                  },
-                                  -planningDistance_.theta, planningDistance_.theta));
+                     NumberSlider(
+                         "Local Velocity [x]", [this]() { return localVelocityTarget_.x; },
+                         [this](double vx) {
+                           localVelocityTarget_.x = vx;
+                           setLocalVelocityTarget(localVelocityTarget_);
+                         },
+                         -planningDistance_.x, planningDistance_.x),
+                     NumberSlider(
+                         "Local Velocity [y]", [this]() { return localVelocityTarget_.y; },
+                         [this](double vy) {
+                           localVelocityTarget_.y = vy;
+                           setLocalVelocityTarget(localVelocityTarget_);
+                         },
+                         -planningDistance_.y, planningDistance_.y),
+                     NumberSlider(
+                         "Local Velocity [theta]", [this]() { return localVelocityTarget_.theta; },
+                         [this](double vy) {
+                           localVelocityTarget_.theta = vy;
+                           setLocalVelocityTarget(localVelocityTarget_);
+                         },
+                         -planningDistance_.theta, planningDistance_.theta));
     };
 
     makeSliders();
-    gui.addElement(category, ArrayInput("Planning Distance", {"x [m]", "y [m]", "theta [rad]"},
-                                        [this]() -> std::array<double, 3> {
-                                          return {planningDistance_.x, planningDistance_.y, planningDistance_.theta};
-                                        },
-                                        [this, makeSliders](const std::array<double, 3> & d) {
-                                          setLocalVelocityPlanningDistance({d[0], d[1], d[2]});
-                                          makeSliders();
-                                        }));
+    gui.addElement(category, ArrayInput(
+                                 "Planning Distance", {"x [m]", "y [m]", "theta [rad]"},
+                                 [this]() -> std::array<double, 3> {
+                                   return {planningDistance_.x, planningDistance_.y, planningDistance_.theta};
+                                 },
+                                 [this, makeSliders](const std::array<double, 3> & d) {
+                                   setLocalVelocityPlanningDistance({d[0], d[1], d[2]});
+                                   makeSliders();
+                                 }));
   }
   else if(targetType == "PS4 Controller" || targetType == "Oculus Controller")
   {
@@ -277,8 +282,9 @@ void ExternalFootstepPlannerPlugin::activate()
 
   using namespace mc_rtc::gui;
   auto & gui = *gui_;
-  gui.addElement(category_, ComboInput("Planner", supportedPlanners_, [this]() { return plannerName_; },
-                                       [this](const std::string & planner) { changePlanner(planner); }));
+  gui.addElement(category_, ComboInput(
+                                "Planner", supportedPlanners_, [this]() { return plannerName_; },
+                                [this](const std::string & planner) { changePlanner(planner); }));
   gui.addElement(category_, Label("Available?", [this]() { return planner_->available(); }));
   planner_->activate();
 
@@ -307,8 +313,9 @@ void ExternalFootstepPlannerPlugin::addPlannerGUI()
 {
   using namespace mc_rtc::gui;
   auto & gui = *gui_;
-  gui.addElement(category_, ComboInput("Target type", supportedTargetTypes_, [this]() { return targetType_; },
-                                       [this](const std::string & targetType) { changeTargetType(targetType); }));
+  gui.addElement(category_, ComboInput(
+                                "Target type", supportedTargetTypes_, [this]() { return targetType_; },
+                                [this](const std::string & targetType) { changeTargetType(targetType); }));
   changeTargetType(targetType_);
 }
 

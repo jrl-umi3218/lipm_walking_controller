@@ -90,42 +90,44 @@ void ModelPredictiveControl::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBu
 {
   using namespace mc_rtc::gui;
   gui->addElement({"Walking", "CoM"},
-                  ComboInput("MPC QP solver", {"QuadProgDense", "QLD"},
-                             [this]() -> std::string {
-                               switch(solver_)
-                               {
-                                 case copra::SolverFlag::QLD:
-                                   return "QLD";
-                                 case copra::SolverFlag::QuadProgDense:
-                                 default:
-                                   return "QuadProgDense";
-                               }
-                             },
-                             [this](const std::string & solver) {
-                               if(solver == "QLD")
-                               {
-                                 solver_ = copra::SolverFlag::QLD;
-                               }
-                               else // (solver == "QuadProgDense")
-                               {
-                                 solver_ = copra::SolverFlag::QuadProgDense;
-                               }
-                             }),
-                  ArrayInput("MPC QP cost weights", {"jerk", "vel_x", "vel_y", "zmp"},
-                             [this]() {
-                               Eigen::VectorXd weights(4);
-                               weights[0] = jerkWeight;
-                               weights[1] = velWeights.x();
-                               weights[2] = velWeights.y();
-                               weights[3] = zmpWeight;
-                               return weights;
-                             },
-                             [this](const Eigen::VectorXd & weights) {
-                               jerkWeight = weights[0];
-                               velWeights.x() = weights[1];
-                               velWeights.y() = weights[2];
-                               zmpWeight = weights[3];
-                             }));
+                  ComboInput(
+                      "MPC QP solver", {"QuadProgDense", "QLD"},
+                      [this]() -> std::string {
+                        switch(solver_)
+                        {
+                          case copra::SolverFlag::QLD:
+                            return "QLD";
+                          case copra::SolverFlag::QuadProgDense:
+                          default:
+                            return "QuadProgDense";
+                        }
+                      },
+                      [this](const std::string & solver) {
+                        if(solver == "QLD")
+                        {
+                          solver_ = copra::SolverFlag::QLD;
+                        }
+                        else // (solver == "QuadProgDense")
+                        {
+                          solver_ = copra::SolverFlag::QuadProgDense;
+                        }
+                      }),
+                  ArrayInput(
+                      "MPC QP cost weights", {"jerk", "vel_x", "vel_y", "zmp"},
+                      [this]() {
+                        Eigen::VectorXd weights(4);
+                        weights[0] = jerkWeight;
+                        weights[1] = velWeights.x();
+                        weights[2] = velWeights.y();
+                        weights[3] = zmpWeight;
+                        return weights;
+                      },
+                      [this](const Eigen::VectorXd & weights) {
+                        jerkWeight = weights[0];
+                        velWeights.x() = weights[1];
+                        velWeights.y() = weights[2];
+                        zmpWeight = weights[3];
+                      }));
 }
 
 void ModelPredictiveControl::addLogEntries(mc_rtc::Logger & logger)

@@ -159,7 +159,7 @@ void states::Initial::internalReset()
   if(resetPendulumHeight_)
   {
     // XXX Default height is the same as that defined hidden in Stephane's
-    // Pendulum::reset() function. This should probably be read from config
+    // Pendulum::reset() function. This should probably be ready from config
     // or use the robot height above ground instead.
     constexpr double DEFAULT_HEIGHT = 0.8; // [m]
     double lambda = mc_rtc::constants::GRAVITY / DEFAULT_HEIGHT;
