@@ -50,6 +50,12 @@ void states::Standing::configure(const mc_rtc::Configuration & config)
 void states::Standing::start()
 {
   auto & ctl = controller();
+  // Reset pendulum state starting from the current CoM state
+  // This is done to ensure that there is no discontinuity when entering the
+  // Standing state from any external state.
+  double lambda = mc_rtc::constants::GRAVITY / ctl.robot().com().z();
+  ctl.pendulum().reset(lambda, ctl.robot().com(), ctl.robot().comVelocity(), ctl.robot().comAcceleration());
+
   supportContact_ = ctl.supportContact();
   targetContact_ = ctl.targetContact();
 
