@@ -6,8 +6,11 @@
 #include <ros/node_handle.h>
 #include <ros/subscriber.h>
 
+#include <ExternalFootstepPlanner/DummyPlanner.h>
 #include <ExternalFootstepPlanner/ExternalFootstepPlannerPlugin.h>
-#include <ExternalFootstepPlanner/OnlineFootstepPlanner.h>
+#ifdef USE_ONLINE_FOOTSTEP_PLANNER
+#  include <ExternalFootstepPlanner/OnlineFootstepPlanner.h>
+#endif
 
 namespace mc_plugin
 {
@@ -17,6 +20,10 @@ namespace ExternalFootstepPlanner
 
 void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, const mc_rtc::Configuration & config)
 {
+#ifdef USE_ONLINE_FOOTSTEP_PLANNER
+  supportedPlanners_.emplace_back("OnlineFootstepPlanner");
+#endif
+
   using namespace mc_rtc::gui;
   auto & ctl = gc.controller();
   this->gui_ = ctl.gui();
@@ -31,8 +38,8 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
     }
   }
 
-  auto plannerName = config("planner", std::string{"OnlineFootstepPlanner"});
-  changePlanner(plannerName);
+  config("planner", plannerName_);
+  changePlanner(plannerName_);
 
   /* Tsuru add */
   if(config.has("default_target_type"))
@@ -111,13 +118,26 @@ mc_control::GlobalPlugin::GlobalPluginConfiguration ExternalFootstepPlannerPlugi
   return out;
 }
 
+bool ExternalFootstepPlannerPlugin::plannerSupported(const std::string & plannerName) const noexcept
+{
+  return std::find(supportedPlanners_.begin(), supportedPlanners_.end(), plannerName) != supportedPlanners_.end();
+}
+
 void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerName)
 {
+  // Do nothing if this planner is already being used
   if(plannerName == plannerName_ && planner_)
   {
     return;
   }
 
+  if(!plannerSupported(plannerName_))
+  {
+    mc_rtc::log::error_and_throw<std::invalid_argument>("[{}] does not support planner {} (supported planners are: {})",
+                                                        name(), plannerName, mc_rtc::io::to_string(supportedPlanners_));
+  }
+
+#ifdef USE_ONLINE_FOOTSTEP_PLANNER
   if(plannerName == "OnlineFootstepPlanner")
   {
     planner_.reset(new OnlineFootstepPlanner{});
@@ -126,11 +146,14 @@ void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerNam
       planner_->configure(config_("OnlineFootstepPlanner"));
     }
   }
-  else
+#endif
+
+  if(plannerName == "DummyPlanner")
   {
-    mc_rtc::log::error_and_throw<std::invalid_argument>("[{}] does not support planner {} (supported planners are: {})",
-                                                        name(), plannerName, mc_rtc::io::to_string(supportedPlanners_));
+    planner_.reset(new DummyPlanner{});
+    return;
   }
+
   mc_rtc::log::success("[{}] Changed planner to {}", name(), plannerName);
 }
 
@@ -192,7 +215,10 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
   if(run_)
   {
     run_ = false;
-    joystickSubscribeThread_.join();
+    if(joystickSubscribeThread_.joinable())
+    {
+      joystickSubscribeThread_.join();
+    }
   }
 
   if(targetType == "World SE2")
@@ -303,7 +329,10 @@ void ExternalFootstepPlannerPlugin::deactivate()
 
   /* Tsuru add below to Subscribe Joystick Input through ROS topic. */
   run_ = false;
-  joystickSubscribeThread_.join();
+  if(joystickSubscribeThread_.joinable())
+  {
+    joystickSubscribeThread_.join();
+  }
 
   activated_ = false;
   wasAvailable_ = false;

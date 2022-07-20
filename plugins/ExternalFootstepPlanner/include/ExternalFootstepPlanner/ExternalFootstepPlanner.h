@@ -15,22 +15,24 @@ namespace ExternalFootstepPlanner
  */
 struct ExternalFootstepPlanner
 {
+  virtual ~ExternalFootstepPlanner();
   virtual void configure(const mc_rtc::Configuration &){};
+  virtual void activate();
+  virtual void deactivate();
+  virtual bool available() const;
+
   /**
    * @brief
    *
    * @param request Requested parameters for the plan (start, finish, time, etc)
    * @return std::future<boost::optional<Plan>> A future plan to be returned once processed
    */
-  virtual void requestPlan(const Request & request) = 0;
-  virtual bool hasPlan() const noexcept = 0;
-  virtual Plan popPlan() = 0;
+  virtual void requestPlan(const Request & request);
+  virtual bool hasPlan() const noexcept;
+  virtual Plan popPlan();
   virtual std::string name() const = 0;
-  virtual bool available() const = 0;
   virtual void addToGUI(mc_rtc::gui::StateBuilder &){};
   virtual void removeFromGUI(mc_rtc::gui::StateBuilder &){};
-  virtual void activate() = 0;
-  virtual void deactivate() = 0;
 };
 
 } // namespace ExternalFootstepPlanner

@@ -142,6 +142,15 @@ protected:
    */
   void deactivate();
 
+  /**
+   * @brief Check if the desired planner is supported
+   *
+   * @param plannerName Name of the planner
+   *
+   * @return True if the planner is supported
+   */
+  bool plannerSupported(const std::string & plannerName) const noexcept;
+
 protected:
   std::shared_ptr<mc_rtc::gui::StateBuilder> gui_{nullptr};
   bool activated_ = false; ///< Whether this plugin is active
@@ -149,8 +158,8 @@ protected:
   std::string name_{"ExternalFootstepPlanner"}; ///< Name of the plugin (mainly used for logging)
   std::vector<std::string> category_{"ExternalFootStepPlanner"}; ///< Category in the gui
 
-  std::vector<std::string> supportedPlanners_{"OnlineFootstepPlanner"}; ///< List of supported planners
-  std::string plannerName_{"OnlineFootstepPlanner"}; ///< Name of the currently activated planner
+  std::vector<std::string> supportedPlanners_{"DummyPlanner"}; ///< List of supported planners
+  std::string plannerName_{"DummyPlanner"}; ///< Name of the currently activated planner
   std::unique_ptr<ExternalFootstepPlanner> planner_{nullptr}; ///< Planner implementation
   bool wasAvailable_ = false; ///< True if the planner was active during the previous iteration
 

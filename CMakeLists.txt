@@ -23,7 +23,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 14)
@@ -33,7 +33,6 @@ set(PROJECT_DESCRIPTION "Walking controller based on linear inverted pendulum tr
 set(PROJECT_URL https://github.com/stephane-caron/lipm_walking_controller/)
 set(PROJECT_VERSION 1.6.0)
 set(PROJECT_USE_CMAKE_EXPORT TRUE)
-
 
 include(cmake/base.cmake)
 set(CXX_DISABLE_WERROR True)
