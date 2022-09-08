@@ -48,7 +48,10 @@ void OnlineFootstepPlanner::deactivate()
   if(!activated_) return;
   if(verbose_) mc_rtc::log::info("[{}] deactivating...", name());
   run_ = false;
-  rosThread_.join();
+  if(rosThread_.joinable())
+  {
+    rosThread_.join();
+  }
   activated_ = false;
   if(verbose_) mc_rtc::log::success("[{}] deactivated", name());
 }

@@ -99,7 +99,7 @@ void ExternalFootstepPlannerPlugin::before(mc_control::MCGlobalController & /* g
     removePlannerGUI();
     wasAvailable_ = false;
   }
-  else if(!wasAvailable_ && planner_->available())
+  else if(activated_ && !wasAvailable_ && planner_->available())
   {
     addPlannerGUI();
     wasAvailable_ = true;
@@ -223,7 +223,7 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
 
   if(targetType == "World SE2")
   {
-    gui.addElement(category,
+    gui.addElement(this, category,
                    XYTheta(
                        "World target [m, rad]",
                        [this]() -> std::array<double, 4> {
@@ -235,14 +235,15 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
   }
   else if(targetType == "Local SE2")
   {
-    gui.addElement(category, ArrayInput(
-                                 "Local target [m, rad]",
-                                 [this]() -> std::array<double, 3> {
-                                   return {localPositionTarget_.x, localPositionTarget_.y, localPositionTarget_.theta};
-                                 },
-                                 [this](const std::array<double, 3> & target) {
-                                   setLocalPositionTarget({target[0], target[1], target[2]});
-                                 }));
+    gui.addElement(this, category,
+                   ArrayInput(
+                       "Local target [m, rad]",
+                       [this]() -> std::array<double, 3> {
+                         return {localPositionTarget_.x, localPositionTarget_.y, localPositionTarget_.theta};
+                       },
+                       [this](const std::array<double, 3> & target) {
+                         setLocalPositionTarget({target[0], target[1], target[2]});
+                       }));
   }
   else if(targetType == "Local Velocity")
   {
@@ -251,7 +252,7 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
       gui.removeElement(category, "Local Velocity [x]");
       gui.removeElement(category, "Local Velocity [y]");
       gui.removeElement(category, "Local Velocity [theta]");
-      gui.addElement(category,
+      gui.addElement(this, category,
                      NumberSlider(
                          "Local Velocity [x]", [this]() { return localVelocityTarget_.x; },
                          [this](double vx) {
@@ -276,19 +277,20 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
     };
 
     makeSliders();
-    gui.addElement(category, ArrayInput(
-                                 "Planning Distance", {"x [m]", "y [m]", "theta [rad]"},
-                                 [this]() -> std::array<double, 3> {
-                                   return {planningDistance_.x, planningDistance_.y, planningDistance_.theta};
-                                 },
-                                 [this, makeSliders](const std::array<double, 3> & d) {
-                                   setLocalVelocityPlanningDistance({d[0], d[1], d[2]});
-                                   makeSliders();
-                                 }));
+    gui.addElement(this, category,
+                   ArrayInput(
+                       "Planning Distance", {"x [m]", "y [m]", "theta [rad]"},
+                       [this]() -> std::array<double, 3> {
+                         return {planningDistance_.x, planningDistance_.y, planningDistance_.theta};
+                       },
+                       [this, makeSliders](const std::array<double, 3> & d) {
+                         setLocalVelocityPlanningDistance({d[0], d[1], d[2]});
+                         makeSliders();
+                       }));
   }
   else if(targetType == "PS4 Controller" || targetType == "Oculus Controller")
   {
-    gui.addElement(category, Label("is Controller Connected?", [this]() { return isControllerConnected_; }));
+    gui.addElement(this, category, Label("is Controller Connected?", [this]() { return isControllerConnected_; }));
     // activate a new ROS thread
     run_ = true;
     joystickSubscribeThread_ = std::thread(&ExternalFootstepPlannerPlugin::joystickSubscribeThread, this);
@@ -308,13 +310,14 @@ void ExternalFootstepPlannerPlugin::activate()
 
   using namespace mc_rtc::gui;
   auto & gui = *gui_;
-  gui.addElement(category_, ComboInput(
-                                "Planner", supportedPlanners_, [this]() { return plannerName_; },
-                                [this](const std::string & planner) {
-                                  changePlanner(planner);
-                                  activate();
-                                }));
-  gui.addElement(category_, Label("Available?", [this]() { return planner_->available(); }));
+  gui.addElement(this, category_,
+                 ComboInput(
+                     "Planner", supportedPlanners_, [this]() { return plannerName_; },
+                     [this](const std::string & planner) {
+                       changePlanner(planner);
+                       activate();
+                     }));
+  gui.addElement(this, category_, Label("Available?", [this]() { return planner_->available(); }));
   planner_->activate();
 
   activated_ = true;
@@ -325,10 +328,8 @@ void ExternalFootstepPlannerPlugin::deactivate()
   if(!activated_) return;
   using namespace mc_rtc::gui;
   auto & gui = *gui_;
-  gui.removeElement(category_, "Planner");
-  gui.removeElement(category_, "Available?");
-  removePlannerGUI();
   planner_->deactivate();
+  gui.removeElements(this);
 
   /* Tsuru add below to Subscribe Joystick Input through ROS topic. */
   run_ = false;
@@ -345,9 +346,10 @@ void ExternalFootstepPlannerPlugin::addPlannerGUI()
 {
   using namespace mc_rtc::gui;
   auto & gui = *gui_;
-  gui.addElement(category_, ComboInput(
-                                "Target type", supportedTargetTypes_, [this]() { return targetType_; },
-                                [this](const std::string & targetType) { changeTargetType(targetType); }));
+  gui.addElement(this, category_,
+                 ComboInput(
+                     "Target type", supportedTargetTypes_, [this]() { return targetType_; },
+                     [this](const std::string & targetType) { changeTargetType(targetType); }));
   changeTargetType(targetType_);
 }
 
