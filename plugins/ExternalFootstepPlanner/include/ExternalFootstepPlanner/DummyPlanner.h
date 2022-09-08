@@ -24,7 +24,7 @@ struct DummyPlanner : ExternalFootstepPlanner
    */
   void requestPlan(const Request & request) override;
 
-  std::string name() const override
+  inline std::string name() const override
   {
     return "DummyPlanner";
   }

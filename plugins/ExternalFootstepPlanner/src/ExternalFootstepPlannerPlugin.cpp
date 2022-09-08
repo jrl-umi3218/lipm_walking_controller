@@ -137,6 +137,8 @@ void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerNam
                                                         name(), plannerName, mc_rtc::io::to_string(supportedPlanners_));
   }
 
+  deactivate();
+
 #ifdef USE_ONLINE_FOOTSTEP_PLANNER
   if(plannerName == "OnlineFootstepPlanner")
   {
@@ -151,10 +153,12 @@ void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerNam
   if(plannerName == "DummyPlanner")
   {
     planner_.reset(new DummyPlanner{});
-    return;
   }
 
-  mc_rtc::log::success("[{}] Changed planner to {}", name(), plannerName);
+  mc_rtc::log::success("[{}] Changed planner from {} to {}", name(), plannerName_, plannerName);
+  plannerName_ = plannerName;
+
+  activate();
 }
 
 void ExternalFootstepPlannerPlugin::setWorldPositionTarget(const SE2d & worldTarget)

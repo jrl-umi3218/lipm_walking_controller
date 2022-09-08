@@ -25,7 +25,6 @@ struct ExternalFootstepPlanner
    * @brief
    *
    * @param request Requested parameters for the plan (start, finish, time, etc)
-   * @return std::future<boost::optional<Plan>> A future plan to be returned once processed
    */
   virtual void requestPlan(const Request & request);
   virtual bool hasPlan() const noexcept;
