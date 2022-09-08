@@ -848,6 +848,22 @@ plans:
         - pose:
             translation: [0.035, 0.105, 0.0]
           surface: LeftFootCenter
+    external: # refer to hrp4cr section for a detailed explanation
+      double_support_duration: 0.5
+      single_support_duration: 0.7
+      allowed_planning_time:
+        standing: 2.0
+        single_support: 0.2
+      swing_height: 0.04
+      contacts:
+        - pose:
+            translation: [0.0, -0.105, 0.0]
+          surface: RightFootCenter
+        - pose:
+            translation: [0.0, 0.105, 0.0]
+          surface: LeftFootCenter
+      leftFootLandingOffset: [0.0, 0.105, 0.0] # x, y, theta
+      rightFootLandingOffset: [0.0, -0.105, 0.0] # x, y, theta
   hrp5_p:
     ashibumi: # stepping in place
       double_support_duration: 0.2
