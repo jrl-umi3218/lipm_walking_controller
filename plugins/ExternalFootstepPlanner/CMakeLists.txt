@@ -9,7 +9,7 @@ set(ExternalFootstepPlanner_data_HDR
   include/ExternalFootstepPlanner/Plan.h
   include/ExternalFootstepPlanner/Request.h
 )
-add_library(ExternalFootstepPlanner_data SHARED "${ExternalFootstepPlanner_data_SRC}" "${ExternaleFootstepPlanner_data_HDR}")
+add_library(ExternalFootstepPlanner_data SHARED "${ExternalFootstepPlanner_data_SRC}" "${ExternalFootstepPlanner_data_HDR}")
 if(TARGET Eigen3::Eigen)
   target_link_libraries(ExternalFootstepPlanner_data PUBLIC Eigen3::Eigen)
 else()
@@ -55,6 +55,7 @@ option(AUTOLOAD_ExternalFootstepPlannerPlugin_PLUGIN "Automatically load Externa
 add_plugin(ExternalFootstepPlannerPlugin "${ExternalFootstepPlannerPlugin_SRC}" "${ExternalFootstepPlannerPlugin_HDR}")
 target_include_directories(ExternalFootstepPlannerPlugin PUBLIC $<INSTALL_INTERFACE:include> $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 target_link_libraries(ExternalFootstepPlannerPlugin PUBLIC ExternalFootstepPlanner)
+target_link_libraries(ExternalFootstepPlannerPlugin PUBLIC mc_rtc::mc_rtc_ros)
 set_target_properties(ExternalFootstepPlannerPlugin PROPERTIES OUTPUT_NAME ExternalFootstepPlannerPlugin)
 
 if(ONLINE_FOOTSTEP_PLANNER)

@@ -3,9 +3,6 @@
 #include <mc_rtc/io_utils.h>
 #include <mc_rtc/ros.h>
 
-#include <ros/node_handle.h>
-#include <ros/subscriber.h>
-
 #include <ExternalFootstepPlanner/DummyPlanner.h>
 #include <ExternalFootstepPlanner/ExternalFootstepPlannerPlugin.h>
 #ifdef USE_ONLINE_FOOTSTEP_PLANNER
