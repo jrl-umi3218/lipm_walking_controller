@@ -78,4 +78,4 @@ else()
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/etc/ExternalFootstepPlannerPlugin.in.yaml ${CMAKE_CURRENT_BINARY_DIR}/etc/ExternalFootstepPlannerPlugin.yaml)
-install(FILES  DESTINATION ${MC_PLUGINS_RUNTIME_INSTALL_PREFIX}/etc/)
+install(FILES  ${CMAKE_CURRENT_BINARY_DIR}/etc/ExternalFootstepPlannerPlugin.yaml DESTINATION ${MC_PLUGINS_RUNTIME_INSTALL_PREFIX}/etc/)

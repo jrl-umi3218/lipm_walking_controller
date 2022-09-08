@@ -35,6 +35,7 @@ void OnlineFootstepPlanner::configure(const mc_rtc::Configuration & config)
 
 void OnlineFootstepPlanner::activate()
 {
+  if(activated_) return;
   if(verbose_) mc_rtc::log::info("[{}] activating...", name());
   run_ = true;
   rosThread_ = std::thread(&OnlineFootstepPlanner::rosThread, this);
@@ -44,10 +45,11 @@ void OnlineFootstepPlanner::activate()
 
 void OnlineFootstepPlanner::deactivate()
 {
+  if(!activated_) return;
   if(verbose_) mc_rtc::log::info("[{}] deactivating...", name());
-  activated_ = false;
   run_ = false;
   rosThread_.join();
+  activated_ = false;
   if(verbose_) mc_rtc::log::success("[{}] deactivated", name());
 }
 
@@ -59,15 +61,28 @@ void OnlineFootstepPlanner::rosThread()
   // XXX: calling it should cancel the previous ongoing request (this is not the case in OnlineFootstepPlanner)
   ros::ServiceClient footstep_service = nh.serviceClient<FootStepPlanRequestService>(footstep_service_topic_);
   mc_rtc::log::info("[{}] Waiting for service \"{}\"", name(), footstep_service_topic_);
-  footstep_service.waitForExistence();
-  mc_rtc::log::info("[{}] Service \"{}\" is now available", name(), footstep_service_topic_);
 
   auto futurePlan = std::future<boost::optional<Plan>>{};
 
   ros::Rate rate(rate_);
+  bool was_available_ = false;
   while(ros::ok() && run_)
   {
-    available_ = ros::service::exists(footstep_service_topic_, false);
+    available_ = footstep_service.exists();
+    if(!available_)
+    {
+      if(was_available_)
+      {
+        mc_rtc::log::warning("[{}] Service \"{}\" is no longer available", name(), footstep_service_topic_);
+        was_available_ = false;
+      }
+      continue;
+    }
+    else if(!was_available_) // if service becomes available
+    {
+      mc_rtc::log::info("[{}] Service \"{}\" is now available", name(), footstep_service_topic_);
+      was_available_ = true;
+    }
     if(planRequested_)
     {
       planReceived_ = false;

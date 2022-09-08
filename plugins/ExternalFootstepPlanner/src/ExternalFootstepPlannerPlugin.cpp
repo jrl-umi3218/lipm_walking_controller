@@ -122,6 +122,7 @@ bool ExternalFootstepPlannerPlugin::plannerSupported(const std::string & planner
 
 void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerName)
 {
+  mc_rtc::log::info("[{}] Requested planner \"{}\"", name(), plannerName);
   // Do nothing if this planner is already being used
   if(plannerName == plannerName_ && planner_)
   {
@@ -154,8 +155,6 @@ void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerNam
 
   mc_rtc::log::success("[{}] Changed planner from {} to {}", name(), plannerName_, plannerName);
   plannerName_ = plannerName;
-
-  activate();
 }
 
 void ExternalFootstepPlannerPlugin::setWorldPositionTarget(const SE2d & worldTarget)
@@ -311,7 +310,10 @@ void ExternalFootstepPlannerPlugin::activate()
   auto & gui = *gui_;
   gui.addElement(category_, ComboInput(
                                 "Planner", supportedPlanners_, [this]() { return plannerName_; },
-                                [this](const std::string & planner) { changePlanner(planner); }));
+                                [this](const std::string & planner) {
+                                  changePlanner(planner);
+                                  activate();
+                                }));
   gui.addElement(category_, Label("Available?", [this]() { return planner_->available(); }));
   planner_->activate();
 

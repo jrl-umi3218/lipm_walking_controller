@@ -9,7 +9,7 @@ velocity_target:
 # Configuration for the OnlineFootstepPlanner
 OnlineFootstepPlanner:
   rate: 30
-  verbose: false
+  verbose: true
   # Skipped requests are to be expected given that the planner currently has no way to cancel the current requests computation
   # In practice this happens:
   # - When sending multiple requests in a row by moving the GUI target
