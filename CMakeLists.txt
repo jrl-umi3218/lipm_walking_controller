@@ -33,14 +33,20 @@ set(PROJECT_DESCRIPTION "Walking controller based on linear inverted pendulum tr
 set(PROJECT_URL https://github.com/stephane-caron/lipm_walking_controller/)
 set(PROJECT_VERSION 1.6.0)
 set(PROJECT_USE_CMAKE_EXPORT TRUE)
+set(INSTALL_DOCUMENTATION OFF CACHE BOOL "")
+set(INSTALL_GENERATED_HEADERS OFF CACHE BOOL "" FORCE)
+set(INSTALL_PKG_CONFIG_FILE OFF CACHE BOOL "" FORCE)
+set(CXX_DISABLE_WERROR ON)
 
 include(cmake/base.cmake)
-set(CXX_DISABLE_WERROR True)
 
 project(${PROJECT_NAME} CXX)
 
 add_project_dependency(copra REQUIRED)
 add_project_dependency(mc_rtc REQUIRED)
+if(NOT TARGET mc_rtc::mc_rtc_ros)
+  message(FATAL_ERROR "mc_rtc must be built with ROS support for this controller to work")
+endif()
 add_project_dependency(eigen-quadprog REQUIRED)
 
 if(EXISTS "${MC_RTC_LIBDIR}/mc_controller/etc/LIPMWalking.conf")
