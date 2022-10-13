@@ -29,9 +29,9 @@ jobs:
       run: |
         set -x
         set -e
-        curl -1sLf 'https://dl.cloudsmith.io/public/mc-rtc/head/setup.deb.sh' | sudo -E bash
         sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
         curl -1sLf http://packages.ros.org/ros.key | sudo apt-key add -
+        curl -1sLf 'https://dl.cloudsmith.io/public/mc-rtc/head/setup.deb.sh' | sudo -E bash
     - name: Install ROS
       run: |
         set -x
