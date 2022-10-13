@@ -25,12 +25,24 @@ jobs:
 
     runs-on: ${{ matrix.os }}
     steps:
-    - name: Curl mc_rtc
+    - name: Setup extra mirrors
       run: |
         set -x
         set -e
         curl -1sLf 'https://dl.cloudsmith.io/public/mc-rtc/head/setup.deb.sh' | sudo -E bash
-    - uses: actions/checkout@v1
+        sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+        curl -1sLf http://packages.ros.org/ros.key | sudo apt-key add -
+    - name: Install ROS
+      run: |
+        set -x
+        set -e
+        sudo apt-get install -qq ros-noetic-ros-base
+        . /opt/ros/noetic/setup.bash
+        for var in `env|grep -i ROS|sed -e's/=.*//'`
+        do
+          echo "${var}=${!var}" >> $GITHUB_ENV
+        done
+    - uses: actions/checkout@v2
       with:
         submodules: recursive
     - name: Install dependencies
@@ -39,7 +51,7 @@ jobs:
         compiler: ${{ matrix.compiler }}
         build-type: ${{ matrix.build-type }}
         ubuntu: |
-          apt: libeigen3-dev doxygen doxygen-latex libboost-all-dev libmc-rtc-dev gfortran libcopra-dev
+          apt: libeigen3-dev doxygen doxygen-latex libboost-all-dev libmc-rtc-dev gfortran libcopra-dev ros-noetic-mc-rtc-plugin
     - name: Build and test
       uses: jrl-umi3218/github-actions/build-cmake-project@master
       with:
