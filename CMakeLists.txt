@@ -59,3 +59,6 @@ endif()
 
 add_subdirectory(plugins/ExternalFootstepPlanner)
 add_subdirectory(src)
+
+set(PACKAGE_EXTRA_MACROS "set(LIPM_WALKING_STATES_LIBRARIES \"${MC_CONTROLLER_INSTALL_PREFIX}/lipm_walking_controller/states\")
+set(LIPM_WALKING_STATES_FILES \"\${LIPM_WALKING_STATES_LIBRARIES}/data\")")
