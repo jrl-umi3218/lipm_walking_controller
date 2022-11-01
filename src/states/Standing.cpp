@@ -43,13 +43,14 @@ constexpr double COM_STIFFNESS = 5.; // standing has CoM set-point task
 
 void states::Standing::configure(const mc_rtc::Configuration & config)
 {
-  config("autoplay", startWalking_);
+  config("autoplay", autoplay_);
   config("autoplay_plans", autoplay_plans_);
 }
 
 void states::Standing::start()
 {
   auto & ctl = controller();
+  ctl.startWalking = autoplay_;
   ctl.walkingState = WalkingState::Standing;
   // Reset pendulum state starting from the current CoM state
   // This is done to ensure that there is no discontinuity when entering the
@@ -61,7 +62,6 @@ void states::Standing::start()
   targetContact_ = ctl.targetContact();
 
   leftFootRatio_ = ctl.leftFootRatio();
-  startWalking_ = startWalking_ || ctl.config()("autoplay", false);
   ctl.isWalking = false;
   if(supportContact_.surfaceName == "RightFootCenter")
   {
@@ -104,7 +104,7 @@ void states::Standing::start()
   logger().addLogEntry("walking_phase", []() { return 3.; });
   ctl.stopLogSegment();
 
-  if(startWalking_ && !ctl.pauseWalking) // autoplay
+  if(ctl.startWalking && !ctl.pauseWalking) // autoplay
   {
     auto plans = std::vector<std::string>{};
     if(autoplay_plans_.size())
@@ -117,7 +117,7 @@ void states::Standing::start()
     }
     if(plans.size() == 0)
     {
-      startWalking_ = false;
+      ctl.startWalking = false;
       ctl.config().add("autoplay", false);
     }
     else
@@ -260,7 +260,7 @@ bool states::Standing::checkTransitions()
 {
   auto & ctl = controller();
 
-  if(!startWalking_ || ctl.pauseWalking)
+  if(!ctl.startWalking || ctl.pauseWalking)
   {
     return false;
   }
@@ -286,7 +286,7 @@ void states::Standing::startWalking()
     mc_rtc::log::error("No footstep in contact plan");
     return;
   }
-  startWalking_ = true;
+  ctl.startWalking = true;
   if(ctl.pauseWalking)
   {
     gui()->removeElement({"Walking", "Main"}, "Resume walking");

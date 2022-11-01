@@ -99,7 +99,7 @@ private:
   Contact leftFootContact_; /**< Current left foot contact handle in plan */
   Contact rightFootContact_; /**< Current right foot contact handle in plan */
   Eigen::Vector3d copTarget_; /**< CoP target computed from GUI input */
-  bool startWalking_ = false; /**< Has the user clicked on "Start walking"? */
+  bool autoplay_ = false; /**< Has the user clicked on "Start walking"? */
   std::vector<std::string> autoplay_plans_; /** Plans to play if config(autoplay) = true */
   double leftFootRatio_; /**< Left foot ratio from GUI input */
 

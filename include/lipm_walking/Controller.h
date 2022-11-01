@@ -305,6 +305,7 @@ public: /* visible to FSM states */
                                         not using an external planner */
   ExternalPlanner externalFootstepPlanner; ///< Handle requesting/receiving plans from an external planner
   bool emergencyStop = false; /**< Emergency flag: if on, the controller stops doing anything */
+  bool startWalking = false; /**< Is the walk started */
   bool pauseWalking = false; /**< Is the pause-walking behavior engaged? */
   bool pauseWalkingRequested = false; /**< Has user clicked on the "Pause walking" button? */
   std::shared_ptr<Preview> preview; /**< Current solution trajectory from the walking pattern generator */
