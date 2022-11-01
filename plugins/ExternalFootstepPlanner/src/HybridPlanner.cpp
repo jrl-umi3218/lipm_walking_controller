@@ -35,6 +35,7 @@ void HybridPlanner::activate()
                              [this](const Eigen::Vector3d & velocity) { setVelocity(velocity); });
   ctl_.datastore().make_call("HybridPlanner::GetVelocity", [this]() { return velocity_; });
   ctl_.gui()->addElement({"Hybrid Footstep Planner"},
+                         mc_rtc::gui::Label("Support Foot", [this]() { return supportFootName_; } ),
                          mc_rtc::gui::ArrayInput(
                              "Velocity", [this]() -> const Eigen::Vector3d & { return velocity_; },
                              [this](const Eigen::Vector3d & vel) { this->setVelocity(vel); }));
@@ -64,6 +65,8 @@ void HybridPlanner::requestPlan(const Request & request)
   if(computing_) return; // do nothing if it's already computing
   computing_ = true;
 
+  auto targetVel = velocity_;
+
   plan_.contacts.clear();
 
   sva::PTransformd X_0_support = sva::PTransformd::Identity();
@@ -88,23 +91,31 @@ void HybridPlanner::requestPlan(const Request & request)
   }
   ctl_.datastore().assign<std::string>("footsteps_planner::support_foot_name", supportFootName_);
 
-  mc_rtc::log::info("Hybrid planner plan requested");
+  // mc_rtc::log::info("Hybrid planner plan requested");
 
   // input velocity expressed in support foot frame
   auto & input_vel = ctl_.datastore().get<std::vector<sva::MotionVecd>>("footsteps_planner::input_vel");
   input_vel.clear();
   unsigned int p = static_cast<unsigned int>(Tp_ / delta_);
-  mc_rtc::log::info("P: {}", p);
+  // mc_rtc::log::info("P: {}", p);
 
   // start = support
 
-  // velocity_;
+  // if velocity_;
+  if(request.support_foot == Foot::Left && velocity_.y() > 0)
+  {
+    targetVel.y() = 0;
+  }
+  else if(request.support_foot == Foot::Right && velocity_.y() < 0)
+  {
+    targetVel.y() = 0;
+  }
 
   // Going at that speed for Tp_ (6 seconds)
   for(unsigned i = 0; i < p; ++i)
   {
     input_vel.push_back(
-        sva::MotionVecd(Eigen::Vector3d{0, 0, velocity_.z()}, Eigen::Vector3d{velocity_.x(), velocity_.y(), 0}));
+        sva::MotionVecd(Eigen::Vector3d{0, 0, targetVel.z()}, Eigen::Vector3d{targetVel.x(), targetVel.y(), 0}));
   }
   ctl_.datastore().assign<std::vector<sva::PTransformd>>("footsteps_planner::input_steps", {});
   // XXX use
@@ -144,7 +155,7 @@ Plan HybridPlanner::popPlan()
   }
   // FIXME hardcoded
   int i = 0;
-  int Nsteps = 3;
+  int Nsteps = 5;
   for(const auto & step_pose : plan_steps)
   {
     if(i++ > Nsteps) break;
@@ -160,9 +171,9 @@ Plan HybridPlanner::popPlan()
   }
   ctl_.datastore().get<std::vector<sva::PTransformd>>("footsteps_planner::output_steps").clear();
   computing_ = false;
-  mc_rtc::log::info("");
-  mc_rtc::log::info("Received plan: {}", plan_);
-  mc_rtc::log::info("");
+  // mc_rtc::log::info("");
+  // mc_rtc::log::info("Received plan: {}", plan_);
+  // mc_rtc::log::info("");
   return plan_;
 }
 
