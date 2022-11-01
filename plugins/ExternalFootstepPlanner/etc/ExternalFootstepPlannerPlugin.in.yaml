@@ -1,10 +1,13 @@
-planner: "@DEFAULT_EXTERNAL_PLANNER@"
+#planner: "@DEFAULT_EXTERNAL_PLANNER@"
+planner: "HybridPlanner"
 category: ["Walking", "Main", "External Planning"]
-
-default_target_type: "Oculus Controller"
 
 velocity_target:
   planning_distance: [0.15, 0.15, 1.57]
+
+# Default configuration for the Hybrid Planner
+# None, this is overriden in the controller's FSM
+HybridPlanner: {}
 
 # Configuration for the OnlineFootstepPlanner
 OnlineFootstepPlanner:
