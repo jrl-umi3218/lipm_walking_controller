@@ -71,6 +71,7 @@ void states::SingleSupport::handleExternalPlan()
 void states::SingleSupport::start()
 {
   auto & ctl = controller();
+  ctl.walkingState = WalkingState::SingleSupport;
   auto & supportContact = ctl.supportContact();
   auto & targetContact = ctl.targetContact();
 

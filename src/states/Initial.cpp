@@ -41,6 +41,7 @@ void states::Initial::configure(const mc_rtc::Configuration & config)
 void states::Initial::start()
 {
   auto & ctl = controller();
+  ctl.walkingState = WalkingState::Standby;
 
   postureTaskIsActive_ = true;
   postureTaskWasActive_ = true;

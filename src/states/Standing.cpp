@@ -50,6 +50,7 @@ void states::Standing::configure(const mc_rtc::Configuration & config)
 void states::Standing::start()
 {
   auto & ctl = controller();
+  ctl.walkingState = WalkingState::Standby;
   // Reset pendulum state starting from the current CoM state
   // This is done to ensure that there is no discontinuity when entering the
   // Standing state from any external state.

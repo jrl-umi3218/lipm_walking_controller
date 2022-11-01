@@ -54,6 +54,7 @@ void states::DoubleSupport::handleExternalPlan()
 void states::DoubleSupport::start()
 {
   auto & ctl = controller();
+  ctl.walkingState = WalkingState::DoubleSupport;
 
   double phaseDuration = ctl.doubleSupportDuration(); // careful! side effect here
 
