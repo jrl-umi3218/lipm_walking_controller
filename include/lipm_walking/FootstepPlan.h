@@ -422,6 +422,12 @@ struct FootstepPlan
     return torsoPitch_;
   }
 
+  /** Set the torso pitch */
+  void torsoPitch(double tp)
+  {
+    torsoPitch_ = tp;
+  }
+
   /** Rewind plan to the beginning.
    *
    */
