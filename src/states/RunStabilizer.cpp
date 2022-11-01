@@ -29,4 +29,4 @@ bool states::RunStabilizer::checkTransitions()
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("RunStabilizer", lipm_walking::states::RunStabilizer)
+EXPORT_SINGLE_STATE("LIPMWalking::RunStabilizer", lipm_walking::states::RunStabilizer)

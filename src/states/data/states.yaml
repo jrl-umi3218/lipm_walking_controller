@@ -1,0 +1,11 @@
+LIPMWalking::WalkInternal:
+  base: Meta
+  transitions:
+  - [LIPMWalking::Standing, DoubleSupport, LIPMWalking::DoubleSupport]
+  - [LIPMWalking::DoubleSupport, SingleSupport, LIPMWalking::SingleSupport]
+  - [LIPMWalking::DoubleSupport, Standing, LIPMWalking::Standing]
+  - [LIPMWalking::SingleSupport, DoubleSupport, LIPMWalking::DoubleSupport]
+
+LIPMWalking::WalkFSM:
+  base: Parallel
+  states: [LIPMWalking::RunStabilizer, LIPMWalking::WalkInternal]

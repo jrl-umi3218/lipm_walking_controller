@@ -32,3 +32,5 @@ add_fsm_state_simple(DoubleSupport)
 add_fsm_state_simple(SingleSupport)
 
 add_fsm_state_simple(RunStabilizer)
+
+add_fsm_data_directory(data)

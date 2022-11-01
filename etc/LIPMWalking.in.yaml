@@ -1308,26 +1308,15 @@ robots:
 #
 StatesFiles:
 - "@MC_STATES_DEFAULT_INSTALL_PREFIX@/data"
+- "@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states/data"
 StatesLibraries:
 - "@MC_STATES_DEFAULT_INSTALL_PREFIX@"
 - "@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states"
 Managed: false
 StepByStep: false
 init: LIPMWalking::Initial
-states:
-  WalkInternal:
-    base: Meta
-    transitions:
-    - [Standing, DoubleSupport, DoubleSupport]
-    - [DoubleSupport, SingleSupport, SingleSupport]
-    - [DoubleSupport, Standing, Standing]
-    - [SingleSupport, DoubleSupport, DoubleSupport]
-  WalkFSM:
-    base: Parallel
-    states: [RunStabilizer, WalkInternal]
-
 transitions:
-  - [LIPMWalking::Initial, Standing, WalkFSM]
+  - [LIPMWalking::Initial, Standing, LIPMWalking::WalkFSM]
 
 Plugins: [ExternalFootstepPlannerPlugin]
 

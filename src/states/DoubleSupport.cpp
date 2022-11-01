@@ -189,4 +189,4 @@ void states::DoubleSupport::updatePreview()
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("DoubleSupport", lipm_walking::states::DoubleSupport)
+EXPORT_SINGLE_STATE("LIPMWalking::DoubleSupport", lipm_walking::states::DoubleSupport)

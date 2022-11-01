@@ -299,4 +299,4 @@ void states::Standing::startWalking()
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("Standing", lipm_walking::states::Standing)
+EXPORT_SINGLE_STATE("LIPMWalking::Standing", lipm_walking::states::Standing)

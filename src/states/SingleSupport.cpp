@@ -235,4 +235,4 @@ void states::SingleSupport::updatePreview()
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("SingleSupport", lipm_walking::states::SingleSupport)
+EXPORT_SINGLE_STATE("LIPMWalking::SingleSupport", lipm_walking::states::SingleSupport)
