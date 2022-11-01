@@ -1,4 +1,5 @@
 option(ONLINE_FOOTSTEP_PLANNER "Build with support for OnlineFootstepPlanner (Humanoid Navigation)" OFF)
+option(HYBRID_PLANNER "Build with support for the Hybrid Planner (ISMPC)" ON)
 
 set(ExternalFootstepPlanner_data_SRC
   src/Plan.cpp
@@ -75,6 +76,17 @@ if(ONLINE_FOOTSTEP_PLANNER)
   target_compile_definitions(ExternalFootstepPlannerPlugin PRIVATE USE_ONLINE_FOOTSTEP_PLANNER)
 else()
   set(DEFAULT_EXTERNAL_PLANNER "DummyPlanner")
+endif()
+
+if(HYBRID_PLANNER)
+  add_library(HybridPlanner SHARED src/HybridPlanner.cpp include/ExternalFootstepPlanner/HybridPlanner.h)
+  target_link_libraries(HybridPlanner PUBLIC ExternalFootstepPlanner)
+  target_link_libraries(ExternalFootstepPlannerPlugin PUBLIC HybridPlanner)
+  target_compile_definitions(ExternalFootstepPlannerPlugin PRIVATE USE_HYBRID_PLANNER)
+  install(TARGETS HybridPlanner
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib)
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/etc/ExternalFootstepPlannerPlugin.in.yaml ${CMAKE_CURRENT_BINARY_DIR}/etc/ExternalFootstepPlannerPlugin.yaml)

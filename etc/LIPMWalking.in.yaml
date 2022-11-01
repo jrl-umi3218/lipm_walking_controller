@@ -1,4 +1,15 @@
 initial_plan: custom_forward
+# for the external planner HybridPlanner
+HybridPlanner:
+  Tp: 6
+  delta: 0.05
+  Ts_limit: [1,2]
+  kinematics_cstr: [0.35,0.08]
+  feet_distance: 0.17
+  offset_angle_deg: 2
+  mean_speed: 0.1
+  robot_height: 150
+  max_rotation: 0.17
 mpc:
   weights:
     jerk: 1.0
@@ -21,10 +32,10 @@ robot_models:
       dcm_tracking:
         gains:
           prop: 4
-          integral: 20
-          deriv: 0.5
+          integral: 0
+          deriv: 0
       admittance:
-        cop: [0.02, 0.01]
+        cop: [0.0, 0.0]
         # maxVel:
         #   angular: [1., 1., 1.]
         #   linear: [0.5, 0.5, 0.5]
@@ -1318,7 +1329,7 @@ init: LIPMWalking::Initial
 transitions:
   - [LIPMWalking::Initial, Standing, LIPMWalking::WalkFSM]
 
-Plugins: [ExternalFootstepPlannerPlugin]
+Plugins: [footsteps_planner_plugin, ExternalFootstepPlannerPlugin]
 
 # Set realRobot's joint configuration from encoder readings
 ObserverPipelines:

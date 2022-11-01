@@ -61,7 +61,7 @@ protected:
    *
    * @param plannerName Name of the desired planner. Must be one of supportPlanners_.
    */
-  void changePlanner(const std::string & plannerName);
+  void changePlanner(mc_control::MCGlobalController & gc, const std::string & plannerName);
 
   /**
    * @brief Change type of target used (world, local, velocity, etc)
@@ -134,7 +134,7 @@ protected:
   /**
    * @brief Activates the plugin (add it to the GUI) and the planner
    */
-  void activate();
+  void activate(mc_control::MCGlobalController & gc);
   /**
    * @brief Deactivate the plugin and the planner
    *
@@ -179,6 +179,8 @@ protected:
 
   /* Tsuru add */
   std::thread joystickSubscribeThread_;
+
+  bool request_hybrid_plan_ = false;
 
 protected:
   void joystickSubscribeThread();

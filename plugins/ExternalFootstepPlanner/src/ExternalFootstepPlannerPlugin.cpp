@@ -8,6 +8,9 @@
 #ifdef USE_ONLINE_FOOTSTEP_PLANNER
 #  include <ExternalFootstepPlanner/OnlineFootstepPlanner.h>
 #endif
+#ifdef USE_HYBRID_PLANNER
+#  include <ExternalFootstepPlanner/HybridPlanner.h>
+#endif
 
 namespace mc_plugin
 {
@@ -19,6 +22,9 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
 {
 #ifdef USE_ONLINE_FOOTSTEP_PLANNER
   supportedPlanners_.emplace_back("OnlineFootstepPlanner");
+#endif
+#ifdef USE_HYBRID_PLANNER
+  supportedPlanners_.emplace_back("HybridPlanner");
 #endif
 
   using namespace mc_rtc::gui;
@@ -36,7 +42,7 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
   }
 
   config("planner", plannerName_);
-  changePlanner(plannerName_);
+  changePlanner(gc, plannerName_);
 
   /* Tsuru add */
   if(config.has("default_target_type"))
@@ -46,11 +52,11 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
   }
 
   ctl.datastore().make_call("ExternalFootstepPlanner::Available", [this]() { return planner_->available(); });
-  ctl.datastore().make_call("ExternalFootstepPlanner::Activate", [this]() { activate(); });
+  ctl.datastore().make_call("ExternalFootstepPlanner::Activate", [this, &gc]() { activate(gc); });
   ctl.datastore().make_call("ExternalFootstepPlanner::Deactivate", [this]() { deactivate(); });
   // Do we need replanning?
   ctl.datastore().make_call("ExternalFootstepPlanner::PlanningRequested", [this]() {
-    return worldPositionTargetChanged_ || localPositionTargetChanged_;
+    return worldPositionTargetChanged_ || localPositionTargetChanged_ || request_hybrid_plan_;
   }); // joystick input uses "localPositionTargetChanged_"
   ctl.datastore().make_call("ExternalFootstepPlanner::WorldPositionTargetChanged",
                             [this]() { return worldPositionTargetChanged_; });
@@ -69,6 +75,7 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
                             [this](const SE2d & localTarget) { setLocalPositionTarget(localTarget); });
   ctl.datastore().make_call("ExternalFootstepPlanner::SetLocalVelocityTarget",
                             [this](const SE2d & localVelocity) { setLocalVelocityTarget(localVelocity); });
+  ctl.datastore().make_call("ExternalFootstepPlanner::RequestHybridPlan", [this]() { request_hybrid_plan_ = true; });
   /* Tsuru add */
   ctl.datastore().make_call(
       "ExternalFootstepPlanner::SetJoystickVelocityTarget",
@@ -78,6 +85,7 @@ void ExternalFootstepPlannerPlugin::init(mc_control::MCGlobalController & gc, co
   ctl.datastore().make_call("ExternalFootstepPlanner::RequestPlan", [this](const Request & request) {
     worldPositionTargetChanged_ = false;
     localPositionTargetChanged_ = false;
+    request_hybrid_plan_ = false;
     planner_->requestPlan(request);
   });
   ctl.datastore().make_call("ExternalFootstepPlanner::HasPlan", [this]() { return planner_->hasPlan(); });
@@ -120,7 +128,7 @@ bool ExternalFootstepPlannerPlugin::plannerSupported(const std::string & planner
   return std::find(supportedPlanners_.begin(), supportedPlanners_.end(), plannerName) != supportedPlanners_.end();
 }
 
-void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerName)
+void ExternalFootstepPlannerPlugin::changePlanner(mc_control::MCGlobalController & gc, const std::string & plannerName)
 {
   mc_rtc::log::info("[{}] Requested planner \"{}\"", name(), plannerName);
   // Do nothing if this planner is already being used
@@ -137,16 +145,23 @@ void ExternalFootstepPlannerPlugin::changePlanner(const std::string & plannerNam
 
   deactivate();
 
-#ifdef USE_ONLINE_FOOTSTEP_PLANNER
   if(plannerName == "OnlineFootstepPlanner")
   {
+#ifdef USE_ONLINE_FOOTSTEP_PLANNER
     planner_.reset(new OnlineFootstepPlanner{});
     if(config_.has("OnlineFootstepPlanner"))
     {
       planner_->configure(config_("OnlineFootstepPlanner"));
     }
-  }
 #endif
+  }
+  else if(plannerName == "HybridPlanner")
+  {
+    //#ifdef USE_HYBRID_PLANNER
+    planner_.reset(new HybridPlanner{gc.controller()});
+    planner_->configure(config_);
+    //#endif
+  }
 
   if(plannerName == "DummyPlanner")
   {
@@ -304,7 +319,7 @@ void ExternalFootstepPlannerPlugin::changeTargetType(const std::string & targetT
   targetType_ = targetType;
 }
 
-void ExternalFootstepPlannerPlugin::activate()
+void ExternalFootstepPlannerPlugin::activate(mc_control::MCGlobalController & gc)
 {
   if(activated_) return;
 
@@ -313,9 +328,9 @@ void ExternalFootstepPlannerPlugin::activate()
   gui.addElement(this, category_,
                  ComboInput(
                      "Planner", supportedPlanners_, [this]() { return plannerName_; },
-                     [this](const std::string & planner) {
-                       changePlanner(planner);
-                       activate();
+                     [this, &gc](const std::string & planner) {
+                       changePlanner(gc, planner);
+                       activate(gc);
                      }));
   gui.addElement(this, category_, Label("Available?", [this]() { return planner_->available(); }));
   planner_->activate();

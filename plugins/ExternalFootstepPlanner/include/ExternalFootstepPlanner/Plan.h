@@ -24,7 +24,7 @@ struct Contact
   SE2d pose;
 
 public:
-  Contact(Foot foot, SE2d && pose) : foot(foot), pose(std::move(pose)) {}
+  Contact(Foot foot, const SE2d & pose) : foot(foot), pose(pose) {}
 
   static std::string footName(Foot foot)
   {
