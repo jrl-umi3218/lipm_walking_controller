@@ -1313,7 +1313,7 @@ StatesLibraries:
 - "@MC_CONTROLLER_INSTALL_PREFIX@/lipm_walking_controller/states"
 Managed: false
 StepByStep: false
-init: Initial
+init: LIPMWalking::Initial
 states:
   WalkInternal:
     base: Meta
@@ -1327,7 +1327,7 @@ states:
     states: [RunStabilizer, WalkInternal]
 
 transitions:
-  - [Initial, Standing, WalkFSM]
+  - [LIPMWalking::Initial, Standing, WalkFSM]
 
 Plugins: [ExternalFootstepPlannerPlugin]
 

@@ -172,4 +172,4 @@ void states::Initial::internalReset()
 
 } // namespace lipm_walking
 
-EXPORT_SINGLE_STATE("Initial", lipm_walking::states::Initial)
+EXPORT_SINGLE_STATE("LIPMWalking::Initial", lipm_walking::states::Initial)
