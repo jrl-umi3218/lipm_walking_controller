@@ -169,15 +169,15 @@ Controller::Controller(std::shared_ptr<mc_rbdyn::RobotModule> robotModule,
 
 void Controller::addLogEntries(mc_rtc::Logger & logger)
 {
-  logger.addLogEntry("controlRobot_LeftFoot", [this]() { return controlRobot().surfacePose("LeftFoot"); });
-  logger.addLogEntry("controlRobot_LeftFootCenter", [this]() { return controlRobot().surfacePose("LeftFootCenter"); });
-  logger.addLogEntry("controlRobot_RightFoot", [this]() { return controlRobot().surfacePose("RightFoot"); });
-  logger.addLogEntry("controlRobot_RightFootCenter",
-                     [this]() { return controlRobot().surfacePose("RightFootCenter"); });
+  //logger.addLogEntry("controlRobot_LeftFoot", [this]() { return controlRobot().surfacePose("LeftFoot"); });
+  //logger.addLogEntry("controlRobot_LeftFootCenter", [this]() { return controlRobot().surfacePose("LeftFootCenter"); });
+  //logger.addLogEntry("controlRobot_RightFoot", [this]() { return controlRobot().surfacePose("RightFoot"); });
+  //logger.addLogEntry("controlRobot_RightFootCenter",
+  //                   [this]() { return controlRobot().surfacePose("RightFootCenter"); });
   logger.addLogEntry("mpc_failures", [this]() { return nbMPCFailures_; });
   logger.addLogEntry("left_foot_ratio", [this]() { return leftFootRatio_; });
   logger.addLogEntry("left_foot_ratio_measured", [this]() { return measuredLeftFootRatio(); });
-  logger.addLogEntry("plan_com_height", [this]() { return plan.comHeight(); });
+  //logger.addLogEntry("plan_com_height", [this]() { return plan.comHeight(); });
   logger.addLogEntry("plan_double_support_duration", [this]() { return plan.doubleSupportDuration(); });
   logger.addLogEntry("plan_final_dsp_duration", [this]() { return plan.finalDSPDuration(); });
   logger.addLogEntry("plan_init_dsp_duration", [this]() { return plan.initDSPDuration(); });
@@ -189,11 +189,11 @@ void Controller::addLogEntries(mc_rtc::Logger & logger)
   logger.addLogEntry("plan_takeoff_duration", [this]() { return plan.takeoffDuration(); });
   logger.addLogEntry("plan_takeoff_offset", [this]() { return plan.takeoffOffset(); });
   logger.addLogEntry("plan_takeoff_pitch", [this]() { return plan.takeoffPitch(); });
-  logger.addLogEntry("realRobot_LeftFoot", [this]() { return realRobot().surfacePose("LeftFoot"); });
-  logger.addLogEntry("realRobot_LeftFootCenter", [this]() { return realRobot().surfacePose("LeftFootCenter"); });
-  logger.addLogEntry("realRobot_RightFoot", [this]() { return realRobot().surfacePose("RightFoot"); });
-  logger.addLogEntry("realRobot_RightFootCenter", [this]() { return realRobot().surfacePose("RightFootCenter"); });
-  logger.addLogEntry("realRobot_posW", [this]() { return realRobot().posW(); });
+  // logger.addLogEntry("realRobot_LeftFoot", [this]() { return realRobot().surfacePose("LeftFoot"); });
+  // logger.addLogEntry("realRobot_LeftFootCenter", [this]() { return realRobot().surfacePose("LeftFootCenter"); });
+  // logger.addLogEntry("realRobot_RightFoot", [this]() { return realRobot().surfacePose("RightFoot"); });
+  // logger.addLogEntry("realRobot_RightFootCenter", [this]() { return realRobot().surfacePose("RightFootCenter"); });
+  // logger.addLogEntry("realRobot_posW", [this]() { return realRobot().posW(); });
 }
 
 void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
@@ -205,19 +205,19 @@ void Controller::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
       mc_rtc::gui::Point3D("Target Ankle Pos", [this]() { return this->targetContact().anklePos(sole_); }),
       mc_rtc::gui::Point3D("Support Ankle Pos", [this]() { return this->supportContact().anklePos(sole_); }));
 
-  gui->addElement({"Walking", "Main"},
-                  Button("# EMERGENCY STOP",
-                         [this]() {
-                           mc_rtc::log::error("EMERGENCY STOP!");
-                           emergencyStop = true;
-                           this->interrupt();
-                         }),
-                  Button("Reset", [this]() {
-                    mc_rtc::log::warning("Reset to Initial state");
-                    this->resume("Initial");
-                  }));
+  // gui->addElement({"Walking", "Main"},
+  //                 Button("# EMERGENCY STOP",
+  //                        [this]() {
+  //                          mc_rtc::log::error("EMERGENCY STOP!");
+  //                          emergencyStop = true;
+  //                          this->interrupt();
+  //                        }),
+  //                 Button("Reset", [this]() {
+  //                   mc_rtc::log::warning("Reset to Initial state");
+  //                   this->resume("Initial");
+  //                 }));
 
-  gui->addElement({"Walking", "CoM"}, Label("Plan name", [this]() { return plan.name; }));
+  // gui->addElement({"Walking", "CoM"}, Label("Plan name", [this]() { return plan.name; }));
 
   gui->addElement({"Walking", "Swing"}, Label("Plan name", [this]() { return plan.name; }),
                   NumberInput(
