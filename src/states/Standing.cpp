@@ -213,8 +213,42 @@ void states::Standing::handleExternalPlan()
     // XXX always starts with Left support foot
     // Should probably record the last used support foot when entering standing state and start from the other foot
     // instead to resume walk more naturally
+    auto defaultFoot = Foot::Right;
+    if(supportContact_.surfaceName == "RightFootCenter")
+    {
+      defaultFoot = Foot::Left;
+    }
+    auto lf = controller().robot().surfacePose("LeftFootCenter") * controller().robot().posW().inv();
+    auto rf = controller().robot().surfacePose("RightFootCenter") * controller().robot().posW().inv();
+    Eigen::Vector3d ref = ctl.datastore().call<Eigen::Vector3d>("HybridPlanner::GetVelocity");
+    if(ref.x() > 0.02)
+    {
+      bool rf_front_lf = rf.translation().x() > lf.translation().x() + 0.02;
+      bool lf_front_rf = lf.translation().x() > rf.translation().x() + 0.02;
+      if(rf_front_lf)
+      {
+        defaultFoot = Foot::Right;
+      }
+      if(lf_front_rf)
+      {
+        defaultFoot = Foot::Left;
+      }
+    }
+    else if(ref.x() < -0.02)
+    {
+      bool rf_front_lf = rf.translation().x() > lf.translation().x() + 0.02;
+      bool lf_front_rf = lf.translation().x() > rf.translation().x() + 0.02;
+      if(rf_front_lf)
+      {
+        defaultFoot = Foot::Left;
+      }
+      if(lf_front_rf)
+      {
+        defaultFoot = Foot::Right;
+      }
+    }
     ctl.externalFootstepPlanner.requestPlan(
-        ExternalPlanner::Standing, Foot::Left, lf_start, rf_start,
+        ExternalPlanner::Standing, defaultFoot, lf_start, rf_start,
         ctl.externalFootstepPlanner.allowedTimeStanding()); // XXX hardcoded allowed time
   }
 
