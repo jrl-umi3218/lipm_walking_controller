@@ -88,55 +88,55 @@ void ModelPredictiveControl::configure(const mc_rtc::Configuration & config)
 
 void ModelPredictiveControl::addGUIElements(std::shared_ptr<mc_rtc::gui::StateBuilder> gui)
 {
-  // using namespace mc_rtc::gui;
-  // gui->addElement({"Walking", "CoM"},
-  //                 ComboInput(
-  //                     "MPC QP solver", {"QuadProgDense", "QLD"},
-  //                     [this]() -> std::string {
-  //                       switch(solver_)
-  //                       {
-  //                         case copra::SolverFlag::QLD:
-  //                           return "QLD";
-  //                         case copra::SolverFlag::QuadProgDense:
-  //                         default:
-  //                           return "QuadProgDense";
-  //                       }
-  //                     },
-  //                     [this](const std::string & solver) {
-  //                       if(solver == "QLD")
-  //                       {
-  //                         solver_ = copra::SolverFlag::QLD;
-  //                       }
-  //                       else // (solver == "QuadProgDense")
-  //                       {
-  //                         solver_ = copra::SolverFlag::QuadProgDense;
-  //                       }
-  //                     }),
-  //                 ArrayInput(
-  //                     "MPC QP cost weights", {"jerk", "vel_x", "vel_y", "zmp"},
-  //                     [this]() {
-  //                       Eigen::VectorXd weights(4);
-  //                       weights[0] = jerkWeight;
-  //                       weights[1] = velWeights.x();
-  //                       weights[2] = velWeights.y();
-  //                       weights[3] = zmpWeight;
-  //                       return weights;
-  //                     },
-  //                     [this](const Eigen::VectorXd & weights) {
-  //                       jerkWeight = weights[0];
-  //                       velWeights.x() = weights[1];
-  //                       velWeights.y() = weights[2];
-  //                       zmpWeight = weights[3];
-  //                     }));
+  using namespace mc_rtc::gui;
+  gui->addElement({"Walking", "CoM"},
+                  ComboInput(
+                      "MPC QP solver", {"QuadProgDense", "QLD"},
+                      [this]() -> std::string {
+                        switch(solver_)
+                        {
+                          case copra::SolverFlag::QLD:
+                            return "QLD";
+                          case copra::SolverFlag::QuadProgDense:
+                          default:
+                            return "QuadProgDense";
+                        }
+                      },
+                      [this](const std::string & solver) {
+                        if(solver == "QLD")
+                        {
+                          solver_ = copra::SolverFlag::QLD;
+                        }
+                        else // (solver == "QuadProgDense")
+                        {
+                          solver_ = copra::SolverFlag::QuadProgDense;
+                        }
+                      }),
+                  ArrayInput(
+                      "MPC QP cost weights", {"jerk", "vel_x", "vel_y", "zmp"},
+                      [this]() {
+                        Eigen::VectorXd weights(4);
+                        weights[0] = jerkWeight;
+                        weights[1] = velWeights.x();
+                        weights[2] = velWeights.y();
+                        weights[3] = zmpWeight;
+                        return weights;
+                      },
+                      [this](const Eigen::VectorXd & weights) {
+                        jerkWeight = weights[0];
+                        velWeights.x() = weights[1];
+                        velWeights.y() = weights[2];
+                        zmpWeight = weights[3];
+                      }));
 }
 
 void ModelPredictiveControl::addLogEntries(mc_rtc::Logger & logger)
 {
-  // logger.addLogEntry("mpc_velRef", [this]() -> Eigen::Vector2d { return velRef_.head<2>(); });
-  // logger.addLogEntry("mpc_weights_jerk", [this]() { return jerkWeight; });
-  // logger.addLogEntry("mpc_weights_vel", [this]() { return velWeights; });
-  // logger.addLogEntry("mpc_weights_zmp", [this]() { return zmpWeight; });
-  // logger.addLogEntry("mpc_zmpRef", [this]() -> Eigen::Vector2d { return zmpRef_.head<2>(); });
+  logger.addLogEntry("mpc_velRef", [this]() -> Eigen::Vector2d { return velRef_.head<2>(); });
+  logger.addLogEntry("mpc_weights_jerk", [this]() { return jerkWeight; });
+  logger.addLogEntry("mpc_weights_vel", [this]() { return velWeights; });
+  logger.addLogEntry("mpc_weights_zmp", [this]() { return zmpWeight; });
+  logger.addLogEntry("mpc_zmpRef", [this]() -> Eigen::Vector2d { return zmpRef_.head<2>(); });
   logger.addLogEntry("perf_MPCBuildAndSolve", [this]() { return buildAndSolveTime_; });
   logger.addLogEntry("perf_MPCSolve", [this]() { return solveTime_; });
 }
