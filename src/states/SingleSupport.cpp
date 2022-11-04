@@ -75,6 +75,11 @@ void states::SingleSupport::start()
   auto & supportContact = ctl.supportContact();
   auto & targetContact = ctl.targetContact();
 
+  for(auto & f : forceBuffer)
+  {
+    f = 0;
+  }
+
   duration_ = ctl.singleSupportDuration();
   hasUpdatedMPCOnce_ = false;
   remTime_ = ctl.singleSupportDuration();
@@ -209,8 +214,16 @@ bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::Surf
   double xDist = std::abs(X_c_s.translation().x());
   double yDist = std::abs(X_c_s.translation().y());
   double zDist = std::abs(X_c_s.translation().z());
-  double Fz = controller().robot().surfaceWrench(footTask->surface()).force().z();
-  return (xDist < 0.01 && yDist < 0.01 && zDist < 0.01 && Fz > 50.);
+  double nFz = controller().robot().surfaceWrench(footTask->surface()).force().z();
+  forceBuffer[forceBufferIdx] = nFz;
+  forceBufferIdx++;
+  double Fz = 0.0;
+  for(const auto & f : forceBuffer)
+  {
+    Fz += f;
+  }
+  double FzLimit = static_cast<double>(forceBuffer.size()) * 50.;
+  return (xDist < 0.01 && yDist < 0.01 && zDist < 0.01 && Fz > FzLimit);
 }
 
 void states::SingleSupport::updatePreview()
