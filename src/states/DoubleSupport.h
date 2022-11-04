@@ -59,6 +59,15 @@ struct DoubleSupport : State
    */
   bool checkTransitions() override;
 
+  /**
+   * Check whether the support estiblishement was good (force above threshold
+   * for N iterations)
+   * If not, stop during this DSP
+   *
+   * @return False as soon as the contact is considered invalid
+   */
+  bool checkInitialSupport();
+
   /** Main state function, called if no transition at this cycle.
    *
    */
@@ -80,6 +89,11 @@ private:
   double stateTime_; /**< Time since the beginning of the DSP */
   double targetLeftFootRatio_; /**< Left foot ratio at the end of DSP */
   double timeSinceLastPreviewUpdate_; /**< Time count used to schedule MPC updates, in [s] */
+
+  double minSupportForce_ = 50;
+  bool goodInitialSupport_ = true;
+  double maxAbortPercent_ = 0.1; // Percentage util which we still allow to stop
+
 };
 
 } // namespace states

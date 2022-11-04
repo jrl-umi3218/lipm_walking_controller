@@ -32,6 +32,14 @@ namespace lipm_walking
 
 using ContactState = mc_tasks::lipm_stabilizer::ContactState;
 
+bool states::DoubleSupport::checkInitialSupport()
+{
+  const auto & ctl = controller();
+  auto Fzs = ctl.robot().frame(ctl.prevContact().surfaceName).wrench().force().z();
+  auto Fzt = ctl.robot().frame(ctl.nextContact().surfaceName).wrench().force().z();
+  return Fzs >= minSupportForce_ && Fzt >= minSupportForce_ && goodInitialSupport_;
+}
+
 void states::DoubleSupport::handleExternalPlan()
 {
   auto & ctl = controller();
@@ -102,6 +110,14 @@ void states::DoubleSupport::start()
     ctl.setContacts({{ContactState::Left, ctl.supportContact().pose}, {ContactState::Right, ctl.prevContact().pose}});
     targetLeftFootRatio_ = 1.;
   }
+
+  if(stateTime_ <= maxAbortPercent_ * duration_ && !checkInitialSupport())
+  {
+    mc_rtc::log::warning("[DoubleSupport] Stepping aborted at t = {}, poor contact detected!", stateTime_);
+    mc_rtc::log::info("[DoubleSupport] Stopping during this DSP, remaining time: {}", remTime_);
+    stopDuringThisDSP_ = true;
+  }
+
   if(stopDuringThisDSP_)
   {
     targetLeftFootRatio_ = 0.5;
