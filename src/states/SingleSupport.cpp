@@ -79,6 +79,8 @@ void states::SingleSupport::start()
   {
     f = 0;
   }
+  normalForceAppexSet = false;
+  normalForceAppex = 50.0;
 
   duration_ = ctl.singleSupportDuration();
   hasUpdatedMPCOnce_ = false;
@@ -176,6 +178,13 @@ void states::SingleSupport::updateSwingFoot()
   auto & supportContact = ctl.supportContact();
   double dt = ctl.timeStep;
 
+  if(remTime_ < duration_/2 && !normalForceAppexSet)
+  {
+    normalForceAppexSet = true;
+    normalForceAppex = controller().robot().surfaceWrench(swingFootTask->surface()).force().z();
+    mc_rtc::log::critical("NormalForceAppex: {}", normalForceAppex);
+  }
+
   if(!stabilizer()->inDoubleSupport())
   {
     bool liftPhase = (remTime_ > duration_ / 3.);
@@ -217,12 +226,14 @@ bool states::SingleSupport::detectTouchdown(const std::shared_ptr<mc_tasks::Surf
   double nFz = controller().robot().surfaceWrench(footTask->surface()).force().z();
   forceBuffer[forceBufferIdx] = nFz;
   forceBufferIdx++;
+  forceBufferIdx = forceBufferIdx % 5;
   double Fz = 0.0;
   for(const auto & f : forceBuffer)
   {
     Fz += f;
   }
-  double FzLimit = static_cast<double>(forceBuffer.size()) * 50.;
+  double FzLimitOffset = normalForceAppexSet ? normalForceAppex : 0.0;
+  double FzLimit = static_cast<double>(forceBuffer.size()) * (50.0 + FzLimitOffset);
   return (xDist < 0.01 && yDist < 0.01 && zDist < 0.01 && Fz > FzLimit);
 }
 

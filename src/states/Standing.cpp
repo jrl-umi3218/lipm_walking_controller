@@ -247,6 +247,26 @@ void states::Standing::handleExternalPlan()
         defaultFoot = Foot::Right;
       }
     }
+    else if(ref.z() > 0.02)
+    {
+      defaultFoot = Foot::Right;
+    }
+    else if(ref.z() < -0.02)
+    {
+      defaultFoot = Foot::Left;
+    }
+    //if(ref.y() > 0.02 || ref.y() < -0.02)
+    //{
+    //  Sole sole = (ctl.sole());
+    //  sole.leftAnkleOffset = Eigen::Vector2d(-0.03, -0.02);
+    //  ctl.mpc().sole(sole);
+    //}
+    //else
+    //{
+    //  Sole sole = (ctl.sole());
+    //  sole.leftAnkleOffset = Eigen::Vector2d(0.0, -0.02);
+    //  ctl.mpc().sole(sole);
+    //}
     ctl.externalFootstepPlanner.requestPlan(
         ExternalPlanner::Standing, defaultFoot, lf_start, rf_start,
         ctl.externalFootstepPlanner.allowedTimeStanding()); // XXX hardcoded allowed time

@@ -92,6 +92,8 @@ private:
   std::shared_ptr<mc_tasks::SurfaceTransformTask> swingFootTask; /**< Current swing foot task from the stabilizer */
   size_t forceBufferIdx = 0;
   std::array<double, 5> forceBuffer;
+  bool normalForceAppexSet = false;
+  double normalForceAppex = 0.0;
 };
 
 } // namespace states
