@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jerkweight',['jerkWeight',['../structlipm__walking_1_1_model_predictive_control.html#ae6d85bfe30443c198b9341f54b3b3e54',1,'lipm_walking::ModelPredictiveControl']]]
+  ['leftankleoffset_620',['leftAnkleOffset',['../structlipm__walking_1_1_sole.html#a1c9745ce59224543c194f388ac10901b',1,'lipm_walking::Sole']]],
+  ['leftfootlandingoffset_5f_621',['leftFootLandingOffset_',['../structlipm__walking_1_1_external_planner.html#af4efa1c85938462f0847cd92c7f6e516',1,'lipm_walking::ExternalPlanner']]]
 ];

@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['pendulum',['Pendulum',['../structlipm__walking_1_1_pendulum.html',1,'lipm_walking']]],
-  ['planinterpolator',['PlanInterpolator',['../structlipm__walking_1_1_plan_interpolator.html',1,'lipm_walking']]],
-  ['polynomialbase',['PolynomialBase',['../structutils_1_1_polynomial_base.html',1,'utils']]],
-  ['polynomialbase_3c_20double_20_3e',['PolynomialBase&lt; double &gt;',['../structutils_1_1_polynomial_base.html',1,'utils']]],
-  ['polynomialbase_3c_20eigen_3a_3avector2d_20_3e',['PolynomialBase&lt; Eigen::Vector2d &gt;',['../structutils_1_1_polynomial_base.html',1,'utils']]],
-  ['preview',['Preview',['../structlipm__walking_1_1_preview.html',1,'lipm_walking']]]
+  ['retimedpolynomial_359',['RetimedPolynomial',['../structutils_1_1_retimed_polynomial.html',1,'utils']]],
+  ['retimedpolynomial_3c_20quintichermitepolynomial_2c_20double_20_3e_360',['RetimedPolynomial&lt; QuinticHermitePolynomial, double &gt;',['../structutils_1_1_retimed_polynomial.html',1,'utils']]],
+  ['retimedpolynomial_3c_20quintichermitepolynomial_2c_20eigen_3a_3avector2d_20_3e_361',['RetimedPolynomial&lt; QuinticHermitePolynomial, Eigen::Vector2d &gt;',['../structutils_1_1_retimed_polynomial.html',1,'utils']]],
+  ['runstabilizer_362',['RunStabilizer',['../structlipm__walking_1_1states_1_1_run_stabilizer.html',1,'lipm_walking::states']]]
 ];

@@ -1,5 +1,6 @@
 var structlipm__walking_1_1_plan_interpolator =
 [
+    [ "SE2d", "structlipm__walking_1_1_plan_interpolator.html#afada8be0d9552b173e40a995c781c0b9", null ],
     [ "Gait", "structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6", [
       [ "Walk", "structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6a7a16a854f32231a8df9326136b09ee62", null ],
       [ "Shuffle", "structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6ae8b4b40ec3622e371789b790caabc083", null ],
@@ -8,9 +9,10 @@ var structlipm__walking_1_1_plan_interpolator =
     [ "PlanInterpolator", "structlipm__walking_1_1_plan_interpolator.html#aae8ae89ab43ded8201a5ba9eabf2ff4d", null ],
     [ "addGUIElements", "structlipm__walking_1_1_plan_interpolator.html#a354d948eabae2b14d69f2933680a0797", null ],
     [ "availablePlans", "structlipm__walking_1_1_plan_interpolator.html#a879170afceb2f1309177a7d1fe919035", null ],
+    [ "checkPlanUpdated", "structlipm__walking_1_1_plan_interpolator.html#a00369e184aea8eb2a5fbbf97d330db62", null ],
     [ "configure", "structlipm__walking_1_1_plan_interpolator.html#a0110acbecf02d043fb032a6bc491afd0", null ],
     [ "customPlanName", "structlipm__walking_1_1_plan_interpolator.html#ad8eac0b585b3381382ddc608874100f7", null ],
-    [ "gait", "structlipm__walking_1_1_plan_interpolator.html#a21af795706e5c0c7dda9571a2180236b", null ],
+    [ "gait", "structlipm__walking_1_1_plan_interpolator.html#a4447734a2383b91f92fab7f07b305b88", null ],
     [ "gait", "structlipm__walking_1_1_plan_interpolator.html#a353313ec09fc781052c2e5c1243c7132", null ],
     [ "getPlan", "structlipm__walking_1_1_plan_interpolator.html#a85ea294621b5709cc49866143786f349", null ],
     [ "removeGUIElements", "structlipm__walking_1_1_plan_interpolator.html#af882ea0d7d96ec479bb0f0a2896ec341", null ],
@@ -24,13 +26,11 @@ var structlipm__walking_1_1_plan_interpolator =
     [ "updateSupportPath", "structlipm__walking_1_1_plan_interpolator.html#ac3dc8a9db47a52abe8627b5279d64c5a", null ],
     [ "worldReference", "structlipm__walking_1_1_plan_interpolator.html#a4b6447248302a1f483d0f4986fd7a2b6", null ],
     [ "worldReference", "structlipm__walking_1_1_plan_interpolator.html#ad91bd2fb6d00433b47980856a0fd23b2", null ],
-    [ "DEFAULT_EXTRA_STEP_WIDTH", "structlipm__walking_1_1_plan_interpolator.html#ae8824588557dc84ece1a294d34534029", null ],
+    [ "DEFAULT_EXTRA_STEP_WIDTH", "structlipm__walking_1_1_plan_interpolator.html#a1f4dba2343d84ef028baccb2bf4fef17", null ],
     [ "IN_PLACE_EXTRA_STEP_WIDTH", "structlipm__walking_1_1_plan_interpolator.html#ab54fdc304483ac20c376c1397b351742", null ],
     [ "IN_PLACE_MAX_STEP_ANGLE", "structlipm__walking_1_1_plan_interpolator.html#a2a13e2ab266ea9d34ca1bed7e96138d0", null ],
-    [ "isShown", "structlipm__walking_1_1_plan_interpolator.html#aff9ff395cc02f53736dfdfe883061ba1", null ],
     [ "MAX_EXTRA_STEP_WIDTH", "structlipm__walking_1_1_plan_interpolator.html#ab2aeccc7c7ce059b91b248151678ed0c", null ],
     [ "MAX_LATERAL_STEP_LENGTH", "structlipm__walking_1_1_plan_interpolator.html#aab050a04526382909b68787a46aada39", null ],
     [ "MAX_SAGITTAL_STEP_LENGTH", "structlipm__walking_1_1_plan_interpolator.html#a65ad046d6c21bcc29dac936590ce5996", null ],
-    [ "MIN_STEP_LENGTH", "structlipm__walking_1_1_plan_interpolator.html#a3fa09dcdd8e0493c14305d9fba6d044f", null ],
-    [ "nbIter", "structlipm__walking_1_1_plan_interpolator.html#a1bac8ade88af640acc98967f2fc5ab8a", null ]
+    [ "MIN_STEP_LENGTH", "structlipm__walking_1_1_plan_interpolator.html#a3fa09dcdd8e0493c14305d9fba6d044f", null ]
 ];

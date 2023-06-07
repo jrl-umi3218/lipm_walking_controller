@@ -7,15 +7,9 @@ var hierarchy =
     [ "Controller", null, [
       [ "lipm_walking::Controller", "structlipm__walking_1_1_controller.html", null ]
     ] ],
-    [ "utils::ExponentialMovingAverage", "structutils_1_1_exponential_moving_average.html", null ],
-    [ "lipm_walking::FloatingBaseObserver", "structlipm__walking_1_1_floating_base_observer.html", null ],
+    [ "lipm_walking::ExternalPlanner", "structlipm__walking_1_1_external_planner.html", null ],
     [ "lipm_walking::FootstepPlan", "structlipm__walking_1_1_footstep_plan.html", null ],
-    [ "utils::LeakyIntegrator", "structutils_1_1_leaky_integrator.html", null ],
-    [ "utils::LowPassVelocityFilter< T >", "structutils_1_1_low_pass_velocity_filter.html", null ],
-    [ "utils::LowPassVelocityFilter< Eigen::Vector3d >", "structutils_1_1_low_pass_velocity_filter.html", null ],
     [ "lipm_walking::ModelPredictiveControl", "structlipm__walking_1_1_model_predictive_control.html", null ],
-    [ "lipm_walking::NetWrenchObserver", "structlipm__walking_1_1_net_wrench_observer.html", null ],
-    [ "lipm_walking::Pendulum", "structlipm__walking_1_1_pendulum.html", null ],
     [ "lipm_walking::PlanInterpolator", "structlipm__walking_1_1_plan_interpolator.html", null ],
     [ "utils::PolynomialBase< T >", "structutils_1_1_polynomial_base.html", [
       [ "utils::CubicPolynomialBase< T >", "structutils_1_1_cubic_polynomial_base.html", [
@@ -59,17 +53,16 @@ var hierarchy =
     [ "utils::RetimedPolynomial< Polynomial, T >", "structutils_1_1_retimed_polynomial.html", null ],
     [ "utils::RetimedPolynomial< QuinticHermitePolynomial, double >", "structutils_1_1_retimed_polynomial.html", null ],
     [ "utils::RetimedPolynomial< QuinticHermitePolynomial, Eigen::Vector2d >", "structutils_1_1_retimed_polynomial.html", null ],
-    [ "utils::SE2d", "structutils_1_1_s_e2d.html", null ],
+    [ "lipm_walking::utils::SE2d", "structlipm__walking_1_1utils_1_1_s_e2d.html", null ],
     [ "lipm_walking::Sole", "structlipm__walking_1_1_sole.html", null ],
-    [ "lipm_walking::Stabilizer", "structlipm__walking_1_1_stabilizer.html", null ],
     [ "State", null, [
       [ "lipm_walking::State", "structlipm__walking_1_1_state.html", [
         [ "lipm_walking::states::DoubleSupport", "structlipm__walking_1_1states_1_1_double_support.html", null ],
         [ "lipm_walking::states::Initial", "structlipm__walking_1_1states_1_1_initial.html", null ],
+        [ "lipm_walking::states::RunStabilizer", "structlipm__walking_1_1states_1_1_run_stabilizer.html", null ],
         [ "lipm_walking::states::SingleSupport", "structlipm__walking_1_1states_1_1_single_support.html", null ],
         [ "lipm_walking::states::Standing", "structlipm__walking_1_1states_1_1_standing.html", null ]
       ] ]
     ] ],
-    [ "utils::StationaryOffsetFilter", "structutils_1_1_stationary_offset_filter.html", null ],
     [ "lipm_walking::SwingFoot", "structlipm__walking_1_1_swing_foot.html", null ]
 ];

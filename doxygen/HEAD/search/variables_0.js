@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['alpha_5f',['alpha_',['../structutils_1_1_exponential_moving_average.html#af57aeae1d8cd2a5b15d9b73c13aae88e',1,'utils::ExponentialMovingAverage']]],
-  ['average_5f',['average_',['../structutils_1_1_exponential_moving_average.html#ab8aff78a08a4ba90b37f56919f60d76a',1,'utils::ExponentialMovingAverage']]]
+  ['allowedtimesinglesupport_5f_591',['allowedTimeSingleSupport_',['../structlipm__walking_1_1_external_planner.html#aaf39efaff5a7352c82e2bf71bd4dd387',1,'lipm_walking::ExternalPlanner']]],
+  ['allowedtimestanding_5f_592',['allowedTimeStanding_',['../structlipm__walking_1_1_external_planner.html#a7b16cb0c0cc91463c1202afcf117e719',1,'lipm_walking::ExternalPlanner']]]
 ];

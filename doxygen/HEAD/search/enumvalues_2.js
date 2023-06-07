@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rightfoot',['RightFoot',['../namespacelipm__walking.html#a98fde2dc4bc83c604f3be886e34aeefaac901c64cc70540fbd6d7f6c71b047a6a',1,'lipm_walking']]]
+  ['turn_673',['Turn',['../structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6a6b12be2513bab07567150f54467bc568',1,'lipm_walking::PlanInterpolator']]]
 ];

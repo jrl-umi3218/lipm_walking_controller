@@ -9,7 +9,7 @@ var structlipm__walking_1_1_model_predictive_control =
     [ "contacts", "structlipm__walking_1_1_model_predictive_control.html#a1678756faacf703eac6f77bc9eb193cd", null ],
     [ "indexToHrep", "structlipm__walking_1_1_model_predictive_control.html#a335aa31928f3c8927fa98935b9ebf8e9", null ],
     [ "initContact", "structlipm__walking_1_1_model_predictive_control.html#acd98211b625ba113059d269b9eb60056", null ],
-    [ "initState", "structlipm__walking_1_1_model_predictive_control.html#adc7ff4a85e3f311114a3c809c1514ce0", null ],
+    [ "initState", "structlipm__walking_1_1_model_predictive_control.html#a8279ce11d81a4e5a11dc9de7e8eead50", null ],
     [ "nbDoubleSupportSteps", "structlipm__walking_1_1_model_predictive_control.html#a0fc8844a1c590df27fa04b81c4affa2d", null ],
     [ "nbInitSupportSteps", "structlipm__walking_1_1_model_predictive_control.html#ab1d89b470d3d9510352bc2e85c964ff3", null ],
     [ "nextContact", "structlipm__walking_1_1_model_predictive_control.html#a365a48fa1a4de3482cbaeeae4f5f6859", null ],

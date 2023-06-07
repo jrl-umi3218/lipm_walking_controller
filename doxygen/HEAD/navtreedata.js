@@ -1,3 +1,25 @@
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this file.
+
+Copyright (C) 1997-2019 by Dimitri van Heesch
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of version 2 of the GNU General Public License as published by
+the Free Software Foundation
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+@licend  The above is the entire license notice
+for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "lipm_walking_controller", "index.html", [
@@ -26,8 +48,13 @@ var NAVTREE =
       ] ],
       [ "Standard tests", "stabilizer.html#tests", [
         [ "Standing", "stabilizer.html#standing", null ],
-        [ "Walking in place", "stabilizer.html#ashibumi", null ],
-        [ "Walking forward", "stabilizer.html#forward", null ]
+        [ "Walking in place", "stabilizer.html#ashibumi", [
+          [ "Increasing foot CoP admittances", "stabilizer.html#autotoc_md0", null ],
+          [ "Increasing the DCM proportional gain", "stabilizer.html#autotoc_md1", null ]
+        ] ],
+        [ "Walking forward", "stabilizer.html#forward", [
+          [ "Increasing the DCM integral gain", "stabilizer.html#autotoc_md2", null ]
+        ] ]
       ] ],
       [ "Optional tunings", "stabilizer.html#optional", [
         [ "DCM integrator", "stabilizer.html#integrator", null ],
@@ -38,8 +65,8 @@ var NAVTREE =
       [ "Choreonoid questions", "troubleshooting.html#choreonoid_questions", null ],
       [ "Docker questions", "troubleshooting.html#docker_questions", null ]
     ] ],
-    [ "Namespaces", null, [
-      [ "Namespace List", "namespaces.html", "namespaces" ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
         [ "Functions", "namespacemembers_func.html", null ],
@@ -56,11 +83,18 @@ var NAVTREE =
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", null ],
-        [ "Enumerations", "functions_enum.html", null ]
+        [ "Typedefs", "functions_type.html", null ],
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
-    [ "Files", null, [
-      [ "File List", "files.html", "files" ]
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
@@ -68,8 +102,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_contact_8h.html",
-"structlipm__walking_1_1_controller.html#a8079dc069109e7f7d8c8f2b598a2eadc",
-"structlipm__walking_1_1states_1_1_initial.html#a77e281905d8f54ed7922c8fd9d08dd79"
+"structlipm__walking_1_1_controller.html#a635b90d399d08c202efd9e160a2a1650",
+"structlipm__walking_1_1states_1_1_standing.html#af5ef2a95be3e4c2fa9b64d54ee922ea0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['hrepxd',['HrepXd',['../namespacelipm__walking.html#a17f9a5cb143064d2e429315aade89f21',1,'lipm_walking']]]
+  ['color_658',['Color',['../_controller_8cpp.html#a96ad202dadb448ef7fffe94f97475afb',1,'Controller.cpp']]],
+  ['contactstate_659',['ContactState',['../namespacelipm__walking.html#a7859e516b157e02a22d48d48c7bff149',1,'lipm_walking']]]
 ];
