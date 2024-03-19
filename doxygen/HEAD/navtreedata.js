@@ -102,8 +102,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_contact_8h.html",
-"structlipm__walking_1_1_controller.html#a635b90d399d08c202efd9e160a2a1650",
-"structlipm__walking_1_1states_1_1_standing.html#af5ef2a95be3e4c2fa9b64d54ee922ea0"
+"structlipm__walking_1_1_controller.html#a48a45f2c05d1fd779f98099c0b53a33b",
+"structlipm__walking_1_1states_1_1_standing.html#a87b291079555c9344a341d959429a5be"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

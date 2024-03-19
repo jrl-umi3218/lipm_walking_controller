@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['y_584',['y',['../structlipm__walking_1_1_contact.html#a229725e5283cd0e47b127223c24adbbd',1,'lipm_walking::Contact']]],
-  ['ymax_585',['ymax',['../structlipm__walking_1_1_contact.html#ac389761bb44ea8299f9f24b010dfd082',1,'lipm_walking::Contact']]],
-  ['ymin_586',['ymin',['../structlipm__walking_1_1_contact.html#a1d2395635636fb04e46b513fee5dc0d5',1,'lipm_walking::Contact']]]
+  ['y_592',['y',['../structlipm__walking_1_1_contact.html#a229725e5283cd0e47b127223c24adbbd',1,'lipm_walking::Contact']]],
+  ['ymax_593',['ymax',['../structlipm__walking_1_1_contact.html#ac389761bb44ea8299f9f24b010dfd082',1,'lipm_walking::Contact']]],
+  ['ymin_594',['ymin',['../structlipm__walking_1_1_contact.html#a1d2395635636fb04e46b513fee5dc0d5',1,'lipm_walking::Contact']]]
 ];

@@ -363,22 +363,32 @@ $(document).ready(function(){initNavTree('_footstep_plan_8cpp_source.html',''); 
 <div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;  targetContactPolygonConf.width = 0.01;</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  targetContactPolygonConf.style = LineStyle::Solid;</div>
 <div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  gui.addElement({<span class="stringliteral">&quot;Markers&quot;</span>, <span class="stringliteral">&quot;Footsteps&quot;</span>, <span class="stringliteral">&quot;Plan&quot;</span>},</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                 Polygon(<span class="stringliteral">&quot;TargetContact&quot;</span>, targetContactPolygonConf,</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                         [<span class="keyword">this</span>, footStepPolygon]() { <span class="keywordflow">return</span> footStepPolygon(<a class="code" href="structlipm__walking_1_1_footstep_plan.html#a67cd98bb16100be3c7ed8b60886b4ee2">targetContact</a>()); }),</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                 Polygon(<span class="stringliteral">&quot;FootstepPlan Left&quot;</span>, leftPolygonConf,</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                         [contactsPolygons]() { <span class="keywordflow">return</span> contactsPolygons(<span class="stringliteral">&quot;LeftFootCenter&quot;</span>); }),</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                 Polygon(<span class="stringliteral">&quot;FootstepPlan Right&quot;</span>, rightPolygonConf,</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                         [contactsPolygons]() { <span class="keywordflow">return</span> contactsPolygons(<span class="stringliteral">&quot;RightFootCenter&quot;</span>); }));</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;}</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;  gui.addElement({<span class="stringliteral">&quot;Markers&quot;</span>, <span class="stringliteral">&quot;Footsteps&quot;</span>, <span class="stringliteral">&quot;Plan&quot;</span>}, mc_rtc::gui::Button(<span class="stringliteral">&quot;Print Plan (YAML)&quot;</span>,</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;                                                                       [<span class="keyword">this</span>]</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;                                                                       {</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                                                                         mc_rtc::Configuration conf;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;                                                                         this-&gt;<a class="code" href="structlipm__walking_1_1_footstep_plan.html#ac0150ae68188f040e96196c13f9b7557">save</a>(conf);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                                                                         mc_rtc::log::info(<span class="stringliteral">&quot;Plan:\n{}&quot;</span>,</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                                                                                           conf.dump(<span class="keyword">true</span>, <span class="keyword">true</span>));</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                                                                       }));</div>
 <div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160; </div>
-<div class="line"><a name="l00268"></a><span class="lineno"><a class="line" href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">  268</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">FootstepPlan::removeGUIElements</a>(mc_rtc::gui::StateBuilder &amp; gui)</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;{</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;  gui.removeElement({<span class="stringliteral">&quot;Walking&quot;</span>}, <span class="stringliteral">&quot;Torso Pitch [deg]&quot;</span>);</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;  gui.removeCategory({<span class="stringliteral">&quot;Markers&quot;</span>, <span class="stringliteral">&quot;Footsteps&quot;</span>, <span class="stringliteral">&quot;Plan&quot;</span>});</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160; </div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;} <span class="comment">// namespace lipm_walking</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  gui.addElement({<span class="stringliteral">&quot;Markers&quot;</span>, <span class="stringliteral">&quot;Footsteps&quot;</span>, <span class="stringliteral">&quot;Plan&quot;</span>},</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                 Polygon(<span class="stringliteral">&quot;TargetContact&quot;</span>, targetContactPolygonConf,</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                         [<span class="keyword">this</span>, footStepPolygon]() { <span class="keywordflow">return</span> footStepPolygon(<a class="code" href="structlipm__walking_1_1_footstep_plan.html#a67cd98bb16100be3c7ed8b60886b4ee2">targetContact</a>()); }),</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                 Polygon(<span class="stringliteral">&quot;FootstepPlan Left&quot;</span>, leftPolygonConf,</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                         [contactsPolygons]() { <span class="keywordflow">return</span> contactsPolygons(<span class="stringliteral">&quot;LeftFootCenter&quot;</span>); }),</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                 Polygon(<span class="stringliteral">&quot;FootstepPlan Right&quot;</span>, rightPolygonConf,</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                         [contactsPolygons]() { <span class="keywordflow">return</span> contactsPolygons(<span class="stringliteral">&quot;RightFootCenter&quot;</span>); }));</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160; </div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">  277</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">FootstepPlan::removeGUIElements</a>(mc_rtc::gui::StateBuilder &amp; gui)</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;{</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;  gui.removeElement({<span class="stringliteral">&quot;Walking&quot;</span>}, <span class="stringliteral">&quot;Torso Pitch [deg]&quot;</span>);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;  gui.removeElement({<span class="stringliteral">&quot;Walking&quot;</span>}, <span class="stringliteral">&quot;Print Plan&quot;</span>);</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;  gui.removeCategory({<span class="stringliteral">&quot;Markers&quot;</span>, <span class="stringliteral">&quot;Footsteps&quot;</span>, <span class="stringliteral">&quot;Plan&quot;</span>});</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;}</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160; </div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;} <span class="comment">// namespace lipm_walking</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructlipm__walking_1_1_footstep_plan_html_a5a114e2d22ebdaafaf39345e0b701817"><div class="ttname"><a href="structlipm__walking_1_1_footstep_plan.html#a5a114e2d22ebdaafaf39345e0b701817">lipm_walking::FootstepPlan::load</a></div><div class="ttdeci">void load(const mc_rtc::Configuration &amp;config)</div><div class="ttdoc">Load plan from configuration dictionary.</div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8cpp_source.html#l00054">FootstepPlan.cpp:54</a></div></div>
@@ -405,13 +415,13 @@ $(document).ready(function(){initNavTree('_footstep_plan_8cpp_source.html',''); 
 <div class="ttc" id="astructlipm__walking_1_1_footstep_plan_html_ab39e339367483674dd26d13e3bd4f4bd"><div class="ttname"><a href="structlipm__walking_1_1_footstep_plan.html#ab39e339367483674dd26d13e3bd4f4bd">lipm_walking::FootstepPlan::restorePreviousFootstep</a></div><div class="ttdeci">void restorePreviousFootstep()</div><div class="ttdoc">Rewind one footstep back in plan.</div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8cpp_source.html#l00149">FootstepPlan.cpp:149</a></div></div>
 <div class="ttc" id="astructlipm__walking_1_1_footstep_plan_html_a26aa385680a5ccf95f0ddf3abf2556a6"><div class="ttname"><a href="structlipm__walking_1_1_footstep_plan.html#a26aa385680a5ccf95f0ddf3abf2556a6">lipm_walking::FootstepPlan::reset</a></div><div class="ttdeci">void reset(unsigned startIndex)</div><div class="ttdoc">Rewind plan to a given contact.</div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8cpp_source.html#l00118">FootstepPlan.cpp:118</a></div></div>
 <div class="ttc" id="anamespacemc__rtc_1_1gui_html"><div class="ttname"><a href="namespacemc__rtc_1_1gui.html">mc_rtc::gui</a></div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8h_source.html#l00037">FootstepPlan.h:37</a></div></div>
-<div class="ttc" id="astructlipm__walking_1_1_footstep_plan_html_afdd3ba87bf652be23523066ff018ddf6"><div class="ttname"><a href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">lipm_walking::FootstepPlan::removeGUIElements</a></div><div class="ttdeci">void removeGUIElements(mc_rtc::gui::StateBuilder &amp;gui)</div><div class="ttdoc">Remove the footstep plan from the GUI.</div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8cpp_source.html#l00268">FootstepPlan.cpp:268</a></div></div>
+<div class="ttc" id="astructlipm__walking_1_1_footstep_plan_html_afdd3ba87bf652be23523066ff018ddf6"><div class="ttname"><a href="structlipm__walking_1_1_footstep_plan.html#afdd3ba87bf652be23523066ff018ddf6">lipm_walking::FootstepPlan::removeGUIElements</a></div><div class="ttdeci">void removeGUIElements(mc_rtc::gui::StateBuilder &amp;gui)</div><div class="ttdoc">Remove the footstep plan from the GUI.</div><div class="ttdef"><b>Definition:</b> <a href="_footstep_plan_8cpp_source.html#l00277">FootstepPlan.cpp:277</a></div></div>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="_footstep_plan_8cpp.html">FootstepPlan.cpp</a></li>
-    <li class="footer">Generated on Wed Jan 31 2024 09:14:48 for lipm_walking_controller by
+    <li class="footer">Generated on Tue Mar 19 2024 15:56:24 for lipm_walking_controller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

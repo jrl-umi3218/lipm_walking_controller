@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['se2d_363',['SE2d',['../structlipm__walking_1_1utils_1_1_s_e2d.html',1,'lipm_walking::utils']]],
-  ['singlesupport_364',['SingleSupport',['../structlipm__walking_1_1states_1_1_single_support.html',1,'lipm_walking::states']]],
-  ['sole_365',['Sole',['../structlipm__walking_1_1_sole.html',1,'lipm_walking']]],
-  ['standing_366',['Standing',['../structlipm__walking_1_1states_1_1_standing.html',1,'lipm_walking::states']]],
-  ['state_367',['State',['../structlipm__walking_1_1_state.html',1,'lipm_walking']]],
-  ['swingfoot_368',['SwingFoot',['../structlipm__walking_1_1_swing_foot.html',1,'lipm_walking']]]
+  ['se2d_367',['SE2d',['../structlipm__walking_1_1utils_1_1_s_e2d.html',1,'lipm_walking::utils']]],
+  ['singlesupport_368',['SingleSupport',['../structlipm__walking_1_1states_1_1_single_support.html',1,'lipm_walking::states']]],
+  ['sole_369',['Sole',['../structlipm__walking_1_1_sole.html',1,'lipm_walking']]],
+  ['standing_370',['Standing',['../structlipm__walking_1_1states_1_1_standing.html',1,'lipm_walking::states']]],
+  ['state_371',['State',['../structlipm__walking_1_1_state.html',1,'lipm_walking']]],
+  ['swingfoot_372',['SwingFoot',['../structlipm__walking_1_1_swing_foot.html',1,'lipm_walking']]]
 ];

@@ -21,7 +21,7 @@ var files_dup =
     [ "Initial.h", "_initial_8h.html", [
       [ "Initial", "structlipm__walking_1_1states_1_1_initial.html", "structlipm__walking_1_1states_1_1_initial" ]
     ] ],
-    [ "lib.cpp", "lib_8cpp.html", null ],
+    [ "lib.cpp", "lib_8cpp.html", "lib_8cpp" ],
     [ "ModelPredictiveControl.cpp", "_model_predictive_control_8cpp.html", null ],
     [ "ModelPredictiveControl.h", "_model_predictive_control_8h.html", [
       [ "ModelPredictiveControl", "structlipm__walking_1_1_model_predictive_control.html", "structlipm__walking_1_1_model_predictive_control" ]

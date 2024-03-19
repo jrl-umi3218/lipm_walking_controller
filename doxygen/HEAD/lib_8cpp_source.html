@@ -139,17 +139,47 @@ $(document).ready(function(){initNavTree('lib_8cpp_source.html',''); initResizab
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controller_8h.html">lipm_walking/Controller.h</a>&gt;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;CONTROLLER_CONSTRUCTOR(<span class="stringliteral">&quot;LIPMWalking&quot;</span>, <a class="code" href="structlipm__walking_1_1_controller.html">lipm_walking::Controller</a>)</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="lib_8cpp.html#a3dfb53e98353279d24c55884b48131b3">   32</a></span>&#160;  CONTROLLER_MODULE_API <span class="keywordtype">void</span> <a class="code" href="lib_8cpp.html#a3dfb53e98353279d24c55884b48131b3">MC_RTC_CONTROLLER</a>(std::vector&lt;std::string&gt; &amp; names)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    CONTROLLER_CHECK_VERSION(<span class="stringliteral">&quot;LIPMWalking&quot;</span>)</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    names.emplace_back(<span class="stringliteral">&quot;LIPMWalking&quot;</span>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="lib_8cpp.html#a98c10342ae398dfabd236803c067c5bd">   38</a></span>&#160;  CONTROLLER_MODULE_API <span class="keywordtype">void</span> <a class="code" href="lib_8cpp.html#a98c10342ae398dfabd236803c067c5bd">destroy</a>(mc_control::MCController * ptr)</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">delete</span> ptr;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="lib_8cpp.html#a31c955d96314d521102bb3256d9d2ba5">   43</a></span>&#160;  CONTROLLER_MODULE_API <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="lib_8cpp.html#a31c955d96314d521102bb3256d9d2ba5">create_args_required</a>()</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">return</span> 4;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="lib_8cpp.html#aa4622fede42b25111739e6e9ab8d70d4">   48</a></span>&#160;  CONTROLLER_MODULE_API mc_control::MCController * <a class="code" href="lib_8cpp.html#aa4622fede42b25111739e6e9ab8d70d4">create</a>(<span class="keyword">const</span> std::string &amp; name,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                                                          <span class="keyword">const</span> mc_rbdyn::RobotModulePtr &amp; robot,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                          <span class="keyword">const</span> <span class="keywordtype">double</span> &amp; dt,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                                          <span class="keyword">const</span> mc_control::Configuration &amp; conf)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="structlipm__walking_1_1_controller.html">lipm_walking::Controller</a>(</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        robot, dt, conf, mc_control::ControllerParameters{}.load_robot_config_into({}).overwrite_config(<span class="keyword">true</span>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="alib_8cpp_html_aa4622fede42b25111739e6e9ab8d70d4"><div class="ttname"><a href="lib_8cpp.html#aa4622fede42b25111739e6e9ab8d70d4">create</a></div><div class="ttdeci">CONTROLLER_MODULE_API mc_control::MCController * create(const std::string &amp;name, const mc_rbdyn::RobotModulePtr &amp;robot, const double &amp;dt, const mc_control::Configuration &amp;conf)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00048">lib.cpp:48</a></div></div>
+<div class="ttc" id="alib_8cpp_html_a31c955d96314d521102bb3256d9d2ba5"><div class="ttname"><a href="lib_8cpp.html#a31c955d96314d521102bb3256d9d2ba5">create_args_required</a></div><div class="ttdeci">CONTROLLER_MODULE_API unsigned int create_args_required()</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00043">lib.cpp:43</a></div></div>
 <div class="ttc" id="a_controller_8h_html"><div class="ttname"><a href="_controller_8h.html">Controller.h</a></div></div>
+<div class="ttc" id="alib_8cpp_html_a3dfb53e98353279d24c55884b48131b3"><div class="ttname"><a href="lib_8cpp.html#a3dfb53e98353279d24c55884b48131b3">MC_RTC_CONTROLLER</a></div><div class="ttdeci">CONTROLLER_MODULE_API void MC_RTC_CONTROLLER(std::vector&lt; std::string &gt; &amp;names)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00032">lib.cpp:32</a></div></div>
+<div class="ttc" id="alib_8cpp_html_a98c10342ae398dfabd236803c067c5bd"><div class="ttname"><a href="lib_8cpp.html#a98c10342ae398dfabd236803c067c5bd">destroy</a></div><div class="ttdeci">CONTROLLER_MODULE_API void destroy(mc_control::MCController *ptr)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00038">lib.cpp:38</a></div></div>
 <div class="ttc" id="astructlipm__walking_1_1_controller_html"><div class="ttname"><a href="structlipm__walking_1_1_controller.html">lipm_walking::Controller</a></div><div class="ttdoc">Main controller class.</div><div class="ttdef"><b>Definition:</b> <a href="_controller_8h_source.html#l00060">Controller.h:60</a></div></div>
 <!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="lib_8cpp.html">lib.cpp</a></li>
-    <li class="footer">Generated on Wed Jan 31 2024 09:14:48 for lipm_walking_controller by
+    <li class="footer">Generated on Tue Mar 19 2024 15:56:24 for lipm_walking_controller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

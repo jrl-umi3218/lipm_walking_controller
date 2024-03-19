@@ -153,6 +153,10 @@ var NAVTREEINDEX0 =
 "hierarchy.html":[6,2],
 "index.html":[],
 "lib_8cpp.html":[7,0,12],
+"lib_8cpp.html#a31c955d96314d521102bb3256d9d2ba5":[7,0,12,1],
+"lib_8cpp.html#a3dfb53e98353279d24c55884b48131b3":[7,0,12,3],
+"lib_8cpp.html#a98c10342ae398dfabd236803c067c5bd":[7,0,12,2],
+"lib_8cpp.html#aa4622fede42b25111739e6e9ab8d70d4":[7,0,12,0],
 "lib_8cpp_source.html":[7,0,12],
 "namespacelipm__walking.html":[5,0,0],
 "namespacelipm__walking.html":[6,0,0],
@@ -245,9 +249,5 @@ var NAVTREEINDEX0 =
 "structlipm__walking_1_1_controller.html#a343bd090ccbc4f03300415f3c05deb27":[6,0,0,3,24],
 "structlipm__walking_1_1_controller.html#a376373dcffe435cf0d514c7c5543b3a0":[6,0,0,3,37],
 "structlipm__walking_1_1_controller.html#a3ad4e1e7c5f9cfb437272c9efd8ac4ce":[6,0,0,3,29],
-"structlipm__walking_1_1_controller.html#a3c94fbd647e8fe6f996fb0d3da7a9cf7":[6,0,0,3,14],
-"structlipm__walking_1_1_controller.html#a48a45f2c05d1fd779f98099c0b53a33b":[6,0,0,3,45],
-"structlipm__walking_1_1_controller.html#a501f48b3849db1effe9c0852bd7bce11":[6,0,0,3,27],
-"structlipm__walking_1_1_controller.html#a5db5a101d8fffa999208226b2a6e18c0":[6,0,0,3,34],
-"structlipm__walking_1_1_controller.html#a61bb4005b4a3c178bacfe56e81bb14d3":[6,0,0,3,11]
+"structlipm__walking_1_1_controller.html#a3c94fbd647e8fe6f996fb0d3da7a9cf7":[6,0,0,3,14]
 };
