@@ -1,11 +1,11 @@
-\_form#0:$T_i$
-\_form#1:$T_i = 10~\text{s}$
-\_form#2:$T_i = 15~\text{s}$
-\_form#3:$s \in [0, 1]$
-\_form#4:$t \in [0, T]$
-\_form#5:$ s(t) = t / T $
-\_form#6:$s(t) \in [0, 1]$
-\_form#7:$\dot{s}(t) = \frac{{\rm d}(s(t))}{{\rm d}t}$
-\_form#8:$\in [0, T]$
-\_form#9:\[ \ddot{c} = K (c^d - c) - B \dot{c} \]
-\_form#10:$B = 2 \sqrt{K}$
+\_form#0=11x11:$T_i$
+\_form#1=51x11:$T_i = 10~\text{s}$
+\_form#2=51x11:$T_i = 15~\text{s}$
+\_form#3=45x14:$s \in [0, 1]$
+\_form#4=48x14:$t \in [0, T]$
+\_form#5=56x14:$ s(t) = t / T $
+\_form#6=59x14:$s(t) \in [0, 1]$
+\_form#7=68x19:$\dot{s}(t) = \frac{{\rm d}(s(t))}{{\rm d}t}$
+\_form#8=39x14:$\in [0, T]$
+\_form#9=106x16:\[ \ddot{c} = K (c^d - c) - B \dot{c} \]
+\_form#10=55x14:$B = 2 \sqrt{K}$

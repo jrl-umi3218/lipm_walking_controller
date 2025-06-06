@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['doublesupport_342',['DoubleSupport',['../structlipm__walking_1_1states_1_1_double_support.html',1,'lipm_walking::states']]]
+  ['doublesupport_339',['DoubleSupport',['../structlipm__walking_1_1states_1_1_double_support.html',1,'lipm_walking::states']]]
 ];

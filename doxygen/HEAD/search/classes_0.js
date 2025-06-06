@@ -6,11 +6,8 @@ var searchData=
   ['contact_332',['Contact',['../structlipm__walking_1_1_contact.html',1,'lipm_walking']]],
   ['controller_333',['Controller',['../structlipm__walking_1_1_controller.html',1,'lipm_walking']]],
   ['cubichermitepolynomial_334',['CubicHermitePolynomial',['../structutils_1_1_cubic_hermite_polynomial.html',1,'utils']]],
-  ['cubichermitepolynomial_3c_20eigen_3a_3avector2d_20_3e_335',['CubicHermitePolynomial&lt; Eigen::Vector2d &gt;',['../structutils_1_1_cubic_hermite_polynomial.html',1,'utils']]],
-  ['cubicpolynomial_336',['CubicPolynomial',['../structutils_1_1_cubic_polynomial.html',1,'utils']]],
-  ['cubicpolynomial_3c_20double_20_3e_337',['CubicPolynomial&lt; double &gt;',['../structutils_1_1_cubic_polynomial_3_01double_01_4.html',1,'utils']]],
-  ['cubicpolynomial_3c_20eigen_3a_3avector2d_20_3e_338',['CubicPolynomial&lt; Eigen::Vector2d &gt;',['../structutils_1_1_cubic_polynomial.html',1,'utils']]],
-  ['cubicpolynomialbase_339',['CubicPolynomialBase',['../structutils_1_1_cubic_polynomial_base.html',1,'utils']]],
-  ['cubicpolynomialbase_3c_20double_20_3e_340',['CubicPolynomialBase&lt; double &gt;',['../structutils_1_1_cubic_polynomial_base.html',1,'utils']]],
-  ['cubicpolynomialbase_3c_20eigen_3a_3avector2d_20_3e_341',['CubicPolynomialBase&lt; Eigen::Vector2d &gt;',['../structutils_1_1_cubic_polynomial_base.html',1,'utils']]]
+  ['cubicpolynomial_335',['CubicPolynomial',['../structutils_1_1_cubic_polynomial.html',1,'utils']]],
+  ['cubicpolynomial_3c_20double_20_3e_336',['CubicPolynomial&lt; double &gt;',['../structutils_1_1_cubic_polynomial_3_01double_01_4.html',1,'utils']]],
+  ['cubicpolynomialbase_337',['CubicPolynomialBase',['../structutils_1_1_cubic_polynomial_base.html',1,'utils']]],
+  ['cubicpolynomialbase_3c_20double_20_3e_338',['CubicPolynomialBase&lt; double &gt;',['../structutils_1_1_cubic_polynomial_base.html',1,'utils']]]
 ];
