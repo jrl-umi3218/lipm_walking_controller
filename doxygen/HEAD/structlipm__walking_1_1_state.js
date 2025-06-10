@@ -1,8 +1,7 @@
 var structlipm__walking_1_1_state =
 [
     [ "checkTransitions", "structlipm__walking_1_1_state.html#a0725b96e34638bde0401567b2e458a21", null ],
-    [ "configure", "structlipm__walking_1_1_state.html#a89a96e6d9cf63fb92b32f13bf45a5fa2", null ],
-    [ "controller", "structlipm__walking_1_1_state.html#ae65576293844af78d970f872f8742a55", null ],
+    [ "controller", "structlipm__walking_1_1_state.html#a3657c05a2849fea9dc9d80621eea2aec", null ],
     [ "gui", "structlipm__walking_1_1_state.html#aa1df218013c3d6bf2077652d9fe6022a", null ],
     [ "logger", "structlipm__walking_1_1_state.html#a234e1f7c88bfecb34914b1b949a96855", null ],
     [ "pendulum", "structlipm__walking_1_1_state.html#ae62842c6f79d27fda7f01739d4498728", null ],

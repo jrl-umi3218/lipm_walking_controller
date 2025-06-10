@@ -1,12 +1,12 @@
 var searchData=
 [
-  ['name_159',['name',['../structlipm__walking_1_1_footstep_plan.html#aee2fca496dc81d9e72e4bffff63d4129',1,'lipm_walking::FootstepPlan']]],
-  ['nb_5fsteps_160',['NB_STEPS',['../structlipm__walking_1_1_model_predictive_control.html#ad6541796803b63d79cd5259932aa638b',1,'lipm_walking::ModelPredictiveControl']]],
-  ['nbdoublesupportsteps_161',['nbDoubleSupportSteps',['../structlipm__walking_1_1_model_predictive_control.html#a0fc8844a1c590df27fa04b81c4affa2d',1,'lipm_walking::ModelPredictiveControl']]],
-  ['nbinitsupportsteps_162',['nbInitSupportSteps',['../structlipm__walking_1_1_model_predictive_control.html#ab1d89b470d3d9510352bc2e85c964ff3',1,'lipm_walking::ModelPredictiveControl']]],
-  ['nbmpcfailures_5f_163',['nbMPCFailures_',['../structlipm__walking_1_1_controller.html#aed2495b4507a60310382ce3cde186bdb',1,'lipm_walking::Controller']]],
-  ['nextcontact_164',['nextContact',['../structlipm__walking_1_1_controller.html#a3c94fbd647e8fe6f996fb0d3da7a9cf7',1,'lipm_walking::Controller::nextContact()'],['../structlipm__walking_1_1_footstep_plan.html#ab3f17ff99f38cfb180160c71ea559f96',1,'lipm_walking::FootstepPlan::nextContact()'],['../structlipm__walking_1_1_model_predictive_control.html#a365a48fa1a4de3482cbaeeae4f5f6859',1,'lipm_walking::ModelPredictiveControl::nextContact()']]],
-  ['nextdoublesupportduration_165',['nextDoubleSupportDuration',['../structlipm__walking_1_1_controller.html#a15ebb3027ce07a40bfbfd5f80efedc98',1,'lipm_walking::Controller']]],
-  ['normal_166',['normal',['../structlipm__walking_1_1_contact.html#a231493bc50213776253f650df9963f2f',1,'lipm_walking::Contact']]],
-  ['notitle_167',['notitle',['../index.html',1,'']]]
+  ['name_160',['name',['../structlipm__walking_1_1_footstep_plan.html#aee2fca496dc81d9e72e4bffff63d4129',1,'lipm_walking::FootstepPlan']]],
+  ['nb_5fsteps_161',['NB_STEPS',['../structlipm__walking_1_1_model_predictive_control.html#ad6541796803b63d79cd5259932aa638b',1,'lipm_walking::ModelPredictiveControl']]],
+  ['nbdoublesupportsteps_162',['nbDoubleSupportSteps',['../structlipm__walking_1_1_model_predictive_control.html#a0fc8844a1c590df27fa04b81c4affa2d',1,'lipm_walking::ModelPredictiveControl']]],
+  ['nbinitsupportsteps_163',['nbInitSupportSteps',['../structlipm__walking_1_1_model_predictive_control.html#ab1d89b470d3d9510352bc2e85c964ff3',1,'lipm_walking::ModelPredictiveControl']]],
+  ['nbmpcfailures_5f_164',['nbMPCFailures_',['../structlipm__walking_1_1_controller.html#aed2495b4507a60310382ce3cde186bdb',1,'lipm_walking::Controller']]],
+  ['nextcontact_165',['nextContact',['../structlipm__walking_1_1_controller.html#a3c94fbd647e8fe6f996fb0d3da7a9cf7',1,'lipm_walking::Controller::nextContact()'],['../structlipm__walking_1_1_footstep_plan.html#ab3f17ff99f38cfb180160c71ea559f96',1,'lipm_walking::FootstepPlan::nextContact()'],['../structlipm__walking_1_1_model_predictive_control.html#a365a48fa1a4de3482cbaeeae4f5f6859',1,'lipm_walking::ModelPredictiveControl::nextContact()']]],
+  ['nextdoublesupportduration_166',['nextDoubleSupportDuration',['../structlipm__walking_1_1_controller.html#a15ebb3027ce07a40bfbfd5f80efedc98',1,'lipm_walking::Controller']]],
+  ['normal_167',['normal',['../structlipm__walking_1_1_contact.html#a231493bc50213776253f650df9963f2f',1,'lipm_walking::Contact']]],
+  ['notitle_168',['notitle',['../index.html',1,'']]]
 ];
