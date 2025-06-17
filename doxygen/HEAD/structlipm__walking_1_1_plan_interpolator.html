@@ -198,6 +198,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a00369e184aea8eb2a5fbbf97d330db62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a00369e184aea8eb2a5fbbf97d330db62">checkPlanUpdated</a> ()</td></tr>
 <tr class="memdesc:a00369e184aea8eb2a5fbbf97d330db62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether the plan has been recomputed (<a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a8c13197e62d47d90453d5e51796bd822" title="Generate a new footstep plan.">run()</a> was called)  <a href="structlipm__walking_1_1_plan_interpolator.html#a00369e184aea8eb2a5fbbf97d330db62">More...</a><br /></td></tr>
 <tr class="separator:a00369e184aea8eb2a5fbbf97d330db62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20172c06ca974f18a3f11e6f3268b712"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a20172c06ca974f18a3f11e6f3268b712">updateLocalTarget_</a> (const <a class="el" href="structlipm__walking_1_1_plan_interpolator.html#afada8be0d9552b173e40a995c781c0b9">SE2d</a> &amp;target)</td></tr>
+<tr class="memdesc:a20172c06ca974f18a3f11e6f3268b712"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update local SE2 target from an SE2 target expressed in local frame.  <a href="structlipm__walking_1_1_plan_interpolator.html#a20172c06ca974f18a3f11e6f3268b712">More...</a><br /></td></tr>
+<tr class="separator:a20172c06ca974f18a3f11e6f3268b712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af27c52f11ac832e213ec38c8cbfe42a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#af27c52f11ac832e213ec38c8cbfe42a7">updateWorldTarget_</a> (const Eigen::Vector3d &amp;desired)</td></tr>
+<tr class="memdesc:af27c52f11ac832e213ec38c8cbfe42a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update local SE2 target from world SE2 target.  <a href="structlipm__walking_1_1_plan_interpolator.html#af27c52f11ac832e213ec38c8cbfe42a7">More...</a><br /></td></tr>
+<tr class="separator:af27c52f11ac832e213ec38c8cbfe42a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -388,7 +394,7 @@ Static Public Attributes</h2></td></tr>
 <dd>
 false Otherwise </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00286">286</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00294">294</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -593,7 +599,7 @@ false Otherwise </dd></dl>
 
 <p>Restore last backward target. </p>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00210">210</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00218">218</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -622,7 +628,7 @@ false Otherwise </dd></dl>
 
 <p>Restore last forward target. </p>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00220">220</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00228">228</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +657,7 @@ false Otherwise </dd></dl>
 
 <p>Restore last lateral target. </p>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00230">230</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00238">238</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -702,7 +708,7 @@ false Otherwise </dd></dl>
 <p>Get step width. </p>
 <dl class="section return"><dt>Returns</dt><dd>width Step width. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00242">242</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00250">250</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -742,7 +748,7 @@ false Otherwise </dd></dl>
 </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00256">256</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00264">264</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -764,6 +770,35 @@ false Otherwise </dd></dl>
 <p>Suggest gait based on local target coordinates. </p>
 
 <p class="definition">Definition at line <a class="el" href="_plan_interpolator_8cpp_source.html#l00165">165</a> of file <a class="el" href="_plan_interpolator_8cpp_source.html">PlanInterpolator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a20172c06ca974f18a3f11e6f3268b712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20172c06ca974f18a3f11e6f3268b712">&#9670;&nbsp;</a></span>updateLocalTarget_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lipm_walking::PlanInterpolator::updateLocalTarget_ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structlipm__walking_1_1_plan_interpolator.html#afada8be0d9552b173e40a995c781c0b9">SE2d</a> &amp;&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update local SE2 target from an SE2 target expressed in local frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td>desired (X, Y, Theta) element in local frame</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>For this change to take effect you must call <a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a8c13197e62d47d90453d5e51796bd822">run()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8cpp_source.html#l00157">157</a> of file <a class="el" href="_plan_interpolator_8cpp_source.html">PlanInterpolator.cpp</a>.</p>
 
 </div>
 </div>
@@ -802,7 +837,36 @@ false Otherwise </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8cpp_source.html#l00506">506</a> of file <a class="el" href="_plan_interpolator_8cpp_source.html">PlanInterpolator.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8cpp_source.html#l00507">507</a> of file <a class="el" href="_plan_interpolator_8cpp_source.html">PlanInterpolator.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af27c52f11ac832e213ec38c8cbfe42a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af27c52f11ac832e213ec38c8cbfe42a7">&#9670;&nbsp;</a></span>updateWorldTarget_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lipm_walking::PlanInterpolator::updateWorldTarget_ </td>
+          <td>(</td>
+          <td class="paramtype">const Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>desired</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Update local SE2 target from world SE2 target. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">desired</td><td>(X, Y, Theta) SE2 element expressed in world frame.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>For this change to take effect you must call <a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a8c13197e62d47d90453d5e51796bd822">run()</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8cpp_source.html#l00143">143</a> of file <a class="el" href="_plan_interpolator_8cpp_source.html">PlanInterpolator.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,7 +895,7 @@ false Otherwise </dd></dl>
 
 <p>Get walking target in world frame. </p>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00264">264</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00272">272</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -867,7 +931,7 @@ false Otherwise </dd></dl>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00274">274</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_plan_interpolator_8h_source.html#l00282">282</a> of file <a class="el" href="_plan_interpolator_8h_source.html">PlanInterpolator.h</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1111,7 @@ false Otherwise </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespacelipm__walking.html">lipm_walking</a></li><li class="navelem"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">PlanInterpolator</a></li>
-    <li class="footer">Generated on Tue Jun 10 2025 08:50:38 for lipm_walking_controller by
+    <li class="footer">Generated on Tue Jun 17 2025 11:47:03 for lipm_walking_controller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.9.1 </li>
   </ul>

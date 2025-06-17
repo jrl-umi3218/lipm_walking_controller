@@ -10,9 +10,10 @@ var searchData=
   ['targetvel_5f_289',['targetVel_',['../structutils_1_1_cubic_hermite_polynomial.html#a6781b5f5480efebe865c2284a34b1d00',1,'utils::CubicHermitePolynomial::targetVel_()'],['../structutils_1_1_quintic_hermite_polynomial.html#a2ae2f34123ca9a28f105e0b162c22499',1,'utils::QuinticHermitePolynomial::targetVel_()']]],
   ['teardown_290',['teardown',['../structlipm__walking_1_1_state.html#a3fb16f85d91a0fcf4729e158a8862dcf',1,'lipm_walking::State::teardown(mc_control::fsm::Controller &amp;) override'],['../structlipm__walking_1_1_state.html#a140507f70c4927aae92774204dd320a1',1,'lipm_walking::State::teardown()=0'],['../structlipm__walking_1_1states_1_1_double_support.html#a90dafe7f619598ee0d18d0ba3a76c018',1,'lipm_walking::states::DoubleSupport::teardown()'],['../structlipm__walking_1_1states_1_1_initial.html#a4056f9919c098d4c37a794116519600c',1,'lipm_walking::states::Initial::teardown()'],['../structlipm__walking_1_1states_1_1_run_stabilizer.html#afb37bd7bc4809cd365352a6cb87bd31a',1,'lipm_walking::states::RunStabilizer::teardown()'],['../structlipm__walking_1_1states_1_1_single_support.html#ae8dc47e79ba1d0e79d32e407482f6b41',1,'lipm_walking::states::SingleSupport::teardown()'],['../structlipm__walking_1_1states_1_1_standing.html#a01ec09bd7f5f350c5b6a878e4a3f06e2',1,'lipm_walking::states::Standing::teardown()']]],
   ['theta_291',['theta',['../structlipm__walking_1_1utils_1_1_s_e2d.html#a8a5d70ea26641f800f6276bea91fea7e',1,'lipm_walking::utils::SE2d']]],
-  ['torsopitch_292',['torsoPitch',['../structlipm__walking_1_1_footstep_plan.html#a7457ee7e537eb20ebc44f82722d64db4',1,'lipm_walking::FootstepPlan::torsoPitch() const'],['../structlipm__walking_1_1_footstep_plan.html#aee5279c44fd1e133770a4fc4fcd5758f',1,'lipm_walking::FootstepPlan::torsoPitch(double tp)']]],
-  ['troubleshooting_293',['Troubleshooting',['../troubleshooting.html',1,'']]],
-  ['troubleshooting_2edox_294',['troubleshooting.dox',['../troubleshooting_8dox.html',1,'']]],
-  ['tuning_20the_20stabilizer_295',['Tuning the stabilizer',['../stabilizer.html',1,'']]],
-  ['turn_296',['Turn',['../structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6a6b12be2513bab07567150f54467bc568',1,'lipm_walking::PlanInterpolator']]]
+  ['toconfiguration_292',['toConfiguration',['../structlipm__walking_1_1utils_1_1_s_e2d.html#a2611547d3aee7f6ff4ece2a0890f1fdc',1,'lipm_walking::utils::SE2d']]],
+  ['torsopitch_293',['torsoPitch',['../structlipm__walking_1_1_footstep_plan.html#a7457ee7e537eb20ebc44f82722d64db4',1,'lipm_walking::FootstepPlan::torsoPitch() const'],['../structlipm__walking_1_1_footstep_plan.html#aee5279c44fd1e133770a4fc4fcd5758f',1,'lipm_walking::FootstepPlan::torsoPitch(double tp)']]],
+  ['troubleshooting_294',['Troubleshooting',['../troubleshooting.html',1,'']]],
+  ['troubleshooting_2edox_295',['troubleshooting.dox',['../troubleshooting_8dox.html',1,'']]],
+  ['tuning_20the_20stabilizer_296',['Tuning the stabilizer',['../stabilizer.html',1,'']]],
+  ['turn_297',['Turn',['../structlipm__walking_1_1_plan_interpolator.html#aa03fcbbcdc30b6a7594a6b3542c719f6a6b12be2513bab07567150f54467bc568',1,'lipm_walking::PlanInterpolator']]]
 ];

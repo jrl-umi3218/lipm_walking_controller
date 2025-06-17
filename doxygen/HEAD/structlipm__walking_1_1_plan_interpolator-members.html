@@ -139,7 +139,9 @@ $(document).ready(function(){initNavTree('structlipm__walking_1_1_plan_interpola
   <tr><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a67cd9d7b7d84b1bac6c1f1d08f1ccdd5">stepWidth</a>() const</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a17f9ed4963f7955c2a78b6c9355c2b25">stepWidth</a>(double stepWidth)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#ae0a720bf957c942aaece4e873b5e5c18">suggestGait</a>()</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#ac3dc8a9db47a52abe8627b5279d64c5a">updateSupportPath</a>(const sva::PTransformd &amp;X_0_lf, const sva::PTransformd &amp;X_0_rf)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a20172c06ca974f18a3f11e6f3268b712">updateLocalTarget_</a>(const SE2d &amp;target)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#ac3dc8a9db47a52abe8627b5279d64c5a">updateSupportPath</a>(const sva::PTransformd &amp;X_0_lf, const sva::PTransformd &amp;X_0_rf)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#af27c52f11ac832e213ec38c8cbfe42a7">updateWorldTarget_</a>(const Eigen::Vector3d &amp;desired)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#a4b6447248302a1f483d0f4986fd7a2b6">worldReference</a>() const</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html#ad91bd2fb6d00433b47980856a0fd23b2">worldReference</a>(const sva::PTransformd &amp;worldReference)</td><td class="entry"><a class="el" href="structlipm__walking_1_1_plan_interpolator.html">lipm_walking::PlanInterpolator</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
 </table></div><!-- contents -->
@@ -148,7 +150,7 @@ $(document).ready(function(){initNavTree('structlipm__walking_1_1_plan_interpola
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Jun 10 2025 08:50:38 for lipm_walking_controller by
+    <li class="footer">Generated on Tue Jun 17 2025 11:47:03 for lipm_walking_controller by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
