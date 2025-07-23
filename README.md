@@ -35,8 +35,25 @@ This project has been used in the following work, and much more:
 }
 ```
 
-- [A Cross-Temporal Robotic Dance Performance: Dancing with a Humanoid Robot and Artificial Life](https://hal.science/hal-04755684/) - [video excerpt](https://youtu.be/6QZwARIV_yQ?si=wIzObdp1b4w4sHGF) - [full video](https://youtu.be/iAVdj0rey5M?si=SICcGOgehyC-IwFt)
+- [A Cross-Temporal Robotic Dance Performance: Dancing with a Humanoid Robot and Artificial Life](https://hal.science/hal-04755684/) - [video excerpt](https://youtu.be/6QZwARIV_yQ?si=wIzObdp1b4w4sHGF) - [full video](https://youtu.be/iAVdj0rey5M?si=SICcGOgehyC-IwFt) - [CDADance controller](https://github.com/arntanguy/CDADance)
 
+## Table of Contents
+
+- [Trying the controller](#trying-the-controller)
+  - [Docker](#docker)
+  - [Web](#web)
+- [Building with mc-rtc-superbuild](#building-with-mc-rtc-superbuild)
+- [Usage](#usage)
+  - [Running the controller](#running-the-controller)
+    - [MuJoCo simulation (physics simulation)](#mujoco-simulation-physics-simulation)
+    - [Ticker (no physics simulation)](#ticker-no-physics-simulation)
+    - [Choreonoid simulation (AIST/LIRMM only)](#choreonoid-simulation-aistlirmm-only)
+  - [Using the controller](#using-the-controller)
+- [Documentation](#documentation)
+- [External Footstep Planner](#external-footstep-planner)
+- [Integrate your own robot](#integrate-your-own-robot)
+- [Integrating in other controllers](#integrating-in-other-controllers)
+- [Thanks](#thanks)
 
 ## Trying the controller
 
@@ -175,16 +192,27 @@ For documentation, you can refer to the following resources:
 - The [Doxygen documentation](http://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/index.html) includes some basic tutorials. This is slightly outdated, but still relevant for the most part.
 - @stephane-caron's archived [wiki](https://github.com/stephane-caron/lipm_walking_controller/wiki). While archived it remains relevant for the most part.
 
+
+## External Footstep Planner
+
+The controller can be used with an external footstep planner through the provided `ExternalFootstepPlannerPlugin`. This can be used to provide additional capabilities such as path planning and collision avoidance, or to control walking using a joystick.
+
+Supported planners are:
+- [Hybrid MPC Footstep Planner](https://github.com/antodld/FootSteps_Planner) : recommended, built by default
+- [Online Footstep Planner](https://github.com/isri-aist/OnlineFootstepPlanner) : deprecated, ROS1 only. Refer to [](docs/online_footstep_planner.md) for more (deprecated) information on how to use it.
+
+To use it, select the `external` plan in the GUI, and then select the planner you want to use.
+
+
 ## Integrate your own robot
 
 Adding your own robot is fairly straightforward. You need to:
 
 1. Have the robot already integrated in `mc_rtc` (see [this tutorial](https://jrl.cnrs.fr/mc_rtc/tutorials/advanced/new-robot.html))
 2. Add [robot-specific configuration files](https://jrl.cnrs.fr/mc_rtc/tutorials/introduction/configuration.html#controller-s-robot-specific-configuration) to your robot module You need:
-  - `etc/controllers/LIPMWalking/<robot_name>.yaml` with content
-  <details>
-    <summary>See example file</summary>
-  ```yaml
+  - Modify `etc/controllers/LIPMWalking/<robot_name>.yaml` with content
+
+```yaml
 robot_models:
   hrp2_drc:
     swingfoot:
@@ -202,9 +230,6 @@ robot_models:
           deriv: 0.5
       admittance:
         cop: [0.02, 0.01]
-        # maxVel:
-        #   angular: [1., 1., 1.]
-        #   linear: [0.5, 0.5, 0.5]
       tasks:
         contact:
           damping: 300.
@@ -258,162 +283,18 @@ plans:
         - pose:
             translation: [0.0, 0.105, 0.0]
           surface: LeftFootCenter
-    custom_backward:
-      double_support_duration: 0.2
-      single_support_duration: 0.8
-      step_length: 0.15
-      swing_height: 0.05
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          surface: LeftFootCenter
-    custom_forward:
-      double_support_duration: 0.1
-      single_support_duration: 0.7
-      step_length: 0.2
-      swing_height: 0.04
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          surface: LeftFootCenter
-    custom_lateral:
-      double_support_duration: 0.2
-      single_support_duration: 0.8
-      step_length: 0.1
-      swing_height: 0.04
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          surface: LeftFootCenter
-      mpc:
-        weights:
-          jerk: 1.0
-          vel: [10.0, 300.0]
-          zmp: 1000.0
-    walk_backward_75cm:
-      double_support_duration: 0.2
-      single_support_duration: 0.8
-      swing_height: 0.05
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [-0.15, -0.105, 0.0]
-          ref_vel: [-0.075, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [-0.3, 0.105, 0.0]
-          ref_vel: [-0.15, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [-0.45, -0.105, 0.0]
-          ref_vel: [-0.15, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [-0.6, 0.105, 0.0]
-          ref_vel: [-0.075, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [-0.75, -0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [-0.75, 0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: LeftFootCenter
-    walk_forward_100cm:
-      double_support_duration: 0.1
-      single_support_duration: 0.7
-      swing_height: 0.04
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [0.2, -0.105, 0.0]
-          ref_vel: [0.1, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.4, 0.105, 0.0]
-          ref_vel: [0.2, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [0.6, -0.105, 0.0]
-          ref_vel: [0.2, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.8, 0.105, 0.0]
-          ref_vel: [0.1, 0.0, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [1.0, -0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [1.0, 0.105, 0.0]
-          ref_vel: [0.0, 0.0, 0.0]
-          surface: LeftFootCenter
-    warmup:
-      double_support_duration: 0.1
-      single_support_duration: 0.7
-      swing_height: 0.04
-      contacts:
-        - pose:
-            translation: [0.035, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.035, 0.105, 0.0]
-          surface: LeftFootCenter
-        - pose:
-            translation: [0.035, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.035, 0.105, 0.0]
-          surface: LeftFootCenter
-    external: # refer to hrp4cr section for a detailed explanation
-      double_support_duration: 0.5
-      single_support_duration: 0.7
-      allowed_planning_time:
-        standing: 2.0
-        single_support: 0.2
-      swing_height: 0.04
-      contacts:
-        - pose:
-            translation: [0.0, -0.105, 0.0]
-          surface: RightFootCenter
-        - pose:
-            translation: [0.0, 0.105, 0.0]
-          surface: LeftFootCenter
-      leftFootLandingOffset: [0.0, 0.105, 0.0] # x, y, theta
-      rightFootLandingOffset: [0.0, -0.105, 0.0] # x, y, theta
-  ```
-    </details>
-  - Install this file, add the following lines to your `CMakeLists.txt`::
-  ```cmake
-      install(FILES etc/controllers/LIPMWalking/<robot_name>.yaml
-            DESTINATION ${MC_CONTROLLER_RUNTIME_INSTALL_PREFIX}/LIPMWalking/)
-  ```
-    - Additionally, you will need to tune the stabilizer gains for your robot. See [Tuning the stabilizer](https://jrl.cnrs.fr/lipm_walking_controller/doxygen/HEAD/stabilizer.html) for more information. The tuning can be done live from the GUI in the `Stabilizer` tab. You can export a yaml representation of this configuration from here, and add it to your robot module's `_lipm_stabilizer` configuration file, or to the above `robot_models` section in the `etc/controllers/LIPMWalking/<robot_name>.yaml` file. The most important gains are the `dcm_tracking` PID (dcm control) and the foot admittance gains (force control)
+        # ... other plans
+```
+
+  - Install this file, add the following lines to your `CMakeLists.txt`:
+
+```cmake
+install(FILES etc/controllers/LIPMWalking/<robot_name>.yaml
+      DESTINATION ${MC_CONTROLLER_RUNTIME_INSTALL_PREFIX}/LIPMWalking/)
+```
+
+  - Additionally, you will need to tune the stabilizer gains for your robot. See [Tuning the stabilizer](https://jrl.cnrs.fr/lipm_walking_controller/doxygen/HEAD/stabilizer.html) for more information. The tuning can be done live from the GUI in the `Stabilizer` tab. You can export a yaml representation of this configuration from here, and add it to your robot module's `_lipm_stabilizer` configuration file, or to the above `robot_models` section in the `etc/controllers/LIPMWalking/<robot_name>.yaml` file. The most important gains are the `dcm_tracking` PID (dcm control) and the foot admittance gains (force control)
+
   ```yaml
   robot_models:
     hrp2_drc:
@@ -431,21 +312,65 @@ plans:
           cop: [0.02, 0.01]
   ```
 
-## External Footstep Planner
+## Integrating in other controllers
 
-The controller can be used with an external footstep planner through the provided `ExternalFootstepPlannerPlugin`. This can be used to provide additional capabilities such as path planning and collision avoidance, or to control walking using a joystick.
+To integrate LIPMWalking into your own controllers, you need to:
+1. Modify
+1. Have your `Controller` class inherit from `mc_control::LIPMWalkingController`
+2. Modify your `CMakeLists.txt` to link against the LIPM walking controller library:
 
-Supported planners are:
-- [Hybrid MPC Footstep Planner](https://github.com/antodld/FootSteps_Planner) : recommended, built by default
-- [Online Footstep Planner](https://github.com/isri-aist/OnlineFootstepPlanner) : deprecated, ROS1 only. Refer to [](docs/online_footstep_planner.md) for more (deprecated) information on how to use it.
+```cmake
+find_packagje(lipm_walking_controller REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC lipm_walking_controller::lipm_walking_controller)
+```
 
-To use it, select the `external` plan in the GUI, and then select the planner you want to use.
+2. Add LIPMWalking states to your controller's FSM configuration
 
+```yaml
+StatesLibraries:
+- "@MC_STATES_DEFAULT_RUNTIME_INSTALL_PREFIX@"
+- "@MC_STATES_RUNTIME_INSTALL_PREFIX@"
+- "@LIPM_WALKING_STATES_LIBRARIES@"
+StatesFiles:
+- "@MC_STATES_DEFAULT_RUNTIME_INSTALL_PREFIX@/data"
+- "@MC_STATES_RUNTIME_INSTALL_PREFIX@/data"
+- "@LIPM_WALKING_STATES_FILES@"
+```
+
+3. Add a walking FSM state to your controller's FSM configuration
+
+```yaml
+LIPMWalking::WalkInternal:
+  base: Meta
+  transitions:
+  - [LIPMWalking::Standing, DoubleSupport, LIPMWalking::DoubleSupport]
+  - [LIPMWalking::DoubleSupport, SingleSupport, LIPMWalking::SingleSupport]
+  - [LIPMWalking::DoubleSupport, Standing, LIPMWalking::Standing]
+  - [LIPMWalking::SingleSupport, DoubleSupport, LIPMWalking::DoubleSupport]
+  configs:
+    LIPMWalking::Standing:
+      autoplay: false
+      autoplay_plans: [external]
+```
+
+4. Put this FSM in parallel to other actions of your controller
+
+```yaml
+WalkAndOtherActions:
+  base: Parallel
+  states:
+    - LIPMWalking::WalkInternal:
+    - OtherState1:
+    - ...
+```
+
+See https://github.com/arntanguy/CDADance and https://github.com/isri-aist/mc_ana_avatar_controller for examples of how to integrate LIPMWalking in your own controllers.
 
 ## Thanks
 
-Thanks to:
+Special thanks to:
 
+- [@stephane-caron](https://github.cvom/stephane-caron) for developing the original version of this controller, and maintaining it for several years
 - [@gergondet](https://github.com/gergondet) for developing and helping with mc\_rtc and maintaining this project
 - [@arntanguy](https://github.com/arntanguy) for developing and helping with mc\_rtc and maintaining this project
 - [@Saeed-Mansouri](https://github.com/Saeed-Mansouri) for bug hunting and discussion around the project - *Best Debugger Award* 🏅
