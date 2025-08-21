@@ -214,7 +214,7 @@ Adding your own robot is fairly straightforward. You need to:
 
 ```yaml
 robot_models:
-  hrp2_drc:
+  <robot_name>: # This should be the name of your robot, for example: hrp2_drc, hrp4cr, etc.
     swingfoot:
       weight: 2000
       stiffness: 500
@@ -241,7 +241,7 @@ robot_models:
       half_width: 0.07
       friction: 0.7
 plans:
-  hrp2_drc:
+  <robot_name>: # Replace with your robot name
     ashibumi: # stepping in place
       double_support_duration: 0.2
       single_support_duration: 0.8
@@ -297,7 +297,7 @@ install(FILES etc/controllers/LIPMWalking/<robot_name>.yaml
 
   ```yaml
   robot_models:
-    hrp2_drc:
+    <robot_name>: # This should be the name of your robot, for example: hrp2_drc, hrp4cr, etc.
       # <YOUR CUSTOM CONFIGURATION>
       # For supported options, see
       # See https://jrl-umi3218.github.io/mc_rtc/json-full.html#MetaTask/LIPMStabilizerTask
