@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=9"/>
     <meta name="generator" content="Doxygen 1.9.1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>lib.cpp Source File - LIPM Walking Documentation</title>
+    <title>src/lib.cpp Source File - LIPM Walking Documentation</title>
     <link href="tabs.css" rel="stylesheet" type="text/css"/>
     <link href="doxygen.css" rel="stylesheet" type="text/css">
     <script type="text/x-mathjax-config">
@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('lib_8cpp_source.html',''); initResizab
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> * POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controller_8h.html">lipm_walking/Controller.h</a>&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Controller_8h.html">lipm_walking/Controller.h</a>&gt;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;{</div>
@@ -162,26 +162,23 @@ $(document).ready(function(){initNavTree('lib_8cpp_source.html',''); initResizab
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                                          <span class="keyword">const</span> <span class="keywordtype">double</span> &amp; dt,</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                                                          <span class="keyword">const</span> mc_control::Configuration &amp; conf)</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="structlipm__walking_1_1_controller.html">lipm_walking::Controller</a>(</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="structlipm__walking_1_1Controller.html">lipm_walking::Controller</a>(</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        robot, dt, conf, mc_control::ControllerParameters{}.load_robot_config_into({}).overwrite_config(<span class="keyword">true</span>));</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  }</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="ttc" id="a_controller_8h_html"><div class="ttname"><a href="_controller_8h.html">Controller.h</a></div></div>
+<div class="ttc" id="aController_8h_html"><div class="ttname"><a href="Controller_8h.html">Controller.h</a></div></div>
 <div class="ttc" id="alib_8cpp_html_a31c955d96314d521102bb3256d9d2ba5"><div class="ttname"><a href="lib_8cpp.html#a31c955d96314d521102bb3256d9d2ba5">create_args_required</a></div><div class="ttdeci">CONTROLLER_MODULE_API unsigned int create_args_required()</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00043">lib.cpp:43</a></div></div>
 <div class="ttc" id="alib_8cpp_html_a3dfb53e98353279d24c55884b48131b3"><div class="ttname"><a href="lib_8cpp.html#a3dfb53e98353279d24c55884b48131b3">MC_RTC_CONTROLLER</a></div><div class="ttdeci">CONTROLLER_MODULE_API void MC_RTC_CONTROLLER(std::vector&lt; std::string &gt; &amp;names)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00032">lib.cpp:32</a></div></div>
 <div class="ttc" id="alib_8cpp_html_a98c10342ae398dfabd236803c067c5bd"><div class="ttname"><a href="lib_8cpp.html#a98c10342ae398dfabd236803c067c5bd">destroy</a></div><div class="ttdeci">CONTROLLER_MODULE_API void destroy(mc_control::MCController *ptr)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00038">lib.cpp:38</a></div></div>
 <div class="ttc" id="alib_8cpp_html_aa4622fede42b25111739e6e9ab8d70d4"><div class="ttname"><a href="lib_8cpp.html#aa4622fede42b25111739e6e9ab8d70d4">create</a></div><div class="ttdeci">CONTROLLER_MODULE_API mc_control::MCController * create(const std::string &amp;name, const mc_rbdyn::RobotModulePtr &amp;robot, const double &amp;dt, const mc_control::Configuration &amp;conf)</div><div class="ttdef"><b>Definition:</b> <a href="lib_8cpp_source.html#l00048">lib.cpp:48</a></div></div>
-<div class="ttc" id="astructlipm__walking_1_1_controller_html"><div class="ttname"><a href="structlipm__walking_1_1_controller.html">lipm_walking::Controller</a></div><div class="ttdoc">Main controller class.</div><div class="ttdef"><b>Definition:</b> <a href="_controller_8h_source.html#l00060">Controller.h:61</a></div></div>
+<div class="ttc" id="astructlipm__walking_1_1Controller_html"><div class="ttname"><a href="structlipm__walking_1_1Controller.html">lipm_walking::Controller</a></div><div class="ttdef"><b>Definition:</b> <a href="Controller_8h_source.html#l00060">Controller.h:61</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="lib_8cpp.html">lib.cpp</a></li>
-    <li class="footer">Generated on Thu Aug 21 2025 09:14:20 for lipm_walking_controller by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

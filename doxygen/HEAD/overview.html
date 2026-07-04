@@ -110,47 +110,43 @@ $(document).ready(function(){initNavTree('overview.html',''); initResizable(); }
 <div class="title">Overview of the code </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The LIPM walking controller is built with the <a href="https://gite.lirmm.fr/multi-contact/mc_rtc">mc_rtc</a> framework.</p>
-<p>In <a class="el" href="namespacemc__rtc.html" title="Framework namespace, only used to add a configuration loader.">mc_rtc</a>, the role of a controller is to initialize and update a set of <em>tasks</em> for whole-body control. These tasks are in turn used to formulate and solve an inverse-kinematics or inverse-dynamics quadratic program (QP) using the <a href="https://github.com/jrl-umi3218/Tasks/">Tasks</a> library. Solving the QP provides joint torques that are sent directly to torque-controlled robots, or joint accelerations that are integrated into positions and sent to position-controlled robots. All of this is done automatically by the framework, so that the only task of a controller is to update... tasks.</p>
+<div class="textblock"><p>The LIPM walking controller is built with the <a href="https://gite.lirmm.fr/multi-contact/mc_rtc">mc_rtc</a> framework. In <a class="el" href="namespacemc__rtc.html">mc_rtc</a>, the role of a controller is to initialize and update a set of <em>tasks</em> for whole-body control. These tasks are in turn used to formulate and solve an inverse-kinematics or inverse-dynamics quadratic program (QP) using the <a href="https://github.com/jrl-umi3218/Tasks/">Tasks</a> library. Solving the QP provides joint torques that are sent directly to torque-controlled robots, or joint accelerations that are integrated into positions and sent to position-controlled robots. All of this is done automatically by the framework, so that the only task of a controller is to update... tasks.</p>
 <p>There are two main functions in the controller:</p>
 <ul>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a2fdb0ecb1b6b22fe3277fe3354e44d48" title="Initialize the controller.">Controller::Controller</a></code> initializes tasks and internal objects such as, in this controller, the stabilizer <code>Stabilizer</code> and walking pattern generator <code><a class="el" href="structlipm__walking_1_1_model_predictive_control.html" title="Model predictive control problem.">ModelPredictiveControl</a></code></li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a2f1983a1772cb13335c6ded2ec742726" title="Main function of the controller, called at every control cycle.">Controller::run</a></code> is the main function which is called at every control cycle. When this function returns, all tasks should have been updated properly.</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a2fdb0ecb1b6b22fe3277fe3354e44d48">Controller::Controller</a></code> initializes tasks and internal objects such as, in this controller, the stabilizer <code>Stabilizer</code> and walking pattern generator <code><a class="el" href="structlipm__walking_1_1ModelPredictiveControl.html">ModelPredictiveControl</a></code></li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a2f1983a1772cb13335c6ded2ec742726">Controller::run</a></code> is the main function which is called at every control cycle. When this function returns, all tasks should have been updated properly.</li>
 </ul>
 <h1><a class="anchor" id="main_components"></a>
 Main components</h1>
-<p>The <code><a class="el" href="structlipm__walking_1_1_controller.html" title="Main controller class.">Controller</a></code> class has some main attributes that you will see everywhere in the code:</p>
+<p>The <code><a class="el" href="structlipm__walking_1_1Controller.html">Controller</a></code> class has some main attributes that you will see everywhere in the code:</p>
 <ul>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a21238170aa7997e890527e7a4b42644c" title="Get control robot state.">Controller::controlRobot()</a></code>: robot state output by the QP-based whole-body controller</li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a0b931a15c7952e18a7742be9411a0b19" title="Get model predictive control solver.">Controller::mpc()</a></code>: model-predictive-control problem solver used for walking pattern generation</li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#ae92f551603e828dd06b96c0eb600e75b" title="This getter is only used for consistency with the rest of mc_rtc.">Controller::pendulum()</a></code>: holds the reference state (CoM position, velocity, ZMP, ...) from the walking pattern</li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a870167397866be6bad4a39de5e4edfb3" title="Current solution trajectory from the walking pattern generator.">Controller::preview</a></code>: current solution trajectory from the walking pattern generator</li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a2f62356c15b1a5d9663b991435dfdd59" title="Current footstep plan.">Controller::plan</a></code>: current footstep plan</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a21238170aa7997e890527e7a4b42644c">Controller::controlRobot()</a></code>: robot state output by the QP-based whole-body controller</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a0b931a15c7952e18a7742be9411a0b19">Controller::mpc()</a></code>: model-predictive-control problem solver used for walking pattern generation</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#ae92f551603e828dd06b96c0eb600e75b">Controller::pendulum()</a></code>: holds the reference state (CoM position, velocity, ZMP, ...) from the walking pattern</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a870167397866be6bad4a39de5e4edfb3">Controller::preview</a></code>: current solution trajectory from the walking pattern generator</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a2f62356c15b1a5d9663b991435dfdd59">Controller::plan</a></code>: current footstep plan</li>
 <li><code>Controller::realRobot()</code>: estimated robot state</li>
-<li><code><a class="el" href="structlipm__walking_1_1_controller.html#a343bd090ccbc4f03300415f3c05deb27" title="This getter is only used for consistency with the rest of mc_rtc.">Controller::stabilizer()</a></code>: balance feedback control component that updates task targets</li>
+<li><code><a class="el" href="structlipm__walking_1_1Controller.html#a343bd090ccbc4f03300415f3c05deb27">Controller::stabilizer()</a></code>: balance feedback control component that updates task targets</li>
 </ul>
 <p>As a general rule, look out for documentation in header files or on the <a href="https://jrl-umi3218.github.io/lipm_walking_controller/doxygen/HEAD/">API documentation</a>.</p>
 <h1><a class="anchor" id="fsm"></a>
 Finite state machine</h1>
 <p>The last instruction in the controller's <code>run()</code> function calls <code>mc_control::fsm::Controller::run()</code>, which runs the main function of the current state in the finite state machine (FSM). Check out how the FSM works in the <a href="https://gite.lirmm.fr/multi-contact/mc_rtc/wikis/FSMController">FSM wiki page</a>. The four states in the walking controller's FSM are described in the <a href="https://github.com/stephane-caron/lipm_walking_controller/wiki/Graphical-user-interface">Graphical user interface</a> guide:</p>
 <ul>
-<li><code><a class="el" href="structlipm__walking_1_1states_1_1_initial.html" title="Hold posture and check contacts.">states::Initial</a></code>: nothing happens yet and the robot just holds its posture.</li>
-<li><code><a class="el" href="structlipm__walking_1_1states_1_1_standing.html" title="Enable stabilizer and keep CoM at a reference position.">states::Standing</a></code>: the user clicked on "Start standing", the stabilizer is now on.</li>
-<li><code><a class="el" href="structlipm__walking_1_1states_1_1_single_support.html" title="Single support phase while walking.">states::SingleSupport</a></code>: the robot is walking, currently in single support phase.</li>
-<li><code><a class="el" href="structlipm__walking_1_1states_1_1_double_support.html" title="Double support phase while walking.">states::DoubleSupport</a></code>: the robot is walking, currently in double support phase.</li>
+<li><code><a class="el" href="structlipm__walking_1_1states_1_1Initial.html">states::Initial</a></code>: nothing happens yet and the robot just holds its posture.</li>
+<li><code><a class="el" href="structlipm__walking_1_1states_1_1Standing.html">states::Standing</a></code>: the user clicked on "Start standing", the stabilizer is now on.</li>
+<li><code><a class="el" href="structlipm__walking_1_1states_1_1SingleSupport.html">states::SingleSupport</a></code>: the robot is walking, currently in single support phase.</li>
+<li><code><a class="el" href="structlipm__walking_1_1states_1_1DoubleSupport.html">states::DoubleSupport</a></code>: the robot is walking, currently in double support phase.</li>
 </ul>
 <p>If you just want some balance control without walking, you can modify the <code>Standing</code> state to suit your needs.</p>
-<p>If you want the robot to do something while walking, you can extend the FSM and execute your new states in parallel using the <a href="https://jrl-umi3218.github.io/mc_rtc/tutorials/recipes/fsm.html">built-in Parallel state</a> with <code><a class="el" href="structlipm__walking_1_1states_1_1_single_support.html" title="Single support phase while walking.">states::SingleSupport</a></code> and <code><a class="el" href="structlipm__walking_1_1states_1_1_double_support.html" title="Double support phase while walking.">states::DoubleSupport</a></code>. </p>
+<p>If you want the robot to do something while walking, you can extend the FSM and execute your new states in parallel using the <a href="https://jrl-umi3218.github.io/mc_rtc/tutorials/recipes/fsm.html">built-in Parallel state</a> with <code><a class="el" href="structlipm__walking_1_1states_1_1SingleSupport.html">states::SingleSupport</a></code> and <code><a class="el" href="structlipm__walking_1_1states_1_1DoubleSupport.html">states::DoubleSupport</a></code>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
-<!-- HTML footer for doxygen 1.8.6-->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Aug 21 2025 09:14:20 for lipm_walking_controller by
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

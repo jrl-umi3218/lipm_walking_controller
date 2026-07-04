@@ -1,0 +1,3910 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<tagfile doxygen_version="1.9.1">
+  <compound kind="file">
+    <name>build.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>build_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>docker.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>docker_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>mainpage.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>mainpage_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>overview.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>overview_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>stabilizer.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>stabilizer_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>troubleshooting.dox</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/doc/</path>
+    <filename>troubleshooting_8dox.html</filename>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Contact.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>Contact_8h.html</filename>
+    <includes id="Sole_8h" name="Sole.h" local="no" imported="no">lipm_walking/Sole.h</includes>
+    <class kind="struct">lipm_walking::Contact</class>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::Contact &gt;</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>mc_rtc</namespace>
+    <member kind="typedef">
+      <type>std::pair&lt; Eigen::MatrixXd, Eigen::VectorXd &gt;</type>
+      <name>HrepXd</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a17f9a5cb143064d2e429315aade89f21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>mc_tasks::lipm_stabilizer::ContactState</type>
+      <name>ContactState</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a7859e516b157e02a22d48d48c7bff149</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>Contact</type>
+      <name>operator*</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a3e17e554f1bfd10eae30e24c69e104a7</anchor>
+      <arglist>(const sva::PTransformd &amp;X, const Contact &amp;contact)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>Controller.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>Controller_8h.html</filename>
+    <includes id="Contact_8h" name="Contact.h" local="no" imported="no">lipm_walking/Contact.h</includes>
+    <includes id="ExternalPlanner_8h" name="ExternalPlanner.h" local="no" imported="no">lipm_walking/ExternalPlanner.h</includes>
+    <includes id="FootstepPlan_8h" name="FootstepPlan.h" local="no" imported="no">lipm_walking/FootstepPlan.h</includes>
+    <includes id="ModelPredictiveControl_8h" name="ModelPredictiveControl.h" local="no" imported="no">lipm_walking/ModelPredictiveControl.h</includes>
+    <includes id="PlanInterpolator_8h" name="PlanInterpolator.h" local="no" imported="no">lipm_walking/PlanInterpolator.h</includes>
+    <includes id="Sole_8h" name="Sole.h" local="no" imported="no">lipm_walking/Sole.h</includes>
+    <includes id="WalkingState_8h" name="WalkingState.h" local="no" imported="no">lipm_walking/WalkingState.h</includes>
+    <class kind="struct">lipm_walking::Controller</class>
+    <namespace>lipm_walking</namespace>
+    <member kind="variable">
+      <type>constexpr double</type>
+      <name>PREVIEW_UPDATE_PERIOD</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>abccb4317c936fd3671cf62d0b4cdd4d0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ExternalPlanner.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>ExternalPlanner_8h.html</filename>
+    <includes id="FootstepPlan_8h" name="FootstepPlan.h" local="no" imported="no">lipm_walking/FootstepPlan.h</includes>
+    <includes id="SE2d_8h" name="SE2d.h" local="no" imported="no">lipm_walking/utils/SE2d.h</includes>
+    <class kind="struct">lipm_walking::ExternalPlanner</class>
+    <namespace>mc_control</namespace>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>FootstepPlan.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>FootstepPlan_8h.html</filename>
+    <includes id="Contact_8h" name="Contact.h" local="no" imported="no">lipm_walking/Contact.h</includes>
+    <includes id="Sole_8h" name="Sole.h" local="no" imported="no">lipm_walking/Sole.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <class kind="struct">lipm_walking::FootstepPlan</class>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::FootstepPlan &gt;</class>
+    <namespace>mc_rtc</namespace>
+    <namespace>mc_rtc::gui</namespace>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>ModelPredictiveControl.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>ModelPredictiveControl_8h.html</filename>
+    <includes id="Contact_8h" name="Contact.h" local="no" imported="no">lipm_walking/Contact.h</includes>
+    <includes id="Preview_8h" name="Preview.h" local="no" imported="no">lipm_walking/Preview.h</includes>
+    <includes id="Sole_8h" name="Sole.h" local="no" imported="no">lipm_walking/Sole.h</includes>
+    <class kind="struct">lipm_walking::ModelPredictiveControl</class>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PlanInterpolator.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>PlanInterpolator_8h.html</filename>
+    <includes id="FootstepPlan_8h" name="FootstepPlan.h" local="no" imported="no">lipm_walking/FootstepPlan.h</includes>
+    <includes id="SE2d_8h" name="SE2d.h" local="no" imported="no">lipm_walking/utils/SE2d.h</includes>
+    <includes id="polynomials_8h" name="polynomials.h" local="no" imported="no">lipm_walking/utils/polynomials.h</includes>
+    <class kind="struct">lipm_walking::PlanInterpolator</class>
+    <namespace>mc_rtc</namespace>
+    <namespace>mc_rtc::gui</namespace>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Preview.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>Preview_8h.html</filename>
+    <class kind="struct">lipm_walking::Preview</class>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Sole.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>Sole_8h.html</filename>
+    <class kind="struct">lipm_walking::Sole</class>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::Sole &gt;</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>mc_rtc</namespace>
+  </compound>
+  <compound kind="file">
+    <name>State.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>State_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <class kind="struct">lipm_walking::State</class>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SwingFoot.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>SwingFoot_8h.html</filename>
+    <includes id="polynomials_8h" name="polynomials.h" local="no" imported="no">lipm_walking/utils/polynomials.h</includes>
+    <class kind="struct">lipm_walking::SwingFoot</class>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>clamp.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/utils/</path>
+    <filename>clamp_8h.html</filename>
+    <namespace>utils</namespace>
+    <member kind="function">
+      <type>double</type>
+      <name>clamp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>aea4ead7eed51a66866b0b5d519bac40f</anchor>
+      <arglist>(double v, double vMin, double vMax)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clampInPlace</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a27188482ceddb072c3275eb97f805a4c</anchor>
+      <arglist>(double &amp;v, double vMin, double vMax)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>clamp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a46fe4f1bbb04edfa576cf554d9581706</anchor>
+      <arglist>(double v, double vMin, double vMax, const char *label)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clampInPlace</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a54f407173d3c409ee62f05286ced3dfe</anchor>
+      <arglist>(double &amp;v, double vMin, double vMax, const char *label)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>polynomials.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/utils/</path>
+    <filename>polynomials_8h.html</filename>
+    <class kind="struct">utils::PolynomialBase</class>
+    <class kind="struct">utils::CubicPolynomialBase</class>
+    <class kind="struct">utils::CubicPolynomial</class>
+    <class kind="struct">utils::CubicPolynomial&lt; double &gt;</class>
+    <class kind="struct">utils::CubicHermitePolynomial</class>
+    <class kind="struct">utils::HoubaPolynomial</class>
+    <class kind="struct">utils::QuinticPolynomialBase</class>
+    <class kind="struct">utils::QuinticPolynomial</class>
+    <class kind="struct">utils::QuinticPolynomial&lt; double &gt;</class>
+    <class kind="struct">utils::QuinticHermitePolynomial</class>
+    <class kind="struct">utils::RetimedPolynomial</class>
+    <namespace>utils</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SE2d.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/utils/</path>
+    <filename>SE2d_8h.html</filename>
+    <class kind="struct">lipm_walking::utils::SE2d</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::utils</namespace>
+    <member kind="function">
+      <type>std::ostream &amp;</type>
+      <name>operator&lt;&lt;</name>
+      <anchorfile>SE2d_8h.html</anchorfile>
+      <anchor>a9df0c56019839bf9f855b92e145470d8</anchor>
+      <arglist>(std::ostream &amp;os, const lipm_walking::utils::SE2d &amp;se2d)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>slerp.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/utils/</path>
+    <filename>slerp_8h.html</filename>
+    <namespace>utils</namespace>
+    <member kind="function">
+      <type>Eigen::Matrix3d</type>
+      <name>slerp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>af1466af265a98f6895bdde4f96be5216</anchor>
+      <arglist>(const Eigen::Matrix3d &amp;from, const Eigen::Matrix3d &amp;to, double t)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>WalkingState.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/include/lipm_walking/</path>
+    <filename>WalkingState_8h.html</filename>
+    <namespace>lipm_walking</namespace>
+    <member kind="enumeration">
+      <type></type>
+      <name>WalkingState</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a11f4a248e158451286269223c0662272</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272a2dbec34a65724db94f81e8533ee18192">Standby</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272aa66b284e632fb96f19e27dca96b78fd7">Standing</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272a80ed5c215daa223b859dbbb79343805f">DoubleSupport</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272ab5e64cafb52dc7c56593780174c468b1">SingleSupport</enumvalue>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>Controller.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>Controller_8cpp.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <namespace>lipm_walking</namespace>
+    <member kind="typedef">
+      <type>mc_rtc::gui::Color</type>
+      <name>Color</name>
+      <anchorfile>Controller_8cpp.html</anchorfile>
+      <anchor>a96ad202dadb448ef7fffe94f97475afb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ExternalPlanner.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>ExternalPlanner_8cpp.html</filename>
+    <includes id="ExternalPlanner_8h" name="ExternalPlanner.h" local="no" imported="no">lipm_walking/ExternalPlanner.h</includes>
+    <namespace>lipm_walking</namespace>
+    <member kind="typedef">
+      <type>utils::SE2d</type>
+      <name>SE2d</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a2301d526f9d22281fd3c473fd9317c67</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>FootstepPlan.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>FootstepPlan_8cpp.html</filename>
+    <includes id="FootstepPlan_8h" name="FootstepPlan.h" local="no" imported="no">lipm_walking/FootstepPlan.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>lib.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>lib_8cpp.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <member kind="function">
+      <type>CONTROLLER_MODULE_API void</type>
+      <name>MC_RTC_CONTROLLER</name>
+      <anchorfile>lib_8cpp.html</anchorfile>
+      <anchor>a3dfb53e98353279d24c55884b48131b3</anchor>
+      <arglist>(std::vector&lt; std::string &gt; &amp;names)</arglist>
+    </member>
+    <member kind="function">
+      <type>CONTROLLER_MODULE_API void</type>
+      <name>destroy</name>
+      <anchorfile>lib_8cpp.html</anchorfile>
+      <anchor>a98c10342ae398dfabd236803c067c5bd</anchor>
+      <arglist>(mc_control::MCController *ptr)</arglist>
+    </member>
+    <member kind="function">
+      <type>CONTROLLER_MODULE_API unsigned int</type>
+      <name>create_args_required</name>
+      <anchorfile>lib_8cpp.html</anchorfile>
+      <anchor>a31c955d96314d521102bb3256d9d2ba5</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>CONTROLLER_MODULE_API mc_control::MCController *</type>
+      <name>create</name>
+      <anchorfile>lib_8cpp.html</anchorfile>
+      <anchor>aa4622fede42b25111739e6e9ab8d70d4</anchor>
+      <arglist>(const std::string &amp;name, const mc_rbdyn::RobotModulePtr &amp;robot, const double &amp;dt, const mc_control::Configuration &amp;conf)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>ModelPredictiveControl.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>ModelPredictiveControl_8cpp.html</filename>
+    <includes id="ModelPredictiveControl_8h" name="ModelPredictiveControl.h" local="no" imported="no">lipm_walking/ModelPredictiveControl.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <includes id="slerp_8h" name="slerp.h" local="no" imported="no">lipm_walking/utils/slerp.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>PlanInterpolator.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>PlanInterpolator_8cpp.html</filename>
+    <includes id="Contact_8h" name="Contact.h" local="no" imported="no">lipm_walking/Contact.h</includes>
+    <includes id="PlanInterpolator_8h" name="PlanInterpolator.h" local="no" imported="no">lipm_walking/PlanInterpolator.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <namespace>lipm_walking</namespace>
+    <member kind="function">
+      <type>double</type>
+      <name>floorn</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a64938efece741683c0e3449e96ede5ab</anchor>
+      <arglist>(double x, int n)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>Preview.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>Preview_8cpp.html</filename>
+    <includes id="ModelPredictiveControl_8h" name="ModelPredictiveControl.h" local="no" imported="no">lipm_walking/ModelPredictiveControl.h</includes>
+    <includes id="Preview_8h" name="Preview.h" local="no" imported="no">lipm_walking/Preview.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <includes id="slerp_8h" name="slerp.h" local="no" imported="no">lipm_walking/utils/slerp.h</includes>
+    <namespace>lipm_walking</namespace>
+    <member kind="typedef">
+      <type>mc_planning::Pendulum</type>
+      <name>Pendulum</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a9d7a8709221cdec0b5096661f727800e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="file">
+    <name>DoubleSupport.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>DoubleSupport_8cpp.html</filename>
+    <includes id="DoubleSupport_8h" name="DoubleSupport.h" local="yes" imported="no">DoubleSupport.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>DoubleSupport.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>DoubleSupport_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="State_8h" name="State.h" local="no" imported="no">lipm_walking/State.h</includes>
+    <class kind="struct">lipm_walking::states::DoubleSupport</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::states</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Initial.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>Initial_8cpp.html</filename>
+    <includes id="Initial_8h" name="Initial.h" local="yes" imported="no">Initial.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Initial.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>Initial_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="State_8h" name="State.h" local="no" imported="no">lipm_walking/State.h</includes>
+    <class kind="struct">lipm_walking::states::Initial</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::states</namespace>
+  </compound>
+  <compound kind="file">
+    <name>RunStabilizer.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>RunStabilizer_8cpp.html</filename>
+    <includes id="RunStabilizer_8h" name="RunStabilizer.h" local="yes" imported="no">RunStabilizer.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>RunStabilizer.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>RunStabilizer_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="State_8h" name="State.h" local="no" imported="no">lipm_walking/State.h</includes>
+    <class kind="struct">lipm_walking::states::RunStabilizer</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::states</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SingleSupport.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>SingleSupport_8cpp.html</filename>
+    <includes id="SingleSupport_8h" name="SingleSupport.h" local="yes" imported="no">SingleSupport.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SingleSupport.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>SingleSupport_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="State_8h" name="State.h" local="no" imported="no">lipm_walking/State.h</includes>
+    <includes id="SwingFoot_8h" name="SwingFoot.h" local="no" imported="no">lipm_walking/SwingFoot.h</includes>
+    <class kind="struct">lipm_walking::states::SingleSupport</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::states</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Standing.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>Standing_8cpp.html</filename>
+    <includes id="Standing_8h" name="Standing.h" local="yes" imported="no">Standing.h</includes>
+    <includes id="clamp_8h" name="clamp.h" local="no" imported="no">lipm_walking/utils/clamp.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="file">
+    <name>Standing.h</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/states/</path>
+    <filename>Standing_8h.html</filename>
+    <includes id="Controller_8h" name="Controller.h" local="no" imported="no">lipm_walking/Controller.h</includes>
+    <includes id="State_8h" name="State.h" local="no" imported="no">lipm_walking/State.h</includes>
+    <class kind="struct">lipm_walking::states::Standing</class>
+    <namespace>lipm_walking</namespace>
+    <namespace>lipm_walking::states</namespace>
+  </compound>
+  <compound kind="file">
+    <name>SwingFoot.cpp</name>
+    <path>/home/runner/work/lipm_walking_controller/lipm_walking_controller/src/</path>
+    <filename>SwingFoot_8cpp.html</filename>
+    <includes id="SwingFoot_8h" name="SwingFoot.h" local="no" imported="no">lipm_walking/SwingFoot.h</includes>
+    <includes id="slerp_8h" name="slerp.h" local="no" imported="no">lipm_walking/utils/slerp.h</includes>
+    <namespace>lipm_walking</namespace>
+  </compound>
+  <compound kind="struct">
+    <name>mc_rtc::ConfigurationLoader&lt; lipm_walking::Contact &gt;</name>
+    <filename>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Contact_01_4.html</filename>
+    <member kind="function" static="yes">
+      <type>static lipm_walking::Contact</type>
+      <name>load</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Contact_01_4.html</anchorfile>
+      <anchor>a0982ca6af193cdaa6d7fe7c8973736b7</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static mc_rtc::Configuration</type>
+      <name>save</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Contact_01_4.html</anchorfile>
+      <anchor>a72f190a448652f9c14e10c316464763a</anchor>
+      <arglist>(const lipm_walking::Contact &amp;contact)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>mc_rtc::ConfigurationLoader&lt; lipm_walking::FootstepPlan &gt;</name>
+    <filename>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1FootstepPlan_01_4.html</filename>
+    <member kind="function" static="yes">
+      <type>static lipm_walking::FootstepPlan</type>
+      <name>load</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1FootstepPlan_01_4.html</anchorfile>
+      <anchor>a3e0283b9a8e0494470b21470ea594718</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static mc_rtc::Configuration</type>
+      <name>save</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1FootstepPlan_01_4.html</anchorfile>
+      <anchor>aa8323cb0902836ccaea9e39e637a1852</anchor>
+      <arglist>(const lipm_walking::FootstepPlan &amp;plan)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>mc_rtc::ConfigurationLoader&lt; lipm_walking::Sole &gt;</name>
+    <filename>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Sole_01_4.html</filename>
+    <member kind="function" static="yes">
+      <type>static lipm_walking::Sole</type>
+      <name>load</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Sole_01_4.html</anchorfile>
+      <anchor>a12c8438a38c6e83af5f60448648ad66c</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static mc_rtc::Configuration</type>
+      <name>save</name>
+      <anchorfile>structmc__rtc_1_1ConfigurationLoader_3_01lipm__walking_1_1Sole_01_4.html</anchorfile>
+      <anchor>addf26c4b3c6eac221a193702a23407f1</anchor>
+      <arglist>(const lipm_walking::Sole &amp;sole)</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::Contact</name>
+    <filename>structlipm__walking_1_1Contact.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>Contact</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a9cdb3f7eb7b28b0b80e5037f358a3f2a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Contact</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a466c74b917d53d277e7fbce2b27231dd</anchor>
+      <arglist>(const sva::PTransformd &amp;pose)</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>sagittal</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a5be40dad020c4724730a5c7ddfb7caea</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>lateral</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a636dedd7aba32723e9d10b2163fbabae</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>normal</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a231493bc50213776253f650df9963f2f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Eigen::Vector3d &amp;</type>
+      <name>position</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ac460195a9b2ba49a120aa8a0abfa6c08</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Eigen::Vector3d &amp;</type>
+      <name>p</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>af3952309f1426558115f50bd0247d689</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>anklePos</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ac1dd86766c384c73ba47fe35a22f9226</anchor>
+      <arglist>(const Sole &amp;sole) const</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>anklePose</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ae65091b1ed5e487d566aaa9e7c17b222</anchor>
+      <arglist>(const Sole &amp;sole) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>x</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a4f7a67e5b429ee2fa9e03e1064d79018</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>y</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a229725e5283cd0e47b127223c24adbbd</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>z</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a1d666ea556c09bc05ef4e2e0e26b8907</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>vertex0</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a39e6956590f79b176fa7d73cf2f539f1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>vertex1</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a294602e938cdb1c12aeb7429b211a03e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>vertex2</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>aa7cf73bdc328f0dda192af643d624903</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>vertex3</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>aa08c770b549bd85f5731258116cf821d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>minCoord</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a4a202eac3f6f04b51df156702085d4f1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>maxCoord</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>aa99f9acccdb77c97c8c0deafca6206d6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>xmin</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>aba14bbd2cde9781a42d68efb323e2fec</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>xmax</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ab31951f8cb1a8be75fb3543a0214f9a3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>ymin</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a1d2395635636fb04e46b513fee5dc0d5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>ymax</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ac389761bb44ea8299f9f24b010dfd082</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>zmin</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a6fe3503569123076ce746cc6354dbc00</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>zmax</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a688ef50b90e0ff040aba8bb936099fa8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>HrepXd</type>
+      <name>hrep</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>ad9e9bb3c24b09902d822f3fe0191374d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>robotTransform</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a158f9ea68e0eebb599df3db8758846fb</anchor>
+      <arglist>(const mc_rbdyn::Robot &amp;robot) const</arglist>
+    </member>
+    <member kind="variable">
+      <type>Eigen::Vector3d</type>
+      <name>refVel</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a09d914ef244caa215c7d11f30c848e46</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>halfLength</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a6247b1fd9073a92c1bd3abd279c775bb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>halfWidth</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a09862c712059278b15e7824c59db9e7c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>mc_rtc::Configuration</type>
+      <name>swingConfig</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a543a423fe7b8dc713153def1eaee1137</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::string</type>
+      <name>surfaceName</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a0015340c4d9ceac46ea8d2b5d04ea8e2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>sva::PTransformd</type>
+      <name>pose</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a1da40d557f896d1fd978985288d56a6f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>id</name>
+      <anchorfile>structlipm__walking_1_1Contact.html</anchorfile>
+      <anchor>a29a8b55ad08e2dd623077337a86558f7</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::Controller</name>
+    <filename>structlipm__walking_1_1Controller.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>Controller</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2fdb0ecb1b6b22fe3277fe3354e44d48</anchor>
+      <arglist>(mc_rbdyn::RobotModulePtr robot, double dt, const mc_rtc::Configuration &amp;config, mc_control::ControllerParameters params={})</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>af273817014373365c1be96cbf9cec130</anchor>
+      <arglist>(const mc_control::ControllerResetData &amp;data) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGUIElements</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a6613ada575cd46d4ff0d3c9ab46b369a</anchor>
+      <arglist>(std::shared_ptr&lt; mc_rtc::gui::StateBuilder &gt; gui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGUIMarkers</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>ae2b58e826f6965d95e15a1f80f840939</anchor>
+      <arglist>(std::shared_ptr&lt; mc_rtc::gui::StateBuilder &gt; gui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addLogEntries</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aca860e73a0c349b4d8015b42fe284b54</anchor>
+      <arglist>(mc_rtc::Logger &amp;logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>leftFootRatio</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>ac67eb21a975d422c34808c2edc5f1207</anchor>
+      <arglist>(double ratio)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>loadFootstepPlan</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a61bb4005b4a3c178bacfe56e81bb14d3</anchor>
+      <arglist>(std::string name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updatePlan</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a3ad4e1e7c5f9cfb437272c9efd8ac4ce</anchor>
+      <arglist>(const std::string &amp;name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>pauseWalkingCallback</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a964de87a8124e0994c1b86ddc7d17414</anchor>
+      <arglist>(bool verbose=false)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual bool</type>
+      <name>run</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2f1983a1772cb13335c6ded2ec742726</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>startLogSegment</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aeaebbbbee88e09c81de45f75b4160d1e</anchor>
+      <arglist>(const std::string &amp;label)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>stopLogSegment</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aaca8c7e9c0968efef5c9a8fbac78ea8a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>updatePreview</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>ac28e02b6fa57c40ba9449b4cf50a2b41</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>warnIfRobotIsInTheAir</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a71dd696e927f49821635265e8a20e893</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>mc_rbdyn::Robot &amp;</type>
+      <name>controlRobot</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a21238170aa7997e890527e7a4b42644c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>doubleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a24c670daf755cfff5607e5c17b9807ac</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isLastDSP</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a1428774ca33bc40895636f3902d53987</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isLastSSP</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aefd2551eb91b73b0e5dd2ef38e8eec17</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>leftFootRatio</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a671cd47b16e85063d77850dd479006ba</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>measuredLeftFootRatio</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2c0635f40c3d00f6824a59c2e34ceca2</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>ModelPredictiveControl &amp;</type>
+      <name>mpc</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a0b931a15c7952e18a7742be9411a0b19</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>nextContact</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a3c94fbd647e8fe6f996fb0d3da7a9cf7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>nextDoubleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a15ebb3027ce07a40bfbfd5f80efedc98</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>mc_planning::Pendulum &amp;</type>
+      <name>pendulum</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>ae92f551603e828dd06b96c0eb600e75b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>prevContact</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a0a87a2a1ccde73d5d7849e35532c69ea</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>singleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a99929d59af3b6d2afb0c04e0d41f8294</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Sole &amp;</type>
+      <name>sole</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a84d84b7e9f9b64b20fd3b10858b65524</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::shared_ptr&lt; mc_tasks::lipm_stabilizer::StabilizerTask &gt;</type>
+      <name>stabilizer</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a343bd090ccbc4f03300415f3c05deb27</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>setContacts</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aa0ce156a43a2075e45ecb5fdd3a870a6</anchor>
+      <arglist>(const std::vector&lt; std::pair&lt; mc_tasks::lipm_stabilizer::ContactState, sva::PTransformd &gt;&gt; &amp;contacts, bool fullDoF=false)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>supportContact</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a501f48b3849db1effe9c0852bd7bce11</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>targetContact</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2d5601029775836ffb0c20ef23787dd6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>isInOpenLoopTicker</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a6b5e719b4e77d768b2051139639a7382</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable">
+      <type>WalkingState</type>
+      <name>walkingState</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a48a45f2c05d1fd779f98099c0b53a33b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>FootstepPlan</type>
+      <name>plan</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2f62356c15b1a5d9663b991435dfdd59</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>PlanInterpolator</type>
+      <name>planInterpolator</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>af37c79c6da811ea10e42b6b9e40f5174</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>ExternalPlanner</type>
+      <name>externalFootstepPlanner</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>afeed5819160e3d0976dcf01149652348</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>emergencyStop</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a74adaf293e6f1538a6ec871b824d64f7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>startWalking</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a767fe7617d9d02aa4abe794f6312dea9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>pauseWalking</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a376373dcffe435cf0d514c7c5543b3a0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>pauseWalkingRequested</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a2b1f0eaea9dd94b9f379a8f698bae587</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::shared_ptr&lt; Preview &gt;</type>
+      <name>preview</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a870167397866be6bad4a39de5e4edfb3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+      <name>halfSitPose</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a5db5a101d8fffa999208226b2a6e18c0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::shared_ptr&lt; mc_tasks::SurfaceTransformTask &gt;</type>
+      <name>swingFootTaskLeft_</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a835023e0ed34ccb708d120770b0f7496</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::shared_ptr&lt; mc_tasks::SurfaceTransformTask &gt;</type>
+      <name>swingFootTaskRight_</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>af73f48e4a9ae9d2af772750075f53c61</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>bool</type>
+      <name>isWalking</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>a635b90d399d08c202efd9e160a2a1650</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>unsigned</type>
+      <name>nbMPCFailures_</name>
+      <anchorfile>structlipm__walking_1_1Controller.html</anchorfile>
+      <anchor>aed2495b4507a60310382ce3cde186bdb</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::CubicHermitePolynomial</name>
+    <filename>structutils_1_1CubicHermitePolynomial.html</filename>
+    <templarg></templarg>
+    <base>utils::CubicPolynomial</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>CubicHermitePolynomial</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a502a8d9871d96454a5c4181d351463a1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CubicHermitePolynomial</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a65a77878c5aaea47e59150546cce7bca</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;targetPos, const T &amp;targetVel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a93a4b3f1b56b5d7f607fc5756743f1ae</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;targetPos, const T &amp;targetVel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>ac86073bfc8b05aee748650b19f80e9cd</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;targetPos)</arglist>
+    </member>
+    <member kind="function" virtualness="virtual">
+      <type>virtual void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>ac43ec68f1098fab612a131c9dcad0543</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>initPos_</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a31b1e7de691871e84e8899735525ac78</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>initVel_</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a9e68204cab179a6e5e6348e49d95e479</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>targetPos_</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a5655d1819b10151dc26557f2d6d80740</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>targetVel_</name>
+      <anchorfile>structutils_1_1CubicHermitePolynomial.html</anchorfile>
+      <anchor>a6781b5f5480efebe865c2284a34b1d00</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::CubicPolynomial</name>
+    <filename>structutils_1_1CubicPolynomial.html</filename>
+    <templarg></templarg>
+    <base>utils::CubicPolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW T</type>
+      <name>zero</name>
+      <anchorfile>structutils_1_1CubicPolynomial.html</anchorfile>
+      <anchor>aace9c7e1749cb6df2966735fc367a491</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CubicPolynomial</name>
+      <anchorfile>structutils_1_1CubicPolynomial.html</anchorfile>
+      <anchor>aa2b2d64ba1bd0ce46b7628c71730a891</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::CubicPolynomial&lt; double &gt;</name>
+    <filename>structutils_1_1CubicPolynomial_3_01double_01_4.html</filename>
+    <base>CubicPolynomialBase&lt; double &gt;</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW double</type>
+      <name>zero</name>
+      <anchorfile>structutils_1_1CubicPolynomial_3_01double_01_4.html</anchorfile>
+      <anchor>a36c14ebc03b17f55c8595160e6f4feb3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>CubicPolynomial</name>
+      <anchorfile>structutils_1_1CubicPolynomial_3_01double_01_4.html</anchorfile>
+      <anchor>ab4966453a86df914dd2ce5f68d7af2f6</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::CubicPolynomialBase</name>
+    <filename>structutils_1_1CubicPolynomialBase.html</filename>
+    <templarg></templarg>
+    <base>utils::PolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>CubicPolynomialBase</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a89f5bf6f914a22ec5937c1d016dbca0a</anchor>
+      <arglist>(const T &amp;C0, const T &amp;C1, const T &amp;C2, const T &amp;C3)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a0f1d6c23599e1a6536ccfb29a3cb6668</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>ac7b8c03aeac76d08fac3618addd0ad99</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a88d0b7401adbfc1bb4bd73158c72cc07</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C0_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a8fb474f1a85d17ea16ca05c291740a30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C1_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a0646e86d89abd7a82de256372aa24aa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C2_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>af4d6cca6457e29cc3e70dc60f0b20f90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C3_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a292e12a239ef8254900183271987cdcd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>CubicPolynomialBase&lt; double &gt;</name>
+    <filename>structutils_1_1CubicPolynomialBase.html</filename>
+    <base>utils::PolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>CubicPolynomialBase</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a89f5bf6f914a22ec5937c1d016dbca0a</anchor>
+      <arglist>(const double &amp;C0, const double &amp;C1, const double &amp;C2, const double &amp;C3)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a0f1d6c23599e1a6536ccfb29a3cb6668</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>ac7b8c03aeac76d08fac3618addd0ad99</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a88d0b7401adbfc1bb4bd73158c72cc07</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C0_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a8fb474f1a85d17ea16ca05c291740a30</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C1_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a0646e86d89abd7a82de256372aa24aa2</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C2_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>af4d6cca6457e29cc3e70dc60f0b20f90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C3_</name>
+      <anchorfile>structutils_1_1CubicPolynomialBase.html</anchorfile>
+      <anchor>a292e12a239ef8254900183271987cdcd</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::states::DoubleSupport</name>
+    <filename>structlipm__walking_1_1states_1_1DoubleSupport.html</filename>
+    <base>lipm_walking::State</base>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>a420b23eb1e516f40712609bc5a7d9a65</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>a90dafe7f619598ee0d18d0ba3a76c018</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>ae762017d629a4d8c222153ab090e85a7</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkInitialSupport</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>a03af8b104d17c063344cf173e0f212cf</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>ab022cb9928efa6ab78e7206b87bf2665</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updatePreview</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>af294ae30c724a63d098582fe7df6ce97</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleExternalPlan</name>
+      <anchorfile>structlipm__walking_1_1states_1_1DoubleSupport.html</anchorfile>
+      <anchor>aeb13dc4bdc3f9fa4778e56811ad0cabe</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::ExternalPlanner</name>
+    <filename>structlipm__walking_1_1ExternalPlanner.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>State</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151dd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Standing</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151ddad7dc17f91c83d467f8643ff534813ed7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>DoubleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151ddae4c4c09fbbb60ae9ce872d7324cd234d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SingleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151dda10f4a8e5f666f7d89993f971e372268a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>lipm_walking::utils::SE2d</type>
+      <name>SE2d</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a504bdfceceb64b258b9e145994b287eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>mc_plugin::ExternalFootstepPlanner::Request</type>
+      <name>Request</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a5c3ec16fbccef93b99586becd539fc12</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>mc_plugin::ExternalFootstepPlanner::Foot</type>
+      <name>Foot</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea9d638a6dd8bee96410301bd7767645</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>Standing</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151ddad7dc17f91c83d467f8643ff534813ed7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>DoubleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151ddae4c4c09fbbb60ae9ce872d7324cd234d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumvalue">
+      <name>SingleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aea1b823cff87fda6bb2040400f8151dda10f4a8e5f666f7d89993f971e372268a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>ExternalPlanner</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a512918cde83e94832fd7cbdf43544759</anchor>
+      <arglist>(mc_control::MCController &amp;ctl)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>configure</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a6939addb091a213fbb0671bc43bf533e</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>planningRequested</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a07ac67d01d149e8a2995a10cb0018bb1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>requestPlan</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a35e475ed50a785b8c1570ef3bba847bf</anchor>
+      <arglist>(const State state, const Foot supportFoot, const utils::SE2d &amp;start_lf, const utils::SE2d &amp;start_rf, double allowed_time)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>cancelRequest</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aa132eb53da2683ed9ca8bec33e49de6b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>planRequested</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a5bc99944ff53e864cbe313a809f19acc</anchor>
+      <arglist>(State state) const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hasPlan</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aa35bb5c257cb90de5b0c50ab6b1afb6c</anchor>
+      <arglist>(State state) const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; lipm_walking::Contact &gt;</type>
+      <name>plan</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aecb29ce0384528a96f9c341dcc1db92e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>State</type>
+      <name>state</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a99409a64ec773c29be3ea0272f040301</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>leftFootLandingOffset</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a163094c1c4336803eaede162f3d8e03a</anchor>
+      <arglist>(const SE2d &amp;offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>rightFootLandingOffset</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a897545759061a8b9d43177bf4b9bc64a</anchor>
+      <arglist>(const SE2d &amp;offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>allowedTimeSingleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a60d1eb89d6df8303bb6887586e7dc741</anchor>
+      <arglist>(const double time)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>allowedTimeSingleSupport</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a59c8d4bbf061dc8f6b85eefffd657c96</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>allowedTimeStanding</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a9fe733736699fc8099f9bf2c7246cf51</anchor>
+      <arglist>(const double time)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>allowedTimeStanding</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>af6b89e74d06bf3ba3dfe8003fc11471b</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>activate</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>adec6f7c03b8904bdbfcdaf69582c454a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>deactivate</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>af78d7feebe2c32e5fc6a5c084cbba1ca</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>requestPlanWorldPositionTarget</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>ac196c7beb2613cbc001a5b13d87c0e89</anchor>
+      <arglist>(const State state, const Foot supportFoot, const utils::SE2d &amp;start_lf, const utils::SE2d &amp;start_rf, const utils::SE2d &amp;targetWorld, double allowed_time)</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>requestPlanLocalPositionTarget</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a1b76162a7c65eb04cc38ba2097328247</anchor>
+      <arglist>(const State state, const Foot supportFoot, const utils::SE2d &amp;start_lf, const utils::SE2d &amp;start_rf, const utils::SE2d &amp;localTarget, double allowed_time)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>mc_control::MCController &amp;</type>
+      <name>ctl_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>ab69e04c97a7f0510f64c4ac09a33f583</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>State</type>
+      <name>state_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a067e156d9dfbd6ebfd02ef131adb07bc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>bool</type>
+      <name>requested_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a13912a856cdcfccf6873ca90f958a7e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>allowedTimeSingleSupport_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>aaf39efaff5a7352c82e2bf71bd4dd387</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>allowedTimeStanding_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>a7b16cb0c0cc91463c1202afcf117e719</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SE2d</type>
+      <name>leftFootLandingOffset_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>af4efa1c85938462f0847cd92c7f6e516</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SE2d</type>
+      <name>rightFootLandingOffset_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>ad78a965ebc7e2434700ccedb42919af5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SE2d</type>
+      <name>leftFootLandingOffset_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>af4efa1c85938462f0847cd92c7f6e516</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>SE2d</type>
+      <name>rightFootLandingOffset_</name>
+      <anchorfile>structlipm__walking_1_1ExternalPlanner.html</anchorfile>
+      <anchor>ad78a965ebc7e2434700ccedb42919af5</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::FootstepPlan</name>
+    <filename>structlipm__walking_1_1FootstepPlan.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW void</type>
+      <name>complete</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a50b39cf9c22947a43eb26109b7273625</anchor>
+      <arglist>(const Sole &amp;sole)</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>computeInitialTransform</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ae956832e34bbb4d6d2a6ae79e9801343</anchor>
+      <arglist>(const mc_rbdyn::Robot &amp;robot) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>goToNextFootstep</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>afa6c196d057dada885d17972b6e5fbd6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>goToNextFootstep</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a0654687f956fda1d1657a6013ffd3449</anchor>
+      <arglist>(const sva::PTransformd &amp;actualTargetPose)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>load</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a5a114e2d22ebdaafaf39345e0b701817</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a26aa385680a5ccf95f0ddf3abf2556a6</anchor>
+      <arglist>(unsigned startIndex)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>restorePreviousFootstep</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ab39e339367483674dd26d13e3bd4f4bd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>save</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ac0150ae68188f040e96196c13f9b7557</anchor>
+      <arglist>(mc_rtc::Configuration &amp;config) const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateInitialTransform</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a50439d4e9b7dca217d9db4f570379694</anchor>
+      <arglist>(const sva::PTransformd &amp;X_0_lf, const sva::PTransformd &amp;X_0_rf, double initHeight)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>appendContact</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ad7153f572141bb9ad6b29ebd6ceb686f</anchor>
+      <arglist>(Contact step)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>comHeight</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a4f30b6abea95fb6400ff18c081b4bd3e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>comHeight</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a7a5ef3ae35cf3148c982ec18bc9e1e19</anchor>
+      <arglist>(double height)</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::vector&lt; Contact &gt; &amp;</type>
+      <name>contacts</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a8e5657382e79027129e01a225867e4ff</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>doubleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a298ba66c4dff04965997bbd0cf76bad4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>doubleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a4438b762d92daac7758a5cba327b6abf</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>finalDSPDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aea737c42e3f74fa135f9caa6ac01cfc4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>hasTorsoPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a4e7b05df1a8eda64778c7bdb94eaaf78</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>finalDSPDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a3904a34b41b2c9b7d3be50c7dfae6490</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>initDSPDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ade8b0cad8691aec1bcb3a7ec1bedc2f0</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initDSPDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a15844f007a90535d65eedb6d110acbac</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>const sva::PTransformd &amp;</type>
+      <name>initPose</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a86fe2f20f250b15d6a74784f62225128</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>landingDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a079ad6593a4788824cc4156914549215</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>landingDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a4835be772acd513d2819f4085c4b3874</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>landingPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a1316a4c93331cd547b3458a4e2178712</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>landingPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aa5437fc3a1e086c790535dc055576c1a</anchor>
+      <arglist>(double pitch)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>nextContact</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ab3f17ff99f38cfb180160c71ea559f96</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>prevContact</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>af81a985382e9c1734e4129f006b12782</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>resetContacts</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a9ebbae2598c1b097e2b86519de847f2b</anchor>
+      <arglist>(const std::vector&lt; Contact &gt; &amp;contacts)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>singleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a629367316f6193dde89eb2c16ccfa99f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>singleSupportDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aa84d92fd13ad619790938a6783b30017</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>supportContact</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>af3698c0b6f5d87a0e50fba08d1d463b6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>swapFirstTwoContacts</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>ab1a8332bd2ef866e58d1d36b374aa4b1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>swingHeight</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a729327307772848e87e1f566c1b4a00c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>swingHeight</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a572406d6b7d12b8148b01ec5eaf1a809</anchor>
+      <arglist>(double height)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>takeoffDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a922ecb8ff6a2b38a297cc56146e509e8</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffDuration</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aa687b63e6047e88c446f7b7757e298a5</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>takeoffOffset</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aa10c459ca2304c0fb817440bdfce3b88</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffOffset</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>adba54e3b9715cf6bb9efbc01e960d7a2</anchor>
+      <arglist>(const Eigen::Vector3d &amp;offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>takeoffPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a17874244e48ae136c046f903d8548ba1</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a20004ccaf111f0ff9ef7898e55215e5d</anchor>
+      <arglist>(double pitch)</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>targetContact</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a67cd98bb16100be3c7ed8b60886b4ee2</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>torsoPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a7457ee7e537eb20ebc44f82722d64db4</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>torsoPitch</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aee5279c44fd1e133770a4fc4fcd5758f</anchor>
+      <arglist>(double tp)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>rewind</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a6bec5ef18a80ff0daa10b70e1bc0889b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGUIElements</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a4a488f5612f5557f878c3eb504b1d9e8</anchor>
+      <arglist>(mc_rtc::gui::StateBuilder &amp;gui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeGUIElements</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>afdd3ba87bf652be23523066ff018ddf6</anchor>
+      <arglist>(mc_rtc::gui::StateBuilder &amp;gui)</arglist>
+    </member>
+    <member kind="variable">
+      <type>mc_rtc::Configuration</type>
+      <name>mpcConfig</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>a1fe9166c3fce3a181c2c82181ec0821a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>std::string</type>
+      <name>name</name>
+      <anchorfile>structlipm__walking_1_1FootstepPlan.html</anchorfile>
+      <anchor>aee2fca496dc81d9e72e4bffff63d4129</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::HoubaPolynomial</name>
+    <filename>structutils_1_1HoubaPolynomial.html</filename>
+    <templarg></templarg>
+    <base>utils::CubicHermitePolynomial</base>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4f78744a1e04c1bdfc8d81ab43b09578</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>extraInitVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4c696f2007603adf2a971c78129b91b6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>extraInitVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a7de795f004d5d36e16fec04e17b7edb5</anchor>
+      <arglist>(double scaling)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>extraTargetVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>aa0d1b0cb675c9387e86855015e607d50</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>extraTargetVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a2c0346125f2fbc199b84631974215ac4</anchor>
+      <arglist>(double scaling)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>extraInitVelScaling_</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>afdb7d629de11602e34c7a3b2a42477d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>extraTargetVelScaling_</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4a9994d596254e97a3bed6bdbf2a02a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>HoubaPolynomial&lt; Eigen::Vector2d &gt;</name>
+    <filename>structutils_1_1HoubaPolynomial.html</filename>
+    <base>utils::CubicHermitePolynomial</base>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4f78744a1e04c1bdfc8d81ab43b09578</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>extraInitVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4c696f2007603adf2a971c78129b91b6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>extraInitVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a7de795f004d5d36e16fec04e17b7edb5</anchor>
+      <arglist>(double scaling)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>extraTargetVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>aa0d1b0cb675c9387e86855015e607d50</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>extraTargetVelScaling</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a2c0346125f2fbc199b84631974215ac4</anchor>
+      <arglist>(double scaling)</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>extraInitVelScaling_</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>afdb7d629de11602e34c7a3b2a42477d8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>extraTargetVelScaling_</name>
+      <anchorfile>structutils_1_1HoubaPolynomial.html</anchorfile>
+      <anchor>a4a9994d596254e97a3bed6bdbf2a02a1</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::states::Initial</name>
+    <filename>structlipm__walking_1_1states_1_1Initial.html</filename>
+    <base>lipm_walking::State</base>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>a77e281905d8f54ed7922c8fd9d08dd79</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>a4056f9919c098d4c37a794116519600c</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>a4f56878e90299d890cffa24b4a08497f</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>a8b92d8228e7bd0e810d491cdc081d216</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>showStartStandingButton</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>af7c112b84936991dd0ef75e001e6338f</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>hideStartStandingButton</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>abe4dba2619d3a16e50a53b3df4530e3c</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>internalReset</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Initial.html</anchorfile>
+      <anchor>a4d2d61d19f21dd30ce48f5c817d89151</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::ModelPredictiveControl</name>
+    <filename>structlipm__walking_1_1ModelPredictiveControl.html</filename>
+    <member kind="function">
+      <type></type>
+      <name>ModelPredictiveControl</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a405567c58b51c840fed12ae70afc4587</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGUIElements</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a34e1786d0f1be3909228a5a6304490d6</anchor>
+      <arglist>(std::shared_ptr&lt; mc_rtc::gui::StateBuilder &gt; gui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addLogEntries</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a208ef5db5b3c1a147331e08cc2423df3</anchor>
+      <arglist>(mc_rtc::Logger &amp;logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>configure</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a9f56cccb84f3b2fccf199a0f177ce8ab</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>phaseDurations</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>abc0a5abba15c0c3c3ff9b0255d4c8138</anchor>
+      <arglist>(double initSupportDuration, double doubleSupportDuration, double targetSupportDuration)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>buildAndSolve</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a75fd496a5bc34c1f6a33c7d20c0920d4</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>comHeight</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a99de4986408af40471da2f0ca1014654</anchor>
+      <arglist>(double height)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>contacts</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a1678756faacf703eac6f77bc9eb193cd</anchor>
+      <arglist>(Contact initContact, Contact targetContact, Contact nextContact)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>initState</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a8279ce11d81a4e5a11dc9de7e8eead50</anchor>
+      <arglist>(const mc_planning::Pendulum &amp;pendulum)</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>indexToHrep</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a335aa31928f3c8927fa98935b9ebf8e9</anchor>
+      <arglist>(unsigned i) const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>initContact</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>acd98211b625ba113059d269b9eb60056</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>nbInitSupportSteps</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>ab1d89b470d3d9510352bc2e85c964ff3</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>nbDoubleSupportSteps</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a0fc8844a1c590df27fa04b81c4affa2d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>nextContact</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a365a48fa1a4de3482cbaeeae4f5f6859</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>sole</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>abb82c87a0b4467c42507b6f63150cf67</anchor>
+      <arglist>(const Sole &amp;sole)</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::shared_ptr&lt; Preview &gt;</type>
+      <name>solution</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a7d296ba991c1bdeeb48a133d6bfdfe3c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Contact &amp;</type>
+      <name>targetContact</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a9b498525afff8d6183a6ca54852c247f</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="variable">
+      <type>Eigen::Vector2d</type>
+      <name>velWeights</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>abf951cbaf8696e6233d92230d82acf1d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>jerkWeight</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>ae6d85bfe30443c198b9341f54b3b3e54</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>zmpWeight</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a4a9f6ec4ffca878944da9e70c36c5fb3</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr EIGEN_MAKE_ALIGNED_OPERATOR_NEW double</type>
+      <name>SAMPLING_PERIOD</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a8d49a2e7b1b3bb2bc14709eab1a3a19e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr unsigned</type>
+      <name>INPUT_SIZE</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>a9a86c87474dbffb7354d4a0fbc1a0e05</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr unsigned</type>
+      <name>NB_STEPS</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>ad6541796803b63d79cd5259932aa638b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr unsigned</type>
+      <name>STATE_SIZE</name>
+      <anchorfile>structlipm__walking_1_1ModelPredictiveControl.html</anchorfile>
+      <anchor>af236fbf490d844b0f6cd79fb9dcee813</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::PlanInterpolator</name>
+    <filename>structlipm__walking_1_1PlanInterpolator.html</filename>
+    <member kind="enumeration">
+      <type></type>
+      <name>Gait</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>aa03fcbbcdc30b6a7594a6b3542c719f6</anchor>
+      <arglist></arglist>
+      <enumvalue file="structlipm__walking_1_1PlanInterpolator.html" anchor="aa03fcbbcdc30b6a7594a6b3542c719f6a7a16a854f32231a8df9326136b09ee62">Walk</enumvalue>
+      <enumvalue file="structlipm__walking_1_1PlanInterpolator.html" anchor="aa03fcbbcdc30b6a7594a6b3542c719f6ae8b4b40ec3622e371789b790caabc083">Shuffle</enumvalue>
+      <enumvalue file="structlipm__walking_1_1PlanInterpolator.html" anchor="aa03fcbbcdc30b6a7594a6b3542c719f6a6b12be2513bab07567150f54467bc568">Turn</enumvalue>
+    </member>
+    <member kind="typedef">
+      <type>lipm_walking::utils::SE2d</type>
+      <name>SE2d</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>afada8be0d9552b173e40a995c781c0b9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>PlanInterpolator</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>aae8ae89ab43ded8201a5ba9eabf2ff4d</anchor>
+      <arglist>(std::shared_ptr&lt; mc_rtc::gui::StateBuilder &gt; gui)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>addGUIElements</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a354d948eabae2b14d69f2933680a0797</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>configure</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a0110acbecf02d043fb032a6bc491afd0</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;config)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeGUIElements</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>af882ea0d7d96ec479bb0f0a2896ec341</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>run</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a8c13197e62d47d90453d5e51796bd822</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>suggestGait</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ae0a720bf957c942aaece4e873b5e5c18</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateSupportPath</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ac3dc8a9db47a52abe8627b5279d64c5a</anchor>
+      <arglist>(const sva::PTransformd &amp;X_0_lf, const sva::PTransformd &amp;X_0_rf)</arglist>
+    </member>
+    <member kind="function">
+      <type>std::vector&lt; std::string &gt;</type>
+      <name>availablePlans</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a879170afceb2f1309177a7d1fe919035</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const std::string &amp;</type>
+      <name>customPlanName</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ad8eac0b585b3381382ddc608874100f7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>std::string</type>
+      <name>gait</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a4447734a2383b91f92fab7f07b305b88</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>gait</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a353313ec09fc781052c2e5c1243c7132</anchor>
+      <arglist>(const std::string &amp;dir)</arglist>
+    </member>
+    <member kind="function">
+      <type>FootstepPlan</type>
+      <name>getPlan</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a85ea294621b5709cc49866143786f349</anchor>
+      <arglist>(std::string name)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>restoreBackwardTarget</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a7bff09b8c6a72f4ad586891c98914f94</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>restoreForwardTarget</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a6af21fed5a86462681946caa599f73ab</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>restoreLateralTarget</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a24864927064ee78f99ac2f064115590b</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>stepWidth</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a67cd9d7b7d84b1bac6c1f1d08f1ccdd5</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>stepWidth</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a17f9ed4963f7955c2a78b6c9355c2b25</anchor>
+      <arglist>(double stepWidth)</arglist>
+    </member>
+    <member kind="function">
+      <type>const sva::PTransformd &amp;</type>
+      <name>worldReference</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a4b6447248302a1f483d0f4986fd7a2b6</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>worldReference</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ad91bd2fb6d00433b47980856a0fd23b2</anchor>
+      <arglist>(const sva::PTransformd &amp;worldReference)</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkPlanUpdated</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a00369e184aea8eb2a5fbbf97d330db62</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateLocalTarget_</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a20172c06ca974f18a3f11e6f3268b712</anchor>
+      <arglist>(const SE2d &amp;target)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateWorldTarget_</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>af27c52f11ac832e213ec38c8cbfe42a7</anchor>
+      <arglist>(const Eigen::Vector3d &amp;desired)</arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>DEFAULT_EXTRA_STEP_WIDTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a1f4dba2343d84ef028baccb2bf4fef17</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>IN_PLACE_EXTRA_STEP_WIDTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ab54fdc304483ac20c376c1397b351742</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>IN_PLACE_MAX_STEP_ANGLE</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a2a13e2ab266ea9d34ca1bed7e96138d0</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>MAX_EXTRA_STEP_WIDTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>ab2aeccc7c7ce059b91b248151678ed0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>MAX_LATERAL_STEP_LENGTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>aab050a04526382909b68787a46aada39</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>MAX_SAGITTAL_STEP_LENGTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a65ad046d6c21bcc29dac936590ce5996</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" static="yes">
+      <type>static constexpr double</type>
+      <name>MIN_STEP_LENGTH</name>
+      <anchorfile>structlipm__walking_1_1PlanInterpolator.html</anchorfile>
+      <anchor>a3fa09dcdd8e0493c14305d9fba6d044f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::PolynomialBase</name>
+    <filename>structutils_1_1PolynomialBase.html</filename>
+    <templarg></templarg>
+    <member kind="function" virtualness="pure">
+      <type>virtual EIGEN_MAKE_ALIGNED_OPERATOR_NEW T</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>a839d42068c4f9efbe0c407eca3df42b5</anchor>
+      <arglist>(double t) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual T</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>aa250bd04f062efa33f647837cbc333dc</anchor>
+      <arglist>(double t) const =0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual T</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>a0dd1ace54f29206baa14697c0c8e8049</anchor>
+      <arglist>(double t) const =0</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>tangent</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>a086b2ed1bced985729ba63023c067c94</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>arcLength</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>a4a04ef4a7f34b6c63ca70f17f4d0ad1c</anchor>
+      <arglist>(double t_start, double t_end) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>arcLengthInverse</name>
+      <anchorfile>structutils_1_1PolynomialBase.html</anchorfile>
+      <anchor>a40dadd8f2d73e2354388d2ffacc6988c</anchor>
+      <arglist>(double t_start, double length, double t_guess=-1.) const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::Preview</name>
+    <filename>structlipm__walking_1_1Preview.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>Preview</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>ac0526baca66afc28f69b0f9b0fef6114</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>Preview</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>a02d90de749cf30f18ee604bb6df83bce</anchor>
+      <arglist>(const Eigen::VectorXd &amp;stateTraj, const Eigen::VectorXd &amp;inputTraj)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>integrate</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>a48670cedec956523b16e201e5847e97b</anchor>
+      <arglist>(mc_planning::Pendulum &amp;state, double dt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>integratePlayback</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>ac88a67d58fb7aacaf8520b23e20b1a6d</anchor>
+      <arglist>(mc_planning::Pendulum &amp;state, double dt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>integratePostPlayback</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>a619361164bf43e03373177947412010a</anchor>
+      <arglist>(mc_planning::Pendulum &amp;state, double dt)</arglist>
+    </member>
+    <member kind="function">
+      <type>unsigned</type>
+      <name>playbackStep</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>a48da795e194da0405968cf5b8546f86e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>playbackTime</name>
+      <anchorfile>structlipm__walking_1_1Preview.html</anchorfile>
+      <anchor>a9eb35dea66c36adb723c29b76d22b3d1</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::QuinticHermitePolynomial</name>
+    <filename>structutils_1_1QuinticHermitePolynomial.html</filename>
+    <templarg></templarg>
+    <base>utils::QuinticPolynomial</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>QuinticHermitePolynomial</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>af7733a9358876dd13b0052c084560dfa</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>QuinticHermitePolynomial</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a4f92c47e4755e07d233558b1ed3852b4</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;targetPos, const T &amp;targetVel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a3b9530d2ac68b570580b9ba247250c9e</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;initAccel, const T &amp;targetPos, const T &amp;targetVel, const T &amp;targetAccel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a7b206f05dce9d26151ce00c1be964487</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;targetPos, const T &amp;targetVel)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a8f30f418e70adb2eac0a7bcdd483f47d</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;targetPos)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a1bde3d8c4ef92b99f8c879c40288b5df</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>initPos_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a1c2e98a4714c9b9685431b0c157c0619</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>initVel_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>ace45489b311bccef42494ac3b20528f9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>initAccel_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a9ed54d19b5cd97d25a86b6a58de3db57</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>targetPos_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>aca443d879955782008f0abc4b09fc9b6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>targetVel_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a2ae2f34123ca9a28f105e0b162c22499</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>targetAccel_</name>
+      <anchorfile>structutils_1_1QuinticHermitePolynomial.html</anchorfile>
+      <anchor>a7e25676a9c9b495e8d13a3550ee26afe</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::QuinticPolynomial</name>
+    <filename>structutils_1_1QuinticPolynomial.html</filename>
+    <templarg></templarg>
+    <base>utils::QuinticPolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW T</type>
+      <name>zero</name>
+      <anchorfile>structutils_1_1QuinticPolynomial.html</anchorfile>
+      <anchor>ac358f64da47393328d43f2036aebedb6</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>QuinticPolynomial</name>
+      <anchorfile>structutils_1_1QuinticPolynomial.html</anchorfile>
+      <anchor>ad97fefdf1c2d6565ee24218608f1df5c</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::QuinticPolynomial&lt; double &gt;</name>
+    <filename>structutils_1_1QuinticPolynomial_3_01double_01_4.html</filename>
+    <base>QuinticPolynomialBase&lt; double &gt;</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW double</type>
+      <name>zero</name>
+      <anchorfile>structutils_1_1QuinticPolynomial_3_01double_01_4.html</anchorfile>
+      <anchor>a7a563e5577d17c5d847a3f85cfe55ab3</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>QuinticPolynomial</name>
+      <anchorfile>structutils_1_1QuinticPolynomial_3_01double_01_4.html</anchorfile>
+      <anchor>a93fe20e6151d7ca3ea8f805559757710</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::QuinticPolynomialBase</name>
+    <filename>structutils_1_1QuinticPolynomialBase.html</filename>
+    <templarg></templarg>
+    <base>utils::PolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>QuinticPolynomialBase</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a8f09f4f74dabc3a0d3944ae5dec53d5c</anchor>
+      <arglist>(const T &amp;C0, const T &amp;C1, const T &amp;C2, const T &amp;C3, const T &amp;C4, const T &amp;C5)</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a7f1d5d1e9da83fd5c1261124faf5c7ca</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>aedce60d6fadd947e836f78b3bc78d781</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>afa18e2b50fbe182025b9e7f87db0e16a</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C0_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>ae8b08157311217e7bedd2f18eb1df1de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C1_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a1ba5b6b12757c6882e75bb5fa662cb28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C2_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>accf51550419a1245b30a6d3d4e403602</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C3_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a51749609863b418859dfcc94814629d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C4_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a28df3bbdb1105645bd8c5f8d30e583cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>T</type>
+      <name>C5_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>aab82799806cd7e8844a6f1fe3fec8f19</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>QuinticPolynomialBase&lt; double &gt;</name>
+    <filename>structutils_1_1QuinticPolynomialBase.html</filename>
+    <base>utils::PolynomialBase</base>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>QuinticPolynomialBase</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a8f09f4f74dabc3a0d3944ae5dec53d5c</anchor>
+      <arglist>(const double &amp;C0, const double &amp;C1, const double &amp;C2, const double &amp;C3, const double &amp;C4, const double &amp;C5)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a7f1d5d1e9da83fd5c1261124faf5c7ca</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>aedce60d6fadd947e836f78b3bc78d781</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>afa18e2b50fbe182025b9e7f87db0e16a</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C0_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>ae8b08157311217e7bedd2f18eb1df1de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C1_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a1ba5b6b12757c6882e75bb5fa662cb28</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C2_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>accf51550419a1245b30a6d3d4e403602</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C3_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a51749609863b418859dfcc94814629d6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C4_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>a28df3bbdb1105645bd8c5f8d30e583cd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>C5_</name>
+      <anchorfile>structutils_1_1QuinticPolynomialBase.html</anchorfile>
+      <anchor>aab82799806cd7e8844a6f1fe3fec8f19</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>utils::RetimedPolynomial</name>
+    <filename>structutils_1_1RetimedPolynomial.html</filename>
+    <templarg>Polynomial</templarg>
+    <templarg></templarg>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a40796b648a563ddf300ac79b81f05eeb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a5505218f82fbbe0fe9002001824bdb17</anchor>
+      <arglist>(Polynomial&lt; T &gt; poly, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>duration</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a79cb9dcf512257ed714d665b637d2838</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a27491603a6135020840fd8f39446dbf0</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;targetPos, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a897ba6d2d807b886182222ac19daf207</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;targetPos, const T &amp;targetVel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a4012ed207a9a716e74f4d7622aabc397</anchor>
+      <arglist>(const T &amp;initPos, const T &amp;initVel, const T &amp;initAccel, const T &amp;targetPos, const T &amp;targetVel, const T &amp;targetAccel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>s</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a913d228b3299da4b0890740381dd8161</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>sd</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a8172097d2ca33ebe03ac6ed0773dd949</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a96caaf2189077d63625dda4e6aba0067</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>aeb792850e4482b2cc4d7e5b7cafcf796</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>T</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a1781f1cf7e801accc91e91b29fee1ca8</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>duration_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a43e9d114d970f548f862a347ddbdd465</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Polynomial&lt; T &gt;</type>
+      <name>poly_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a00b7cff0813327ffbd1305673cd3aab4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>RetimedPolynomial&lt; QuinticHermitePolynomial, double &gt;</name>
+    <filename>structutils_1_1RetimedPolynomial.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a40796b648a563ddf300ac79b81f05eeb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a5505218f82fbbe0fe9002001824bdb17</anchor>
+      <arglist>(QuinticHermitePolynomial&lt; double &gt; poly, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>duration</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a79cb9dcf512257ed714d665b637d2838</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a27491603a6135020840fd8f39446dbf0</anchor>
+      <arglist>(const double &amp;initPos, const double &amp;targetPos, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a897ba6d2d807b886182222ac19daf207</anchor>
+      <arglist>(const double &amp;initPos, const double &amp;initVel, const double &amp;targetPos, const double &amp;targetVel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a4012ed207a9a716e74f4d7622aabc397</anchor>
+      <arglist>(const double &amp;initPos, const double &amp;initVel, const double &amp;initAccel, const double &amp;targetPos, const double &amp;targetVel, const double &amp;targetAccel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>s</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a913d228b3299da4b0890740381dd8161</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>sd</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a8172097d2ca33ebe03ac6ed0773dd949</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a96caaf2189077d63625dda4e6aba0067</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>aeb792850e4482b2cc4d7e5b7cafcf796</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a1781f1cf7e801accc91e91b29fee1ca8</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>duration_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a43e9d114d970f548f862a347ddbdd465</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QuinticHermitePolynomial&lt; double &gt;</type>
+      <name>poly_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a00b7cff0813327ffbd1305673cd3aab4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="class">
+    <name>RetimedPolynomial&lt; QuinticHermitePolynomial, Eigen::Vector2d &gt;</name>
+    <filename>structutils_1_1RetimedPolynomial.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a40796b648a563ddf300ac79b81f05eeb</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>RetimedPolynomial</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a5505218f82fbbe0fe9002001824bdb17</anchor>
+      <arglist>(QuinticHermitePolynomial&lt; Eigen::Vector2d &gt; poly, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>duration</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a79cb9dcf512257ed714d665b637d2838</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a27491603a6135020840fd8f39446dbf0</anchor>
+      <arglist>(const Eigen::Vector2d &amp;initPos, const Eigen::Vector2d &amp;targetPos, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a897ba6d2d807b886182222ac19daf207</anchor>
+      <arglist>(const Eigen::Vector2d &amp;initPos, const Eigen::Vector2d &amp;initVel, const Eigen::Vector2d &amp;targetPos, const Eigen::Vector2d &amp;targetVel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a4012ed207a9a716e74f4d7622aabc397</anchor>
+      <arglist>(const Eigen::Vector2d &amp;initPos, const Eigen::Vector2d &amp;initVel, const Eigen::Vector2d &amp;initAccel, const Eigen::Vector2d &amp;targetPos, const Eigen::Vector2d &amp;targetVel, const Eigen::Vector2d &amp;targetAccel, double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>s</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a913d228b3299da4b0890740381dd8161</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>sd</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a8172097d2ca33ebe03ac6ed0773dd949</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector2d</type>
+      <name>pos</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a96caaf2189077d63625dda4e6aba0067</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector2d</type>
+      <name>vel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>aeb792850e4482b2cc4d7e5b7cafcf796</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector2d</type>
+      <name>accel</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a1781f1cf7e801accc91e91b29fee1ca8</anchor>
+      <arglist>(double t) const</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>double</type>
+      <name>duration_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a43e9d114d970f548f862a347ddbdd465</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>QuinticHermitePolynomial&lt; Eigen::Vector2d &gt;</type>
+      <name>poly_</name>
+      <anchorfile>structutils_1_1RetimedPolynomial.html</anchorfile>
+      <anchor>a00b7cff0813327ffbd1305673cd3aab4</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::states::RunStabilizer</name>
+    <filename>structlipm__walking_1_1states_1_1RunStabilizer.html</filename>
+    <base>lipm_walking::State</base>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1states_1_1RunStabilizer.html</anchorfile>
+      <anchor>af4143718abec2430c37a16b99615311c</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1RunStabilizer.html</anchorfile>
+      <anchor>afb37bd7bc4809cd365352a6cb87bd31a</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1states_1_1RunStabilizer.html</anchorfile>
+      <anchor>a30a74430852e1bc7e435a8b901cc3ca2</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1states_1_1RunStabilizer.html</anchorfile>
+      <anchor>a6ac2d1a5dd24e658f5580f546f31f781</anchor>
+      <arglist>() override</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::utils::SE2d</name>
+    <filename>structlipm__walking_1_1utils_1_1SE2d.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW</type>
+      <name>SE2d</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a22af944810a9111ece46be9cca5f4951</anchor>
+      <arglist>(double x=0., double y=0., double theta=0.)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SE2d</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>ae1301c24d9ed45975aef7e770d9130df</anchor>
+      <arglist>(const Eigen::Vector3d &amp;v)</arglist>
+    </member>
+    <member kind="function">
+      <type></type>
+      <name>SE2d</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>ac79ea0863732cfbfe043545d69df7840</anchor>
+      <arglist>(const sva::PTransformd &amp;pose)</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>operator*</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a7cd358d7c7759be53d5c4d43e37230dd</anchor>
+      <arglist>(const sva::PTransformd &amp;X_0_a) const</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>asPTransform</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a3557113c41e7009720e373930ff8dd7c</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector2d</type>
+      <name>pos</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>afb888572b15f5266309b3b0ec3e23d34</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector2d</type>
+      <name>ori</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>adc7c491067d474426010841d4c70bdfb</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>const Eigen::Vector3d</type>
+      <name>vector</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>ab47a55341ea8f4c7e69a503f45317854</anchor>
+      <arglist>() const noexcept</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Vector3d</type>
+      <name>vectorDegrees</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a399dc59beda3c0cf03c849b87fe1a169</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>mc_rtc::Configuration</type>
+      <name>toConfiguration</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a2611547d3aee7f6ff4ece2a0890f1fdc</anchor>
+      <arglist>(bool toDeg=false) const</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static SE2d</type>
+      <name>fromConfiguration</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a6a64a3b1dc337b87832277c8562253d0</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;in)</arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>x</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a160f886f24019fd08261d7baf94aa315</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>y</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a3f7e3043a2616b737ae67dbd498e7cf6</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>theta</name>
+      <anchorfile>structlipm__walking_1_1utils_1_1SE2d.html</anchorfile>
+      <anchor>a8a5d70ea26641f800f6276bea91fea7e</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::states::SingleSupport</name>
+    <filename>structlipm__walking_1_1states_1_1SingleSupport.html</filename>
+    <base>lipm_walking::State</base>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>ac0e45a02d29d8f36eb422544dc7818f5</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>ae8dc47e79ba1d0e79d32e407482f6b41</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>ac51f060a5574c9afdb877b7a5fd83bf6</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>a10e500ed90fa6e6e6a82bf70b9eadcef</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateSwingFoot</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>aa7635d64517809ef3628d264f8ba98bd</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>detectTouchdown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>adc93693e249fda0f21577fda55cc54bd</anchor>
+      <arglist>(const std::shared_ptr&lt; mc_tasks::SurfaceTransformTask &gt; footTask, const sva::PTransformd &amp;contactPose)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updatePreview</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>a6777071387a20a7dd0b87fe7cc6e8ea1</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleExternalPlan</name>
+      <anchorfile>structlipm__walking_1_1states_1_1SingleSupport.html</anchorfile>
+      <anchor>a3042185caad1d449336cbd9b40b7ec7d</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::Sole</name>
+    <filename>structlipm__walking_1_1Sole.html</filename>
+    <member kind="variable">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW Eigen::Vector2d</type>
+      <name>leftAnkleOffset</name>
+      <anchorfile>structlipm__walking_1_1Sole.html</anchorfile>
+      <anchor>a1c9745ce59224543c194f388ac10901b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>friction</name>
+      <anchorfile>structlipm__walking_1_1Sole.html</anchorfile>
+      <anchor>a7d639d941fc7b168e14e6a5e26118508</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>halfLength</name>
+      <anchorfile>structlipm__walking_1_1Sole.html</anchorfile>
+      <anchor>a1a31cfc9d9cb899367757411eeafd52c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>double</type>
+      <name>halfWidth</name>
+      <anchorfile>structlipm__walking_1_1Sole.html</anchorfile>
+      <anchor>afe7e746a753be0a9b2f1efdcd37fd397</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::states::Standing</name>
+    <filename>structlipm__walking_1_1states_1_1Standing.html</filename>
+    <base>lipm_walking::State</base>
+    <member kind="function">
+      <type>void</type>
+      <name>configure</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>a87b291079555c9344a341d959429a5be</anchor>
+      <arglist>(const mc_rtc::Configuration &amp;) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>afd52ef94e5258bcaed952e5b4bbd9abd</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>a01ec09bd7f5f350c5b6a878e4a3f06e2</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>checkPlanUpdates</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>a52a4cc5e9c50f34ad6a70bcfdfbbd70d</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>af0373aaef7c9395aca3642c10e0db382</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>adb8728405b679b1d24d9738d226aaa1a</anchor>
+      <arglist>() override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>updateTarget</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>a27a09e10eec2a2c79785ad6aced3f316</anchor>
+      <arglist>(double leftFootRatio)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>startWalking</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>af5ef2a95be3e4c2fa9b64d54ee922ea0</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function" protection="protected">
+      <type>void</type>
+      <name>handleExternalPlan</name>
+      <anchorfile>structlipm__walking_1_1states_1_1Standing.html</anchorfile>
+      <anchor>af4da9f5bdebc1c0194db5ab1d55de2df</anchor>
+      <arglist>()</arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::State</name>
+    <filename>structlipm__walking_1_1State.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW Controller &amp;</type>
+      <name>controller</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a3657c05a2849fea9dc9d80621eea2aec</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>std::shared_ptr&lt; mc_rtc::gui::StateBuilder &gt;</type>
+      <name>gui</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>aa1df218013c3d6bf2077652d9fe6022a</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>mc_rtc::Logger &amp;</type>
+      <name>logger</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a234e1f7c88bfecb34914b1b949a96855</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>mc_planning::Pendulum &amp;</type>
+      <name>pendulum</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>ae62842c6f79d27fda7f01739d4498728</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>FootstepPlan &amp;</type>
+      <name>plan</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>abc8b5084142375e5c582cb55cf5b1bee</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>bool</type>
+      <name>run</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a57c6758af14b1ed01c5a5e7bb76ffd78</anchor>
+      <arglist>(mc_control::fsm::Controller &amp;) override</arglist>
+    </member>
+    <member kind="function">
+      <type>std::shared_ptr&lt; mc_tasks::lipm_stabilizer::StabilizerTask &gt;</type>
+      <name>stabilizer</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a3d0823466fa0ad44d9bfe11af2503298</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a8186061683c988bb8413d319c13ff2ac</anchor>
+      <arglist>(mc_control::fsm::Controller &amp;controller) override</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a3fb16f85d91a0fcf4729e158a8862dcf</anchor>
+      <arglist>(mc_control::fsm::Controller &amp;) override</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual bool</type>
+      <name>checkTransitions</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a0725b96e34638bde0401567b2e458a21</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>runState</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a7a76354ee37e060016ad9e3403df17c0</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>start</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>ab8e72be075316175e71b9884608f0fa3</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="function" virtualness="pure">
+      <type>virtual void</type>
+      <name>teardown</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a140507f70c4927aae92774204dd320a1</anchor>
+      <arglist>()=0</arglist>
+    </member>
+    <member kind="variable" protection="protected">
+      <type>Controller *</type>
+      <name>controller_</name>
+      <anchorfile>structlipm__walking_1_1State.html</anchorfile>
+      <anchor>a5d2aa824fd6fbc2ae3aeae3a63640c1f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>lipm_walking::SwingFoot</name>
+    <filename>structlipm__walking_1_1SwingFoot.html</filename>
+    <member kind="function">
+      <type>EIGEN_MAKE_ALIGNED_OPERATOR_NEW void</type>
+      <name>addLogEntries</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>ae49979365bcb21ebc97fcb9574f55180</anchor>
+      <arglist>(mc_rtc::Logger &amp;logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>integrate</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a8969697326b9534b6f763eefadc5bbc8</anchor>
+      <arglist>(double dt)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>removeLogEntries</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a15c8c893a591cfe99f7302388ed7eeb7</anchor>
+      <arglist>(mc_rtc::Logger &amp;logger)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>reset</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>ab6a586ebc73df9def20db6ddb19b0d91</anchor>
+      <arglist>(const sva::PTransformd &amp;initPose, const sva::PTransformd &amp;targetPose, double duration, double height)</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::MotionVecd</type>
+      <name>accel</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a9b0a79c83f8a4876400fc7ddb373213e</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>height</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>afcb93e6833c519c72acc200bf1705f7e</anchor>
+      <arglist>()</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>landingDuration</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>ad143baf137f7db05523925fec50a5fb5</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>landingPitch</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a7c5f3b55a532683be4dd20c758006efc</anchor>
+      <arglist>(double pitch)</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::PTransformd</type>
+      <name>pose</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a1f7fec723bf64466e7088e102dd013a7</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>remTime</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a9cc07108d1f0f9f2b93619dcaf72a17d</anchor>
+      <arglist>() const</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffDuration</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a7865468ed0e4ddd3a5f521304fa2ba33</anchor>
+      <arglist>(double duration)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffOffset</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a4da3fc96db829c9a476cfd03d4204015</anchor>
+      <arglist>(const Eigen::Vector3d &amp;offset)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>takeoffPitch</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>af1dd651002919afb42022193bb278f4b</anchor>
+      <arglist>(double pitch)</arglist>
+    </member>
+    <member kind="function">
+      <type>sva::MotionVecd</type>
+      <name>vel</name>
+      <anchorfile>structlipm__walking_1_1SwingFoot.html</anchorfile>
+      <anchor>a603aab3c5f86452ce58a8e9b5124547e</anchor>
+      <arglist>() const</arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>lipm_walking</name>
+    <filename>namespacelipm__walking.html</filename>
+    <namespace>lipm_walking::states</namespace>
+    <namespace>lipm_walking::utils</namespace>
+    <class kind="struct">lipm_walking::Contact</class>
+    <class kind="struct">lipm_walking::Controller</class>
+    <class kind="struct">lipm_walking::ExternalPlanner</class>
+    <class kind="struct">lipm_walking::FootstepPlan</class>
+    <class kind="struct">lipm_walking::ModelPredictiveControl</class>
+    <class kind="struct">lipm_walking::PlanInterpolator</class>
+    <class kind="struct">lipm_walking::Preview</class>
+    <class kind="struct">lipm_walking::Sole</class>
+    <class kind="struct">lipm_walking::State</class>
+    <class kind="struct">lipm_walking::SwingFoot</class>
+    <member kind="typedef">
+      <type>std::pair&lt; Eigen::MatrixXd, Eigen::VectorXd &gt;</type>
+      <name>HrepXd</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a17f9a5cb143064d2e429315aade89f21</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>mc_tasks::lipm_stabilizer::ContactState</type>
+      <name>ContactState</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a7859e516b157e02a22d48d48c7bff149</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>utils::SE2d</type>
+      <name>SE2d</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a2301d526f9d22281fd3c473fd9317c67</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>mc_planning::Pendulum</type>
+      <name>Pendulum</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a9d7a8709221cdec0b5096661f727800e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="enumeration">
+      <type></type>
+      <name>WalkingState</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a11f4a248e158451286269223c0662272</anchor>
+      <arglist></arglist>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272a2dbec34a65724db94f81e8533ee18192">Standby</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272aa66b284e632fb96f19e27dca96b78fd7">Standing</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272a80ed5c215daa223b859dbbb79343805f">DoubleSupport</enumvalue>
+      <enumvalue file="namespacelipm__walking.html" anchor="a11f4a248e158451286269223c0662272ab5e64cafb52dc7c56593780174c468b1">SingleSupport</enumvalue>
+    </member>
+    <member kind="function">
+      <type>Contact</type>
+      <name>operator*</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a3e17e554f1bfd10eae30e24c69e104a7</anchor>
+      <arglist>(const sva::PTransformd &amp;X, const Contact &amp;contact)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>floorn</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>a64938efece741683c0e3449e96ede5ab</anchor>
+      <arglist>(double x, int n)</arglist>
+    </member>
+    <member kind="variable">
+      <type>constexpr double</type>
+      <name>PREVIEW_UPDATE_PERIOD</name>
+      <anchorfile>namespacelipm__walking.html</anchorfile>
+      <anchor>abccb4317c936fd3671cf62d0b4cdd4d0</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="namespace">
+    <name>lipm_walking::states</name>
+    <filename>namespacelipm__walking_1_1states.html</filename>
+    <class kind="struct">lipm_walking::states::DoubleSupport</class>
+    <class kind="struct">lipm_walking::states::Initial</class>
+    <class kind="struct">lipm_walking::states::RunStabilizer</class>
+    <class kind="struct">lipm_walking::states::SingleSupport</class>
+    <class kind="struct">lipm_walking::states::Standing</class>
+  </compound>
+  <compound kind="namespace">
+    <name>lipm_walking::utils</name>
+    <filename>namespacelipm__walking_1_1utils.html</filename>
+    <class kind="struct">lipm_walking::utils::SE2d</class>
+  </compound>
+  <compound kind="namespace">
+    <name>mc_control</name>
+    <filename>namespacemc__control.html</filename>
+  </compound>
+  <compound kind="namespace">
+    <name>mc_rtc</name>
+    <filename>namespacemc__rtc.html</filename>
+    <namespace>mc_rtc::gui</namespace>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::Contact &gt;</class>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::FootstepPlan &gt;</class>
+    <class kind="struct">mc_rtc::ConfigurationLoader&lt; lipm_walking::Sole &gt;</class>
+  </compound>
+  <compound kind="namespace">
+    <name>mc_rtc::gui</name>
+    <filename>namespacemc__rtc_1_1gui.html</filename>
+  </compound>
+  <compound kind="namespace">
+    <name>utils</name>
+    <filename>namespaceutils.html</filename>
+    <class kind="struct">utils::PolynomialBase</class>
+    <class kind="struct">utils::CubicPolynomialBase</class>
+    <class kind="struct">utils::CubicPolynomial</class>
+    <class kind="struct">utils::CubicPolynomial&lt; double &gt;</class>
+    <class kind="struct">utils::CubicHermitePolynomial</class>
+    <class kind="struct">utils::HoubaPolynomial</class>
+    <class kind="struct">utils::QuinticPolynomialBase</class>
+    <class kind="struct">utils::QuinticPolynomial</class>
+    <class kind="struct">utils::QuinticPolynomial&lt; double &gt;</class>
+    <class kind="struct">utils::QuinticHermitePolynomial</class>
+    <class kind="struct">utils::RetimedPolynomial</class>
+    <member kind="function">
+      <type>double</type>
+      <name>clamp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>aea4ead7eed51a66866b0b5d519bac40f</anchor>
+      <arglist>(double v, double vMin, double vMax)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clampInPlace</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a27188482ceddb072c3275eb97f805a4c</anchor>
+      <arglist>(double &amp;v, double vMin, double vMax)</arglist>
+    </member>
+    <member kind="function">
+      <type>double</type>
+      <name>clamp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a46fe4f1bbb04edfa576cf554d9581706</anchor>
+      <arglist>(double v, double vMin, double vMax, const char *label)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>clampInPlace</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>a54f407173d3c409ee62f05286ced3dfe</anchor>
+      <arglist>(double &amp;v, double vMin, double vMax, const char *label)</arglist>
+    </member>
+    <member kind="function">
+      <type>Eigen::Matrix3d</type>
+      <name>slerp</name>
+      <anchorfile>namespaceutils.html</anchorfile>
+      <anchor>af1466af265a98f6895bdde4f96be5216</anchor>
+      <arglist>(const Eigen::Matrix3d &amp;from, const Eigen::Matrix3d &amp;to, double t)</arglist>
+    </member>
+  </compound>
+  <compound kind="page">
+    <name>build</name>
+    <title>Build and install the LIPMWalking controller</title>
+    <filename>build.html</filename>
+    <docanchor file="build.html" title="Building the controller">controller</docanchor>
+    <docanchor file="build.html" title="Simulation with the JVRC-1 model">jvrc</docanchor>
+    <docanchor file="build.html" title="Install dependencies from Ubuntu mirror">binaries</docanchor>
+    <docanchor file="build.html" title="Install dependencies from source">source</docanchor>
+    <docanchor file="build.html" title="JRL dependencies">jrl</docanchor>
+    <docanchor file="build.html" title="Building Choreonoid">choreonoid_build</docanchor>
+    <docanchor file="build.html" title="Install mc_openrtm and the sample project">mc_openrtm</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>docker</name>
+    <title>Using the Docker image</title>
+    <filename>docker.html</filename>
+    <docanchor file="docker.html" title="Running all at once">docker_run</docanchor>
+    <docanchor file="docker.html" title="Running processes separately">docker_separate</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>overview</name>
+    <title>Overview of the code</title>
+    <filename>overview.html</filename>
+    <docanchor file="overview.html" title="Main components">main_components</docanchor>
+    <docanchor file="overview.html" title="Finite state machine">fsm</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>stabilizer</name>
+    <title>Tuning the stabilizer</title>
+    <filename>stabilizer.html</filename>
+    <docanchor file="stabilizer.html" title="Feedback gains">gains</docanchor>
+    <docanchor file="stabilizer.html" title="DCM Tracking">dcm</docanchor>
+    <docanchor file="stabilizer.html" title="Admittance control">admittance</docanchor>
+    <docanchor file="stabilizer.html" title="Standard tests">tests</docanchor>
+    <docanchor file="stabilizer.html" title="Standing">standing</docanchor>
+    <docanchor file="stabilizer.html" title="Walking in place">ashibumi</docanchor>
+    <docanchor file="stabilizer.html" title="Walking forward">forward</docanchor>
+    <docanchor file="stabilizer.html" title="Optional tunings">optional</docanchor>
+    <docanchor file="stabilizer.html" title="DCM integrator">integrator</docanchor>
+    <docanchor file="stabilizer.html" title="Vertical drift control">vdc</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>troubleshooting</name>
+    <title>Troubleshooting</title>
+    <filename>troubleshooting.html</filename>
+    <docanchor file="troubleshooting.html" title="Choreonoid questions">choreonoid_questions</docanchor>
+    <docanchor file="troubleshooting.html" title="Docker questions">docker_questions</docanchor>
+  </compound>
+  <compound kind="page">
+    <name>index</name>
+    <title>notitle</title>
+    <filename>index.html</filename>
+  </compound>
+</tagfile>
