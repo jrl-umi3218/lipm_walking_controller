@@ -9,10 +9,13 @@ on:
       - ".gitignore"
       - ".github/workflows/package.yml"
     branches:
-      - '**'
+      - 'master'
   pull_request:
     branches:
       - '**'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -20,6 +23,8 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04]
+        # TODO: needs mc-rtc package
+        # os: [ubuntu-22.04, ubuntu-24.04, ubuntu-26.04]
         build-type: [RelWithDebInfo, Debug]
         compiler: [gcc, clang]
 
@@ -54,6 +59,7 @@ jobs:
         GH_PAGES_TOKEN: ${{ secrets.GH_PAGES_TOKEN }}
     # FIXME: restore this CI
     # I think the best way would be to use choreonoid-private docker instead of the apt packages
+    # Or actually have openrtm and choreonoid in Nix would be even more flexible and useful
     #
     # - name: Run JVRC1 simulation
     #   # Only run on master branch and for one configuration
