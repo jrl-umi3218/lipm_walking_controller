@@ -30,7 +30,7 @@ set(PROJECT_NAME lipm_walking_controller)
 set(PROJECT_DESCRIPTION
     "Walking controller based on linear inverted pendulum tracking")
 set(PROJECT_URL https://github.com/stephane-caron/lipm_walking_controller/)
-set(PROJECT_VERSION 1.7.0)
+set(PROJECT_VERSION 1.7.1)
 set(PROJECT_USE_CMAKE_EXPORT TRUE)
 set(INSTALL_DOCUMENTATION
     OFF
