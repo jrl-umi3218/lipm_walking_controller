@@ -68,7 +68,10 @@ endif()
 
 include(${JRL_CMAKE_MODULES}/base.cmake)
 
-project(${PROJECT_NAME} CXX VERSION ${PROJECT_VERSION})
+project(
+  ${PROJECT_NAME}
+  LANGUAGES CXX
+  VERSION ${PROJECT_VERSION})
 
 add_project_dependency(copra REQUIRED)
 add_project_dependency(mc_rtc REQUIRED)
