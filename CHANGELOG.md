@@ -2,7 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v1.6] - 2019/12/11
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+
+## [Unreleased]
+
+## [1.7.0] - 2026-07-04
+
+## [1.6.0] - 2019/12/11
 
 ### Added
 
@@ -13,7 +19,7 @@ All notable changes to this project will be documented in this file.
 - Terminology regarding pressure and foot force ratios
 - ZMP frame initialization
 
-## [v1.5] - 2019/12/10
+## [1.5.0] - 2019/12/10
 
 ### Added
 
@@ -32,14 +38,14 @@ All notable changes to this project will be documented in this file.
 - Removed dependency on ``eigen-lssol``
 - Stabilizer: switched solver of wrench distribution QP from LSSOL to QuadProg
 
-## [v1.4] - 2019/11/18
+## [1.4.0] - 2019/11/18
 
 ### Fixed
 
 - Stabilizer: distribute wrenches w.r.t. [measured rather than reference
   CoM](https://github.com/stephane-caron/lipm_walking_controller/issues/28)
 
-## [v1.3] - 2019/11/14
+## [1.3.0] - 2019/11/14
 
 ### Added
 
@@ -64,7 +70,7 @@ All notable changes to this project will be documented in this file.
 - Switch license to BSD 2-clause for compatibility with other mc\_rtc projects
 - Updated dependencies
 
-## [v1.2] - 2019/10/11
+## [1.2.0] - 2019/10/11
 
 The main change in this release is the switch from ZMP to DCM derivative term
 in DCM tracking, following [Biped locomotion control for uneven terrain with
@@ -94,11 +100,11 @@ a model-based estimator.
 - Updated CMake configuration
 - Updated copra and mc\_rtc dependencies
 
-## [v1.1] - 2019/04/15
+## [1.1.0] - 2019/04/15
 
 This release corresponds to the stair climbing and walking control that ran in
 the final demonstrator of the COMANOID project.
 
-## [v1.0] - 2018/10/17
+## [1.0.0] - 2018/10/17
 
 First public release of the controller.
